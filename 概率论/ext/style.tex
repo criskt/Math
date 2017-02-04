@@ -1,0 +1,20 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath}
+\usepackage{fontspec}  % 解决中文问题
+	\defaultfontfeatures{Mapping=tex-text}
+	\setromanfont{Songti SC}  % Mac下使用此句
+	% \setromanfont{"[msyh.ttc]"}  % Windows下使用此句
+	\XeTeXlinebreaklocale “zh”
+	\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+\usepackage[top=20mm, bottom=25mm, left=20mm, right=25mm]{geometry}  % 设置页边距
+	% \special{papersize=12cm,9cm}  % For Kindle
+\usepackage{tikz}  % 画图用s
+	\def\pgfsysdriver{pgfsys-dvipdfmx.def}
+\usepackage{xltxtra}
+\usepackage{xunicode}
+
+\renewcommand{\thefootnote}{注[\arabic{footnote}]}  % 重新定义\footnote命令的格式
+
+\newtheorem{defination}{定义}[section]
+
+

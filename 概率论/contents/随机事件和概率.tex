@@ -1,0 +1,28 @@
+\section{随机事件和概率}
+
+\begin{enumerate}
+\item 完备事件组 \\
+满足$\cup_{i=1}^nB_i=\Omega$，且$B_iB_j = \emptyset$的事件组$B_1$, $B_2$, ..., $B_n$成为完备事件组
+
+\item 乘法公式
+\begin{equation}
+P(A_1A_2...A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1A_2)....P(A_n|A_1A_2...A_{n-1})
+\end{equation}
+
+\item 全概率公式
+\begin{equation}
+P(A) = \sum_{i=1}^nP(B_i)P(A|B_i)
+\end{equation}
+其中，$B$为一完备事件组
+
+\item 贝叶斯公式
+\begin{equation}
+P(B_j|A) = \frac{P(B_j)P(A|B_j)}{\sum_{i=1}^nP(B_i)P(A|B_i)},  j = 1, 2, 3, ..., n
+\end{equation}
+
+\begin{equation}
+\sum_{k=0}^{+\infty}\frac{x^k}{k!} = e^x
+\end{equation}
+
+
+\end{enumerate}
