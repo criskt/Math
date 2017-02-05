@@ -1,0 +1,38 @@
+\section{线性代数知识}
+\begin{enumerate}
+	\item \\
+	\begin{equation}
+		\nabla_{\theta}J(\theta) = \left[\begin{matrix} \frac{\partial J}{\partial\theta_0} \\
+		\frac{\partial J}{\partial\theta_1} \\
+		\vdots \\
+		\frac{\partial J}{\partial\theta_n}
+		\end{matrix}\right], \quad \in {\rm I\!R}^{n+1}
+	\end{equation}
+
+	\item \\
+	\begin{equation}
+		\nabla_Af(A) = \left[ \begin{matrix}
+			\frac{\partial f}{\partial A_{11}} & \frac{\partial f}{\partial A_{12}} & \dots & \frac{\partial f}{\partial A_{1n}} \\
+			\frac{\partial f}{\partial A_{21}} & \frac{\partial f}{\partial A_{22}} & \dots & \frac{\partial f}{\partial A_{2n}} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\frac{\partial f}{\partial A_{n1}} & \frac{\partial f}{\partial A_{n2}}& \dots & \frac{\partial f}{\partial A_{nn}} \\
+		\end{matrix}\right]
+	\end{equation}
+
+	\item 矩阵的迹的计算方式 \\
+	如果矩阵$A$是方阵，则：
+	\begin{equation}
+		tr(A) = \sum_{i=1}^nA_{ii}
+	\end{equation}
+
+	\item 矩阵的迹的性质
+	\begin{equation}
+		tr(AB) = tr(BA)
+	\end{equation}
+	\begin{equation}
+		tr(ABC) = tr(CAB) = tr(BCA)
+	\end{equation}
+	\begin{equation}
+		tr(A^T) = tr(A)
+	\end{equation}
+\end{enumerate}
