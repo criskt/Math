@@ -1,64 +1,70 @@
 \section{常用分布}
+
+\subsection{离散型}
 \begin{enumerate}
-	
-\item 二项分布
-\begin{equation}
-	P(X=k) = C_n^kp^kq^{n-k}, k=0, 1, 2, \dots, n
-\end{equation}
+	\item 二项分布
+	\begin{equation}
+		P(X=k) = C_n^kp^kq^{n-k}, \quad k=0, 1, 2, \dots, n
+	\end{equation}
 
-\item 几何分布
-\begin{equation}
-	P(X=k) = pq^{k-1}, k=1, 2, 3, ...
-\end{equation}
+	\item 几何分布
+	\begin{equation}
+		P(X=k) = pq^{k-1}, \quad k=1, 2, 3, ...
+	\end{equation}
 
-\item 超几何分布
-\begin{equation}
-P(X=k) = \frac{C_M^kC_{N-M}^{n-k}}{C_N^n}, k = l_1, \dots, l_2
-\end{equation}
-其中，$l_1 = max(0, n-N+M)$(通过$N-M {\geq} n-k$可以得到), $l_2=min(M,n)$
+	\item 超几何分布
+	\begin{equation}
+	P(X=k) = \frac{C_M^kC_{N-M}^{n-k}}{C_N^n}, \quad k = l_1, \dots, l_2
+	\end{equation}
+	其中，$l_1 = max(0, n-N+M)$(通过$N-M {\geq} n-k$可以得到), $l_2=min(M,n)$
 
-\item 泊松分布
-\begin{equation}
-	P(X=k) = \frac{\lambda^k}{k!}e^{-\lambda}, k=0, 1, 2, \dots
-\end{equation}
-其中，$\lambda>0$且为常数
+	\item 泊松分布
+	\begin{equation}
+		P(X=k) = \frac{\lambda^k}{k!}e^{-\lambda}, \quad k=0, 1, 2, \dots
+	\end{equation}
+	其中，$\lambda>0$且为常数
+\end{enumerate}
 
-\item 均匀分布
-\[ f(x)=\begin{cases}
-\frac{1}{b-a}, a \leq x \leq b, \\
-0, Others
-\end{cases} \]
+\subsection{连续型}
+\begin{enumerate}
+	\item 连续型随机变量的分布函数$F(x)$必定连续，但是，其概率密度函数$f(x)$不一定连续
+	\item 均匀分布
+	\[ f(x)=\begin{cases}
+	\frac{1}{b-a}, \quad a \leq x \leq b, \\
+	0, \quad Others
+	\end{cases} \]
 
-\item 指数分布
-\[ f(x)=\begin{cases}
-\lambda e^{-\lambda x}, x>0, \\
-0, x \leq 0
-\end{cases} \]
-其中，$\lambda>0$。 \\
-其分布函数为
-\[ F(x)=\begin{cases}
-1-e^{-\lambda x}, x>0 \\
-0, x \leq 0
-\end{cases} \]
+	\item 指数分布
+	\[ f(x)=\begin{cases}
+	\lambda e^{-\lambda x}, \quad x>0, \\
+	0, \quad x \leq 0
+	\end{cases} \]
+	其中，$\lambda>0$。 \\
+	其分布函数为
+	\[ F(x)=\begin{cases}
+	1-e^{-\lambda x}, \quad x>0 \\
+	0, \quad x \leq 0
+	\end{cases} \]
 
-\item 正态分布
-\begin{equation}
-	f(x) = \frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, -\infty < x < +\infty
-\end{equation}
-其分布函数为
-\begin{equation}
-	F(x) = \frac{1}{\sqrt{2\pi}\sigma} \int_{-oo}^x  e^{-\frac{(t-\mu)^2}{2\sigma^2}} dt, -\infty < x < +\infty
-\end{equation}
-标准正态分布
-\begin{equation}
-	\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-oo}^x e^{-\frac{t^2}{2}} dt
-\end{equation}
+	\item 正态分布
+	\begin{equation}
+		f(x) = \frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad -\infty < x < +\infty
+	\end{equation}
+	其分布函数为
+	\begin{equation}
+		F(x) = \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^x  e^{-\frac{(t-\mu)^2}{2\sigma^2}} dt, \quad -\infty < x < +\infty
+	\end{equation}
+	标准正态分布
+	\begin{equation}
+		\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} dt
+	\end{equation}
 
-
-
-
-
-
+	\item 泊松定理 \\
+	在伯努利实验中，若$n$较大，$p_n$较小，是的$np_n$在$n \to +\infty$时为一常数，则有
+	\begin{equation}
+		\lim_{n \to +\infty}C_n^kp_n^k(1-p_n)^{n-k} = \frac{\lambda ^k}{k!}e^{-\lambda}
+	\end{equation}
+	其中，$\lim_{n\to+\infty}np_n = \lambda$
 
 \end{enumerate}
 

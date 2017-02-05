@@ -1,0 +1,58 @@
+\section{多维随机变量及其分布}
+\subsection{二维随机变量及其分布}
+\subsubsection{连续型}
+\begin{enumerate}
+	\item 二维随机变量的分布
+	\begin{equation}
+		F(x, y) = P(X\leq x, Y \leq y), \quad -\infty < x < +\infty, -\infty < y < + \infty
+	\end{equation}
+
+	\item 二维随机变量的边缘分布
+	\begin{equation}\begin{aligned}
+			F_X(x) &= P(X\leq x) = P(X\leq x, y< +\infty) = F(x, +\infty) \\
+			F_Y(y) &= P(Y\leq y) = P(X< +\infty, Y\leq y) = F(+\infty, y)
+	\end{aligned}\end{equation}
+	\item 二维随机变量的条件分布
+	\begin{align}
+		F_{X|Y}(x|y) = P(X \leq x | Y=y) 
+		= \lim_{\epsilon \to 0^+}P(X \leq x | y - \epsilon < Y \leq y + \epsilon) \\
+		= \lim_{\epsilon \to 0^+} \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)}
+	\end{align}
+	$F_{Y|X}(y|x)$同理
+
+\end{enumerate}
+
+
+
+\subsubsection{离散型}
+\begin{enumerate}
+	\item 二维随机变量的概率分布（或称分布律）
+	\begin{equation}
+		P(X=x_i, Y=y_j) = p_{ij}, \quad i,j = 1, 2, \dots
+	\end{equation}
+
+	\item 二维随机变量的边缘分布
+	\begin{align}
+		p_{i\cdot} &= P(X=x_i) 
+		= \sum_{j=1}^{+\infty}P(X=x_i, Y=y_j) 
+		= \sum_{j=1}^{+\infty}p_{ij}, \quad i = 1, 2, \dots \\
+		p_{\cdot j} &= P(Y=y_j) 
+		= \sum_{i=1}^{+\infty}P(X=x_i, Y=y_j) 
+		= \sum_{i=1}^{+\infty}p_{ij}, \quad j = 1, 2, \dots 
+	\end{align}
+	\item 二维随机变量的条件分布
+	\begin{equation}\begin{aligned}
+		P(X=x_i|Y=y_j) = \frac{P(X=x_i, Y=y_j)}{P(Y=y_j)} = \frac{p_{ij}}{p_{\cdot j}}, \quad i = 1, 2, \dots
+	\end{aligned}\end{equation}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
