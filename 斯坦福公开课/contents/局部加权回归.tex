@@ -1,0 +1,52 @@
+\section{局部加权回归(LWR：Local Weight Regression)}
+\subsection{概念}
+\begin{enumerate}
+	\item 局部加权回归思想由来 \\
+	在普通的线性回归中，如果输入变量与目标变量之间并没有明显的线性关系，那么我们使用线性回归得到的拟合效果并不好。于是我们就想对我们的拟合方法做些改进，下面我们再复习下我们的线性回归：
+	\begin{equation}
+		h_{\theta}(x) = \sum_{j=0}^n \theta_jx_j = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + \dots +  + \theta_nx_n
+	\end{equation}
+	\begin{equation}\begin{aligned}
+		J(\theta) = \frac{1}{2} \left[h_{\theta} {(x^{(i)})} - y^{(i)}\right]^2
+	\end{aligned}\end{equation}
+	\begin{equation}\begin{aligned}
+		\theta_j &:= \theta_j - \alpha \sum_{i=1}^m \left[ h_\theta(x^{(i)}) - y^{(i)} \right]x_j^{(i)}
+	\end{aligned}\end{equation}
+	$h_\theta(x)$是假设函数，用来得到预测结果；$J(\theta)$为Cost Funtion，用来对$\theta$进行奖惩，从而得到拟合效果最好的$\theta$。\\
+	若要得到不同的拟合效果，一方面我们可以更改$h_\theta(x)$，使用不同的拟合函数；另一方面，我们可以保持原来的拟合函数，通过改变$J(\theta)$进行不同的奖惩措施，最终得到不同的$\theta$。\\
+	若要更改$h_\theta(x)$，我们可以添加$x^2, x^3, \dots$或使用其他的拟合函数，这就是其他知识了，不在我们本次的讨论内容中；下面我们讲下如何更改$J(\theta)$来获取不同的拟合效果：\\
+	% 有上式可知，若要改善拟合效果，一方面可以从$x$入手，如添加更高阶的拟合方式，由此来得到更准确的$\theta$来拟合；\\
+	我们可以发现，上述线性回归根本思想其实就是给每个特征赋予不同的权值($x$就是特征，$\theta$就是权值)，其赋权只在$h_\theta(x)$中，在$J(\theta)$中并没有赋权，且只考虑到了给每个特征赋予不同的权值，现在，我们考虑给$J(\theta)$赋权，且让这个权值与该数据点所处位置相关，这就是局部加权回归（若采用其他的赋权方法也可以，但这就不叫局部加权回归了）。\\
+	下面，我们讲讲局部加权回归的计算方法
+\end{enumerate}
+
+\subsection{计算方法}
+\begin{enumerate}
+	\item 设计权值函数
+	\begin{equation}
+		\omega^{(i)} = e^{-\frac{(x^{(i)}-x)^2}{2}}
+	\end{equation}
+	$\omega^{(i)}$就是我们为局部加权回归量身定做的加权函数. \\
+	其具有正态分布函数的形式，但没有其代表的意义（当然，我们也可以使用其他函数作为权值函数，但这就不叫局部加权回归了）。\\
+	使用此$\omega^{(i)}$在$|x^{(i)}-x|$较小时，其值约等于1；在$|x^{(i)}-x|$较大时，其值约等于0。\\
+	\item Cost Function
+	\begin{equation}
+		J(\theta) = \sum_{i}\omega^{(i)}(y^{(i)} - \Theta^TX^{(i)})^2
+	\end{equation}
+	之后，通过与一般线性回归一样的方式不断地拟合，让$J(\theta)$的值最小便可得到局部加权回归的结果。最终的效果中，距离要预估的点较近的点对结果影响较大，距离要预估的点较远的点对结果影响较小。
+	
+\end{enumerate}
+
+\subsection{其他注意事项}
+\begin{enumerate}
+	\item 使用局部加权回归得到的仍旧是一条直线$h_{\theta}(x)= \sum_{j=0}^n\theta_jx_j^{(i)}$
+	\item 局部加权回归是一个非参数学习算法。其同样会有欠拟合、过拟合的问题。
+	\item 因为局部加权函数在对$\theta$进行奖惩时，用到了我们要预测的那个点，最终的$\theta$受到该点的影响，所以，如果我们要预测其他点，需要重新进行一次局部加权回归。这将导致此算法不适合所要预测的点一直变化的情况。
+\end{enumerate}
+
+
+
+
+
+
+
