@@ -18,20 +18,23 @@
 		= \lim_{\epsilon \to 0^+}P(X \leq x | y - \epsilon < Y \leq y + \epsilon) \\
 		= \lim_{\epsilon \to 0^+} \frac{P(X \leq x, y - \epsilon < Y \leq y + \epsilon)}{P(y - \epsilon < Y \leq y + \epsilon)}
 	\end{align}
-	$F_{Y|X}(y|x)$同理
+	$F_{Y|X}(y|x)$同理 \\
+	若$f(x,y)$在$(x,y)$点连续，且$f_Y(y)>0$，则：
+	\begin{equation}
+		F_{X|Y}(x|y) = \int_{-\infty}^{x}\frac{f(s,y)}{f_Y(y)}ds
+	\end{equation}
+	$F_{Y|X}(y|x)=\int_{-\infty}^{y}\frac{f(x,s)}{f_X(x)}ds$
 
 \end{enumerate}
 
-
-
 \subsubsection{离散型}
 \begin{enumerate}
-	\item 二维随机变量的概率分布（或称分布律）
+	\item 二维离散型随机变量的概率分布（或称分布律）
 	\begin{equation}
 		P(X=x_i, Y=y_j) = p_{ij}, \quad i,j = 1, 2, \dots
 	\end{equation}
 
-	\item 二维随机变量的边缘分布
+	\item 二维离散型随机变量的边缘分布
 	\begin{align}
 		p_{i\cdot} &= P(X=x_i) 
 		= \sum_{j=1}^{+\infty}P(X=x_i, Y=y_j) 
@@ -40,12 +43,98 @@
 		= \sum_{i=1}^{+\infty}P(X=x_i, Y=y_j) 
 		= \sum_{i=1}^{+\infty}p_{ij}, \quad j = 1, 2, \dots 
 	\end{align}
-	\item 二维随机变量的条件分布
+	\item 二维离散型随机变量的条件分布
 	\begin{equation}\begin{aligned}
 		P(X=x_i|Y=y_j) = \frac{P(X=x_i, Y=y_j)}{P(Y=y_j)} = \frac{p_{ij}}{p_{\cdot j}}, \quad i = 1, 2, \dots
 	\end{aligned}\end{equation}
 
+
 \end{enumerate}
+
+\subsection{概率密度}
+\subsubsection{连续型}
+\begin{enumerate}
+	\item 二维随机变量及其概率密度 \\
+	满足以下条件的$f(x, y)$成为$(X, Y)$的概率密度
+	\begin{equation}
+		F(x, y) = \int_{-\infty}^{x} \int_{-\intfy}^{y}f(u, v)dudv, \quad -\infty <x, y < +\infty
+	\end{equation}
+	\item 边缘密度
+	\begin{equation}
+		f_X(x) = \int_{-\infty}^{+\infty}f(x, y)dy
+	\end{equation}
+	\begin{equation}
+		f_Y(y) = \int_{-\infty}^{+\infty}f(x, y)dx
+	\end{equation}
+	\item 条件密度
+	\begin{equation}
+		f_{X|Y}(x|y) = \frac{f(x,y)}{F_Y(y)}, \quad f_Y(y) > 0
+	\end{equation}
+\end{enumerate}
+
+
+\subsection{性质} % (fold)
+\label{sub:性质}
+\subsubsection{$F(x,y)$的性质}
+\begin{enumerate}
+	\item \\
+	\begin{equation}
+		F(-\infty, y) = F(x, -\infty) = F(-\infty, \infty) = 0
+	\end{equation}
+	\begin{equation}
+		F(+\infty, +\infty) = 1
+	\end{equation}
+
+	\item \\
+	\begin{equation}
+		P(a<X\leq b, c<Y\leq d) = F(b,d) - F(b,c) - F(a,d) + F(a,c)
+	\end{equation}
+\end{enumerate}
+
+\subsubsection{$P(X=x_i, Y=y_j)=p_{ij}$的性质}
+\begin{enumerate}
+	\item \\
+	\begin{equation}
+		p_{ij} \geq 0, \quad i,j = 1,2, \dots
+	\end{equation}
+
+	\item \\
+	\begin{equation}
+		\sum_i \sum_j p_{ij} = 1
+	\end{equation}
+\end{enumerate}
+
+\subsubsection{$f(x,y)$的性质}
+\begin{enumerate}
+	\item \\
+	\begin{equation}
+		f(x, y) \geq 0
+	\end{equation}
+	\item \\
+	\begin{equation}
+		\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}f(x,y)dxdy = 1
+	\end{equation}
+	\item \\
+	\begin{equation}
+		P((X,y)\in D) = \iint_Df(x,y) dxdy
+	\end{equation}
+	
+\end{enumerate}
+
+% subsection 性质 (end)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
