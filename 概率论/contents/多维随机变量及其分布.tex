@@ -55,9 +55,9 @@
 \subsubsection{连续型}
 \begin{enumerate}
 	\item 二维随机变量及其概率密度 \\
-	满足以下条件的$f(x, y)$成为$(X, Y)$的概率密度
+	满足以下条件的$f(x, y)$成为$(X, Y)$的概率密度 \\
 	\begin{equation}
-		F(x, y) = \int_{-\infty}^{x} \int_{-\intfy}^{y}f(u, v)dudv, \quad -\infty <x, y < +\infty
+		F(x, y) = \int_{-\infty}^{x} \int_{-\infty}^{y}f(u, v)dudv, \quad -\infty <x, y < +\infty
 	\end{equation}
 	\item 边缘密度
 	\begin{equation}
@@ -77,7 +77,7 @@
 \label{sub:性质}
 \subsubsection{$F(x,y)$的性质}
 \begin{enumerate}
-	\item \\
+	\item
 	\begin{equation}
 		F(-\infty, y) = F(x, -\infty) = F(-\infty, \infty) = 0
 	\end{equation}
@@ -85,7 +85,7 @@
 		F(+\infty, +\infty) = 1
 	\end{equation}
 
-	\item \\
+	\item 
 	\begin{equation}
 		P(a<X\leq b, c<Y\leq d) = F(b,d) - F(b,c) - F(a,d) + F(a,c)
 	\end{equation}
@@ -93,12 +93,12 @@
 
 \subsubsection{$P(X=x_i, Y=y_j)=p_{ij}$的性质}
 \begin{enumerate}
-	\item \\
+	\item 
 	\begin{equation}
 		p_{ij} \geq 0, \quad i,j = 1,2, \dots
 	\end{equation}
 
-	\item \\
+	\item 
 	\begin{equation}
 		\sum_i \sum_j p_{ij} = 1
 	\end{equation}
@@ -106,30 +106,65 @@
 
 \subsubsection{$f(x,y)$的性质}
 \begin{enumerate}
-	\item \\
+	\item 
 	\begin{equation}
 		f(x, y) \geq 0
 	\end{equation}
-	\item \\
+	\item 
 	\begin{equation}
 		\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}f(x,y)dxdy = 1
 	\end{equation}
-	\item \\
+	\item 
 	\begin{equation}
 		P((X,y)\in D) = \iint_Df(x,y) dxdy
 	\end{equation}
 	
 \end{enumerate}
 
-% subsection 性质 (end)
+
+\subsection{随机变量的独立性}
+\subsubsection{随机变量$X$与$Y$相互独立的充要条件}
+\begin{enumerate}
+	\item 离散型
+	\begin{equation}
+		P(X=x_i, Y=y_j) = P(X=x_i)P(Y=y_j)
+	\end{equation}
+	即
+	\begin{equation}
+		p_{ij} = p_{i\cdot} p_{\cdot j}
+	\end{equation}
+
+	\item 连续型
+	\begin{equation}
+		f(x, y) = f_X(x)f_Y(y)
+	\end{equation}
+	
+\end{enumerate}
 
 
+\subsection{二维均匀分布于二维正态分布}
+\begin{enumerate}
+	\item 二维均匀分布
+		\[ f(x, y)=\begin{cases}
+			\frac{1}{A}, \quad (x, y) \in G \\
+			0, \quad others
+		\end{cases} \]
 
+	\item 二维正态分布
+	\begin{equation}
+		f(x,y) = \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1-\rho^2}}e^{-\frac{1}{2(1-\rho^2)}\left[ \frac{(x-\mu_1)^2}{\sigma_1^2} - \frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1 \sigma_2} + \frac{(y-\mu_2)^2}{\sigma_2^2} \right]}, \quad -\infty<x<+\infty, -\infty<y<+\infty
+	\end{equation}
+	其中，$\mu_1, \mu_2 > 0, \sigma_1>0, \sigma_2 > 0, -1<\rho < 1$，且均为常数，记作
+	\begin{equation}
+		(X,Y) \sim N(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)
+	\end{equation}
 
+	\item 若$(X,Y)$二维正态，则$X, Y$均正态，即: 若$(X, Y) \sim N(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)$，则$X \sim N(\mu_1, \sigma_1^2), Y \sim N(\mu_2, \sigma_2^2)$
+	
+	\item $X, Y$相互独立的充要条件为：$\rho = 0$
 
-
-
-
+	\item 如果$X_1, X_2, \dots X_n$相互独立，且$X_i \sim N(\mu_i, \sigma_i^2) \quad (i = 1, 2, \dots, n)$，则$\sum_{i=1}^{n}C_iX_i \sim N(\sum_{i=1}^{n}C_i\mu_i, \sum_{j=1}^{n}C_j^2\sigma_j^2)$
+\end{enumerate}
 
 
 
