@@ -168,6 +168,44 @@
 
 
 
+\subsection{两个随机变量函数$Z=g(X,Y)$的分布}
+\begin{enumerate}
+	\item $X,Y$均为离散型 \\
+	与一维的一致
+	\item $X,Y$均为连续型 \\ 
+	\begin{enumerate}
+		\item 一般情况
+		\begin{equation}
+			F_Z(z) = P(Z \leq z) = P(g(X,Y) \leq z) = \iint_{g(x,y)\leq z} f(x,y)dxdy
+		\end{equation}
+		\item 特殊地，若$Z=X+Y$
+		若$Z=X+Y$，则
+		\begin{align}
+			F_Z(z) &= P(X+Y\leq z) = \iint_{x+y \leq z} f(x,y)dxdy \\
+			&= \int_{-\infty}^{+\infty}dx\int_{-\infty}^{z-x}f(x,y)dy \\
+			&= \int_{-\infty}^{+\infty}dy\int_{-\infty}^{z-y}f(x,y)dx
+		\end{align}
+		由上可得，$Z=X+Y$的概率密度为：
+		\begin{align}
+			f_Z(z) &= \int_{-\infty}^{+\infty}f(x, z-x)dx \\
+			&= \int_{-\infty}^{+\infty}f(z-y, y)dy
+		\end{align}
+		特别地，当$X, Y$相互独立时，$f(x,y) = f_X(x)f_Y(y)$，故
+		\begin{align}
+			f_Z(z) &= \int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)dx \\
+			&= \int_{-\infty}^{+\infty} f_X(z-y)f_Y(y)dy
+		\end{align}
+		这就是卷积公式，记为$f_X * f_Y$
+	\end{enumerate}
+	\item $X$为离散型，$Y$为连续型时
+	\begin{align}
+		F_Z(z) &= P(Z\leq z) = P(g(X,Y)\leq z) \\
+		&= \sum_iP(X=x_i)P(g(X,Y)\leq z|X=x_i) \\
+		&= \sum_ip_iP(g(x_i, Y)\leq z | X=x_i)
+	\end{align}
+\end{enumerate}
+
+
 
 
 
