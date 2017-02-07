@@ -1,0 +1,77 @@
+\section{梯度下降过程的矩阵表达}
+\begin{enumerate}
+	\item 
+	\begin{equation}
+		X = \left[\begin{matrix}
+		\ldots & (x^{(1)})^T & \ldots \\
+		\ldots & (x^{(2)})^T & \ldots \\
+		\vdots & \vdots & \vdots \\
+		\ldots & (x^{(m)})^T & \ldots \\
+		\end{matrix}\right]
+	\end{equation}
+
+	\item 
+	\begin{equation}
+		\vec{y} = \left[\begin{matrix}
+		y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(m)}
+		\end{matrix}\right]
+	\end{equation}
+
+	\item 
+	\begin{equation}
+		X\theta - \vec{y} = \left[\begin{matrix}
+		(x^{(1)})^T\theta \\ (x^{(2)})^T\theta \\ \vdots \\ (x^{(m)})^T\theta
+		\end{matrix}\right] - \left[\begin{matrix}
+		y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(m)}
+		\end{matrix}\right] = \left[\begin{matrix}
+		h_\theta(x^{(1)}) - y^{(1)} \\ h_\theta(x^{(2)}) - y^{(2)} \\ \vdots \\ h_\theta(x^{(m)}) - y^{(m)}
+		\end{matrix}\right]
+	\end{equation}
+
+	\item 
+	\begin{equation}
+		J(\theta) = \frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y})
+	\end{equation}
+
+	\item 
+	\begin{equation}
+		\nabla_{\theta}J(\theta) = X^TX\theta - X^T \vec{y}
+	\end{equation}
+	为了得到最值，另上式值为0（极值点的方向倒数均为0），可得
+	\begin{equation}
+		\theta = (X^TX)^{-1}X^T\vec{y}
+	\end{equation}
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
