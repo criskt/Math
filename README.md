@@ -1,2 +1,4 @@
 # machine_learning_formula
-机器学习公式
+各类数学知识，包括
+1. 概率统计
+2. 机器学习
