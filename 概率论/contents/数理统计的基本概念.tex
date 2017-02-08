@@ -1,0 +1,100 @@
+\section{数理统计的基本概念}
+
+\subsection{各种定义}
+\begin{defination}
+	总体: 数理统计中所研究对象的某项指标$X$的全体称为总体。
+\end{defination}
+\begin{defination}
+	样本: 如果$X_1, X_2, \dots, X_n$相互独立且都与总体$X$同分布，则称$X_1, X_2, \dots, X_n$为来自总体的简单随机样本，简称为样本。\\
+	其中，$n$为样本容量，样本的具体观测值$x_1, x_2, \dots, x_n$为样本值，或称总体$X$的$n$个独立观测值。
+\end{defination}
+\begin{enumerate}
+	\item 若总体$X$的分布为$F(x)$，则样本$X_1, X_2, \dots, X_n$的分布为
+	\begin{equation}
+		F_n(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}F(x_i)
+	\end{equation}
+
+	\item 若总体$X$的概率密度为$f(x)$，则样本$x_1, x_2, \dots, x_n$的概率密度为
+	\begin{equation}
+		f_n(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}f(x_i)
+	\end{equation}
+	\item 若总体$X$的概率分布为$P(X=a_j)=p_j, \quad j = 1,2, \dots$，则样本$X_1, X_2, \dots, X_n$的概率分布为
+	\begin{equation}
+		P(X_1=x_1, X_2=x_2, \dots, X_n=x_n) = \prod_{i=1}^{n}P(X_i = x_i)
+	\end{equation}
+\end{enumerate}
+\begin{defination}
+	统计量: 样本$X_1, X_2, \dots, X_n$的不含未知参数的函数$T = T(X_1, X_2, \dots, X_n)$称为统计量。
+\end{defination}
+\begin{enumerate}
+	\item 作为随机样本的函数，统计量本身也是一个随机变量。
+	\item 若$x_1, x_2, \dots, x_n$是样本$X_1, X_2, \dots, X_n$的样本值，则数值$T(x_1, x_2, \dots, x_n)$是统计量$T = T(X_1, X_2, \dots, X_n)$的观测值。
+\end{enumerate}
+
+\subsection{样本的数字特征}
+设$X_1, X_2, \dots, X_n$是来自总体$X$的样本，则
+\begin{enumerate}
+	\item 样本均值
+	\begin{equation}
+		\bar X = \frac{1}{n}\sum_{i=1}^{n} X_i
+	\end{equation}
+
+	\item 样本方差
+	\begin{equation}
+		S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar X)^2
+	\end{equation}
+	样本标准差
+	\begin{equation}
+		S = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar X)^2}
+	\end{equation}
+
+	\item 样本$k$阶原点距
+	\begin{equation}
+		A_k = \frac{1}{n}\sum_{i=1}^{n}X_i^k, \quad k = 1, 2; \quad A_1 = \bar X
+	\end{equation}
+
+	\item 样本$k$阶中心距
+	\begin{equation}
+		B_k = \frac{1}{n}\sum_{i=1}^{n}(X_i - \bar X)^k, \quad k = 1, 2; \quad B_2 = \frac{n-1}{n}S^2 \neq S^2
+	\end{equation}
+\end{enumerate}
+
+\subsection{样本的数字特征的性质}
+\begin{enumerate}
+	\item 若总体$X$具有数学期望$E(X)=\mu$，则
+	\begin{equation}
+		E(\bar X) = E(X) = \mu
+	\end{equation}
+	\item 若总体$X$具有方差$D(X)=\sigma^2$，则
+	\begin{align}
+		D(\bar X) &= \frac{1}{n}D(X) = \frac{\sigma^2}{n} \\
+		E(S^2) &= D(X) = \sigma^2
+	\end{align}
+	\item 若总体$X$的$k$阶原点矩$E(X^k) = \mu_k, \quad k = 1, 2, \dots$存在，则当$n \to \infty$时：
+	\begin{equation}
+		\lim_{n\to \infty} \frac{1}{n}\sum_{i=1}^{n}X_i^k \xrightarrow{\quad P \quad} \mu_k, \quad k = 1, 2, \dots
+	\end{equation}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

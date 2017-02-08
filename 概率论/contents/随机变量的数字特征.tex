@@ -127,8 +127,96 @@
 	\end{enumerate}
 \end{enumerate}
 
+\subsection{矩、协方差、相关系数}
+\begin{enumerate}
+	\item 矩
+	\begin{enumerate}
+		\item $X$的$k$阶原点矩
+		\begin{equation}
+			E(X^k), \quad k = 1, 2, \dots
+		\end{equation}
 
+		\item $X$的$k$阶中心矩
+		\begin{equation}
+			E\left\{\left[X-E(X) \right]^k\right\}, \quad k,l = 1, 2, \dots
+		\end{equation}
 
+		\item $X,Y$的$k+l$阶原点矩
+		\begin{equation}
+			E(X^kY^l), \quad k = 1, 2, \dots
+		\end{equation}
+
+		\item $X$的$k$阶中心矩
+		\begin{equation}
+			E\left\{\left[X-E(X) \right]^k \left[Y-E(Y) \right]^l\right\}, \quad k,l = 1, 2, \dots
+		\end{equation}
+	\end{enumerate}
+	
+	\item 协方差 \\
+	\begin{enumerate}
+		\item 如果$E\left\{\left[X-E(X)\right]\left[Y-E(Y)\right]\right\}$存在，则$X,Y$的协方差为:
+		\begin{align}
+			\mathrm{cov}(X,Y) = E\left\{\left[X-E(X)\right]\left[Y-E(Y)\right]\right\}
+		\end{align}
+		实际上，方差是$X=Y$时的特殊情况
+
+		\item 
+		\begin{equation}
+			\mathrm{cov}(X,Y) = E(XY) - E(X)E(Y)
+		\end{equation}
+
+		\item 
+		\begin{equation}
+			D(X\pm Y) = D(X) + D(Y) \pm 2\mathrm{cov}(X,Y)
+		\end{equation}
+
+		\item 
+		\begin{equation}
+			\mathrm{cov}(X,Y) = \mathrm{cov}(Y,X)
+		\end{equation}
+
+		\item 
+		\begin{equation}
+			\mathrm{cov}(aX, bY) = ab\mathrm{cov}(X,Y), \quad a,b\in {\rm I\!R}
+		\end{equation}
+
+		\item 
+		\begin{equation}
+			\mathrm{cov}(X_1+X_2, Y) = \mathrm{cov}(X_1, Y) + \mathrm{cov}(X_2, Y)
+		\end{equation}
+	\end{enumerate}
+	
+	
+	\item 相关系数
+	\begin{enumerate}
+		\item 
+		\[ \rho_{XY}=\begin{cases}
+			\frac{\mathrm{cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}, \quad \sqrt{D(X)}\sqrt{D(Y)} \neq 0 \\
+			0, \quad \sqrt{D(X)}\sqrt{D(Y)} = 0
+		\end{cases} \]
+		由上式可知，$\rho_{XY} = 0$有两种可能，$\sqrt{D(X)}\sqrt{D(Y)} = 0$或$\mathrm{cov}(X,Y)=0$
+
+		\item 如果$\rho_{XY}=0$，则称$X$与$Y$不相关
+
+		\item 
+		\begin{equation}
+			\left|\rho_{XY}\right| \leq 1
+		\end{equation}
+		\item $\rho_{XY} = 1$的充分必要条件是：存在不全为$0$的常数$a,b$，使得
+		\begin{equation}
+			P(aX+bY=1) = 1
+		\end{equation}
+	\end{enumerate}
+
+	\item 独立与不相关
+	\begin{enumerate}
+		\item 若随机变量$X,Y$相互独立，则$X,Y$必不相关；反之却不成立。
+		\item 对于二维正态随机变量$(X,Y)$，其相互独立与其不相关是等价的，即：$\rho=0$是$X,Y$相互独立的充分必要条件。\\
+		但若$(X,Y)$不是二维正态随机变量，则没有这个性质。
+	\end{enumerate}
+	
+
+\end{enumerate}
 
 
 
