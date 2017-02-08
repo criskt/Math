@@ -1,0 +1,29 @@
+\section{感知器算法}
+\begin{enumerate}
+	\item 将逻辑回归中的$g(z)$换成
+	\[ g(z)=\begin{cases}
+	1 \quad z \geq 0, \\
+	0 \quad z <0
+	\end{cases} \]
+	其他均与逻辑回归一致，这就变成了感知器算法
+	\item 在逻辑回归迭代方式的证明中，用到了sigmoid Function $g^{'}{(x)} = g(z)\left[1-g(z)\right]$的性质，对感知器算法中的$g(z)$，该式子同样成立。经证明后可发现，感知器算法的迭代方式仍旧与逻辑回归一样
+	\begin{align}
+		\theta_j :=  \theta_j - \alpha \sum_{i=1}^{m} \left[h_\theta(x^{(i)}) - y^{(i)} \right]x_j^{(i)}
+	\end{align}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
