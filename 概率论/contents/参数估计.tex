@@ -1,0 +1,81 @@
+\section{参数估计}
+\subsection{点估计}
+\begin{enumerate}
+	\item 点估计 \\
+	用样本$X_1, X_2, \dots, X_n$构造的统计量$\hat{\theta}(X_1, X_2, \dots, X_n)$来估计未知参数$\theta$称为点估计，统计量$\hat{\theta}(X_1, X_2, \dots, X_n)$称为估计量
+	\item 无偏估计量 \\
+	若$\hat{\theta}$是$\theta$的估计量，如果$E(\hat{\theta})=\theta$，则称$\hat{\theta} = \hat{\theta}(X_1, X_2, \dots, X_n)$是未知参数$\theta$的无偏估计量
+	\item 更有效估计量 \\
+	若$\hat{\theta_1}$和$\hat{\theta_2}$都是$\theta$的无偏估计量，且$D(\hat{\theta_1})\leq D(\hat{\theta_2})$，则称$\hat{\theta_1}$比$\hat{\theta_2}$更有效，或$\hat{\theta_1}$比$\hat{\theta_2}$更有效估计量
+	\item 一致估计量 \\
+	若$\hat{\theta}(X_1, X_2, \dots, X_n)$是$\theta$的估计值，如果$\hat{\theta}$依概率收敛于$\theta$，则称$\hat{\theta}(X_1, X_2, \dots, X_n)$为$\theta$的一致估计量
+\end{enumerate}
+
+\subsection{矩估计法}
+\begin{enumerate}
+	\item 矩估计法 \\
+	用样本矩估计相应的总体矩，用样本矩的函数估计总体矩相应的函数，然后求出要估计的参数，称这种估计法为矩估计法
+	\item 矩估计法的步骤 \\
+	略
+\end{enumerate}
+
+\subsection{最大似然估计法}
+\begin{enumerate}
+	\item 似然函数
+	\begin{enumerate}
+		\item 离散型 \\
+		假设其概率分布为：$P(X=a_i) = p(a_i;\theta), \quad i=1,2, \dots$，则似然函数为
+		\begin{equation}
+			L(\theta) = L(X_1, X_2, \dots, X_n; \theta) = \prod_{i=1}^{n}p(X_i;\theta)
+		\end{equation}
+		\item 连续型 \\
+		假设其概率密度为$f(x;\theta)$，则其似然函数为：
+		\begin{equation}
+			L(\theta) = L(X_1, X_2, \dots, X_n; \theta) = \prod_{i=1}^{n}f(X_i;\theta)
+		\end{equation}
+	\end{enumerate}
+	\item 最大似然估计法求解步骤
+	\begin{enumerate}
+		\item 写出似然函数
+		\item 求似然函数的导数（或其对数的导数）
+		\begin{equation}
+			\frac{\mathrm{d}L(\theta)}{\mathrm{d}\theta} = 0
+		\end{equation}
+		或
+		\begin{equation}
+			\frac{\mathrm{d}\ln L(\theta)}{\mathrm{d}\theta} = 0
+		\end{equation}
+		\item 解方程组，得到其驻点
+		\item 对每个驻点进行分析，得到最值
+		\item 注意：有时使得似然函数达到最值的$\hat{\theta}$不一定是$L(\theta)$或$\ln L(\theta)$的驻点，这种情况下不能用似然方法来求解，应使用其他方法
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{区间估计}
+\begin{enumerate}
+	\item 置信区间 \\
+	设$\theta$是总体$X$的未知参数，$X_1, X_2, \dots, X_n$是来自总体$X$的样本，对于给定的$\alpha(0<\alpha<1)$，如果两个统计量满足
+	\begin{equation}
+		P(\theta_1<\theta<\theta_2) = 1-\alpha
+	\end{equation}
+	则称随机区间$(\theta_1, \theta_2)$为参数$\theta$的置信水平（或置信度）为$1-\alpha$的置信区间（或区间估计），简称为$\theta$的$1-\alpha$置信区间，$\theta_1$和$\theta_2$分别称为置信下限和置信上限
+	\item 一个正态总体参数的区间估计 \\
+	略
+	\item 两个正态总体参数的区间估计 \\
+	略
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
