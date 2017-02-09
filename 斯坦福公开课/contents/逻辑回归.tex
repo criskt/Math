@@ -100,13 +100,34 @@
 
 \end{enumerate}
 
-
-
-\subsection{逻辑回归与线性回归的异同}
+\subsection{逻辑回归\&线性回归}
 \begin{enumerate}
 	\item 线性回归推导时使用的是梯度下降，逻辑回归推导时使用的是梯度上升
 	\item 同样地，对于逻辑回归，同样有批梯度上升、随机梯度上升、迷你梯度上升
 	\item 梯度下降时，前面的符号是减号，梯度上升时，前面的符号是加号，这就相当于默认了算出来的梯度是正值，why??或者有其他的原因？
+\end{enumerate}
+
+
+\subsection{$0-1$分布\&逻辑回归}
+{\color{red}{以下内容正确性待验证}}
+\begin{enumerate}
+	\item $0-1$分布
+	\begin{enumerate}
+		\item 伯努利实验：如果每次实验只有两种结果$A, \bar A$，则称这种实验为伯努利实验，显然，逻辑回归的每次预测都是伯努利实验；
+		\item $n$重伯努利实验：将伯努利实验独立重复进行$n$次，就称为$n$重伯努利实验；
+		\item $0-1$分布: 如果随机变量$X$有分布律
+		\begin{align}
+			P(X=1) &= p \\
+			P(X=0) &= 1-p
+		\end{align}
+		$0<p<1$，则称$X$服从参数为$p$的$0-1$分布
+	\end{enumerate}
+
+	\item 逻辑回归
+	\begin{enumerate}
+		\item 在逻辑回归中，将给定的数据$x$所对应的$y=1$的概率记为$p$，即$p=P(y=1|x)$，则$q=P(y=0|x)=1-p=1-P(y=1|x)$。显然，这就是一个$0-1$分布。
+		\item 于是后续我们便可以用$0-1$分布的知识来处理逻辑回归的内容了，于是，其概率分布、似然函数的写法便很清楚了
+	\end{enumerate}
 \end{enumerate}
 
 
