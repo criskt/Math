@@ -1,37 +1,34 @@
 \section{数理统计的基本概念}
-\subsection{各种定义}
-\begin{defination}
-	总体: 数理统计中所研究对象的某项指标$X$的全体称为总体。
-\end{defination}
-\begin{defination}
-	样本: 如果$X_1, X_2, \dots, X_n$相互独立且都与总体$X$同分布，则称$X_1, X_2, \dots, X_n$为来自总体的简单随机样本，简称为样本。\\
-	其中，$n$为样本容量，样本的具体观测值$x_1, x_2, \dots, x_n$为样本值，或称总体$X$的$n$个独立观测值。
-\end{defination}
+\subsection{总体\&样本}
 \begin{enumerate}
-	\item 若总体$X$的分布为$F(x)$，则样本$X_1, X_2, \dots, X_n$的分布为
-	\begin{equation}
-		F_n(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}F(x_i)
-	\end{equation}
+	\item 总体: 数理统计中所研究对象的某项指标$X$的全体称为总体。
+	\item 样本: 如果$X_1, X_2, \dots, X_n$相互独立且都与总体$X$同分布，则称$X_1, X_2, \dots, X_n$为来自总体的简单随机样本，简称为样本。\\
+	其中，$n$为样本容量，样本的具体观测值$x_1, x_2, \dots, x_n$为样本值，或称总体$X$的$n$个独立观测值。
+	\begin{enumerate}
+		\item 若总体$X$的分布为$F(x)$，则样本$X_1, X_2, \dots, X_n$的分布为
+		\begin{equation}
+			F_n(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}F(x_i)
+		\end{equation}
 
-	\item 若总体$X$的概率密度为$f(x)$，则样本$x_1, x_2, \dots, x_n$的概率密度为
-	\begin{equation}
-		f_n(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}f(x_i)
-	\end{equation}
-	\item 若总体$X$的概率分布为$P(X=a_j)=p_j, \quad j = 1,2, \dots$，则样本$X_1, X_2, \dots, X_n$的概率分布为
-	\begin{equation}
-		P(X_1=x_1, X_2=x_2, \dots, X_n=x_n) = \prod_{i=1}^{n}P(X_i = x_i)
-	\end{equation}
-	所以，在逻辑回归中，似然函数$L(\theta)$可以写成各个概率的乘积:
-	\begin{equation}
-		L(\theta)=\prod_{i=1}^{m}P(y^{(i)}|x^{(i)}; \theta)
-	\end{equation}
-	在机器学习中，每个数据点$(x^{(i)},y^{(i)})$就是总体中的一个个体（满足独立同分布）。所以上式中，乘积的上下限对应的是样本，故应为$i=1 \to m$
+		\item 若总体$X$的概率密度为$f(x)$，则样本$x_1, x_2, \dots, x_n$的概率密度为
+		\begin{equation}
+			f_n(x_1, x_2, \dots, x_n) = \prod_{i=1}^{n}f(x_i)
+		\end{equation}
+		\item 若总体$X$的概率分布为$P(X=a_j)=p_j, \quad j = 1,2, \dots$，则样本$X_1, X_2, \dots, X_n$的概率分布为
+		\begin{equation}
+			P(X_1=x_1, X_2=x_2, \dots, X_n=x_n) = \prod_{i=1}^{n}P(X_i = x_i)
+		\end{equation}
+		所以，在逻辑回归中，似然函数$L(\theta)$可以写成各个概率的乘积:
+		\begin{equation}
+			L(\theta)=\prod_{i=1}^{m}P(y^{(i)}|x^{(i)}; \theta)
+		\end{equation}
+		在机器学习中，每个数据点$(x^{(i)},y^{(i)})$就是总体中的一个个体（满足独立同分布）。所以上式中，乘积的上下限对应的是样本，故应为$i=1 \to m$
+	\end{enumerate}
 \end{enumerate}
 
-\begin{defination}
-	统计量: 样本$X_1, X_2, \dots, X_n$的不含未知参数的函数$T = T(X_1, X_2, \dots, X_n)$称为统计量。
-\end{defination}
+\subsection{统计量}
 \begin{enumerate}
+	\item 统计量: 样本$X_1, X_2, \dots, X_n$的不含未知参数的函数$T = T(X_1, X_2, \dots, X_n)$称为统计量。
 	\item 作为随机样本的函数，统计量本身也是一个随机变量。
 	\item 若$x_1, x_2, \dots, x_n$是样本$X_1, X_2, \dots, X_n$的样本值，则数值$T(x_1, x_2, \dots, x_n)$是统计量$T = T(X_1, X_2, \dots, X_n)$的观测值。
 	\item 在迷你梯度下降中的Cost Function应该就是个统计量，$J(\theta)=\frac{1}{2}\sum_{i=1}^{m}\left[h_\theta(x^{(i)}) - y^{(i)}\right]^2$，其中，$\sum_{i=1}^{m}$就是这个$T${\color{red}{（正确性待查）}}
