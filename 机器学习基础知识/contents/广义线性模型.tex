@@ -67,26 +67,25 @@
 		\item 在构造广义线性模型中，我们的目的是通过输入的$x$来得到$\theta$，进而得到$y$；因为$T(y)$是$\eta$的充分统计量，因此，我们
 		\item 
 	\end{enumerate}
-
 \end{enumerate}
+
 \subsubsection{普通的最小二乘法}
 对于普通的最小二乘法，由前面的证明我们知道$\mu = \eta$，故
-\begin{align}
-	h_\theta(x) &= E(y|x;\tehta) \\
+\begin{equation}\begin{aligned}
+	h_\theta(x) &= E(y|x;\theta) \\
 	&= \mu \\
 	&= \eta \\
 	&= \theta^T x
-\end{align}
-
+\end{aligned}\end{equation}
 
 \subsubsection{逻辑回归}
 对于逻辑回归，由前面的证明可知$p=\frac{e^{\eta}}{1+e^{\eta}} = \frac{1}{1+e^{-\eta}}$，故
-\begin{align}
+\begin{equation}\begin{aligned}
 	h_\theta(x) &= E(y|x; \theta) \\
 	&= p \\
 	&= \frac{1}{1+e^{-\eta}} \\
 	&= \frac{1}{1+e^{-\theta^Tx}}
-\end{align}
+\end{aligned}\end{equation}
 
 
 
