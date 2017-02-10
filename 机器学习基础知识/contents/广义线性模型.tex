@@ -5,13 +5,13 @@
 	\begin{equation}
 		p(y;\eta) = b(y)e^{\eta^T T(y) - a(\eta)}
 	\end{equation}
-	其中，$\eta$称为natural parameter（自然参数？？？）； \\
-	$T(y)$称为sufficient statistic（充分统计量？？），大部分情况下，$T(y) = y$，在$T(y)=y$时，$\eta$往往为标量； \\
+	其中，$\eta$称为自然参数(Natural Parameter)； \\
+	$T(y)$为$\eta${\color{red}{（应该是$\eta$，因为指数分布族的参数只有$\eta$，但正确与否待确认）}}的充分统计量(Sufficient Statistic)，大部分情况下，$T(y) = y$，在$T(y)=y$时，$\eta$往往为标量； \\
 	$a(\eta)$称为 log partition function；
 	\item 
 \end{enumerate}
 
-\subsection{伯努利分布于高斯分布中，GLM各部分的值}
+\subsection{伯努利分布与高斯分布中，GLM各部分的值}
 主要是将伯努利分布（即$0-1$分布）与高斯分布的式子尽可能地转化成指数分布族的一般形式，然后在根据该一般形式写出$\eta$，$T(y)$，$a(\eta)$的形式。\\
 \begin{enumerate}
 	\item 伯努利分布
@@ -51,9 +51,42 @@
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{如何构造一般线性模型}
+\subsection{如何构造广义线性模型}
+\subsubsection{三个假设}
+\begin{enumerate}
+	\item 假设一：假设$y|x; \theta$服从指数分布族，即$y|x; \theta \sim E(\eta)$
+	\item 假设二：假设$h_\theta(x)$ 是$p\left(T(y)|x; \theta\right)$的无偏估计量，即$h_\theta(x)=E\left(T(y)|x; \theta\right)$，并另$T(y)=y$，于是就有
+	\begin{equation}
+		h(x) = E(y|x)
+	\end{equation}
+	{\color{red}{对此条假设还待更进一步的理解}}
+	\item 假设三：假设$\eta = \theta^Tx$
+	\item 解释说明
+	\begin{enumerate}
+		\item $y|x; \theta$表示的是一个事件，就像事件$X$，事件$Y$，只是写法比较不一样而已
+		\item 在构造广义线性模型中，我们的目的是通过输入的$x$来得到$\theta$，进而得到$y$；因为$T(y)$是$\eta$的充分统计量，因此，我们
+		\item 
+	\end{enumerate}
+
+\end{enumerate}
+\subsubsection{普通的最小二乘法}
+对于普通的最小二乘法，由前面的证明我们知道$\mu = \eta$，故
+\begin{align}
+	h_\theta(x) &= E(y|x;\tehta) \\
+	&= \mu \\
+	&= \eta \\
+	&= \theta^T x
+\end{align}
 
 
+\subsubsection{逻辑回归}
+对于逻辑回归，由前面的证明可知$p=\frac{e^{\eta}}{1+e^{\eta}} = \frac{1}{1+e^{-\eta}}$，故
+\begin{align}
+	h_\theta(x) &= E(y|x; \theta) \\
+	&= p \\
+	&= \frac{1}{1+e^{-\eta}} \\
+	&= \frac{1}{1+e^{-\theta^Tx}}
+\end{align}
 
 
 

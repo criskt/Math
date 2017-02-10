@@ -1,0 +1,32 @@
+\section{附录}
+\subsection{定义}
+\subsubsection{各类变量}
+\begin{enumerate}
+	\item $i$: 第$i$个数据集，从1开始，截止于m
+	\item $j$: 第$j$维特征，从0开始，截止于n
+	\item $m$: 数据集大小，共$m$组数据
+	\item $n$: 维度大小，共$n$维特征
+	\item $i, j, m, n$的关系: $\sum_{i=1}^{m}\sum_{j=0}^{j=n}{\theta_{j}x_j^{(i)}}$
+	\item $(x^{(i)}, y^{(j)})$： 第i个训练集
+	\item $P(y|x;\theta)$中，$y$做为一个个体；$x:\theta$作为一个个体，表示$x$以$\theta$为参数
+\end{enumerate}
+
+\subsubsection{充分统计量}
+\begin{enumerate}
+	\item 不损失信息的统计量就是充分统计量，它概况了样本中所包含的未知参数的全部信息。
+	\item 定义: 设$x_1, x_2, \dots, x_n$是来自某个总体$X$的样本，总体的分布函数为$F(x;\theta)$，若统计量$T=T(x_1, x_2, \dots, x_n)$为$\theta$的充分统计量，则在给定了$T$的取值后，$x_1, x_2, \dots, x_n$的条件分布$P(X_1=x_1, X_2=x_2, \dots, X_n=x_n$与$\theta$无关
+	\item 充分统计量不唯一。实际上，样本本身就是参数的一个充分统计量
+	\item 因子分解定理{\color{red}{（没看懂）}}: 设总体的概率函数为$p(x;\theta)$，$x_1, x_2, \dots, x_n$是来自总体的样本，则统计量$T=T(x_1, x_2, \dots, x_n)$为充分统计量的充要条件为：
+	\begin{equation}
+		p(x_1, x_2, \dots, x_n;\theta) = g\left[T(x_1, x_2, \dots, x_n),\theta\right]\cdot h(x_1, x_2, \dots, x_n)
+	\end{equation}
+	其中，$g(t,\theta)$是通过统计量T的取值而依赖于样本的，而$h(x_1, x_2, \dots, x_n)$不依赖于$\theta$
+	\item 更详细内容: http://wenku.baidu.com/view/8813423343323968011c92ed.html
+\end{enumerate}
+
+\subsubsection{自然参数}
+\begin{enumerate}
+	\item 
+	\item 
+\end{enumerate}
+
