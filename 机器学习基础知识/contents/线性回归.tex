@@ -1,4 +1,4 @@
-\section{梯度下降(GD)}
+\section{线性回归}
 \subsection{假设函数(Hypothesis Function)}
 \begin{equation}\begin{aligned}
 	h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_3 + ... + \theta_nx_n
@@ -9,7 +9,11 @@
 	&= \sum_{j=0}^n{\theta_jx_j}
 \end{aligned}\end{equation}
 
-\subsection{批梯度下降(BGD)}
+\subsection{最小二乘法}
+梯度下降中的Cost Function均使用的时最小二乘法
+
+\subsection{梯度下降}
+\subsubsection{批梯度下降(BGD)}
 \begin{enumerate}
 	\item Cost Function
 	\begin{equation}\begin{aligned}
@@ -49,7 +53,7 @@
 \end{enumerate}
 
 
-\subsection{随机梯度下降(SGD)}
+\subsubsection{随机梯度下降(SGD)}
 由批梯度下降的式子可以发现，在每一次梯度下降的迭代过程中，我们遍历了所有训练集。这将会耗费大量的性能，于是产生了随机梯度下降(SGD)方法，每次迭代只使用一个数据。 \\
 \begin{enumerate}
 	\item Cost Function
@@ -70,7 +74,7 @@
 	随机梯度下降（包括其他梯度下降方法）均允许多次遍历所有数据集。
 \end{enumerate}
 
-\subsection{迷你批梯度下降(mini-batch GD)}
+\subsubsection{迷你批梯度下降(mini-batch GD)}
 为了解决梯度下降每次都使用所有训练集导致的性能问题，以及随机梯度下降每次只使用一个数据导致的收敛太慢，我们可以只用mini-batch GD。每次只用一部分训练集进行训练。
 \begin{enumerate}
 	\item Cost Function \\

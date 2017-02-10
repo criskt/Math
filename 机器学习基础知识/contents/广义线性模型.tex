@@ -1,0 +1,81 @@
+\section{广义线性模型}
+\subsection{指数分布族}
+\begin{enumerate}
+	\item 指数分布族的一般形式
+	\begin{equation}
+		p(y;\eta) = b(y)e^{\eta^T T(y) - a(\eta)}
+	\end{equation}
+	其中，$\eta$称为natural parameter（自然参数？？？）； \\
+	$T(y)$称为sufficient statistic（充分统计量？？），大部分情况下，$T(y) = y$，在$T(y)=y$时，$\eta$往往为标量； \\
+	$a(\eta)$称为 log partition function；
+	\item 
+\end{enumerate}
+
+\subsection{伯努利分布于高斯分布中，GLM各部分的值}
+主要是将伯努利分布（即$0-1$分布）与高斯分布的式子尽可能地转化成指数分布族的一般形式，然后在根据该一般形式写出$\eta$，$T(y)$，$a(\eta)$的形式。\\
+\begin{enumerate}
+	\item 伯努利分布
+	\begin{align}
+		P(y;p) &= p^y(1-p)^{1-y} \\
+		&= e^{y\ln p + (1-y)\ln(1-p)} \\
+		&= e^{ln{\frac{p}{1-p}}y + \ln(1-p)}
+	\end{align}
+	与广义线性模型的一般形式比较，可以发现：
+	\begin{align}
+		b(y) &= 1 \\
+		\eta^T &= \ln{\frac{p}{1-p}} = \eta \rightarrow p = \frac{e^{\eta}}{1+e^{\eta}} \\
+		T(y) &= y \\
+		a(\eta) &= -\ln(1-p) = -\ln{(1-\frac{e^{\eta}}{1+e^{\eta}})} = -\ln{\frac{1}{1+e^\eta}} \\
+		&= \ln(1+e^\eta)
+	\end{align}
+
+	\item 高斯分布 \\
+	在证明使用最小二乘法作为线性回归的Cost Fuction\footnote{最大化$\theta$等同于最大化$\frac{1}{2} \sum_{i=1}^{m}\left(y^{(i)}-\theta^Tx^{(i)}-\mu\right)^2$}的可行性时提到: $J(\theta)$取到最值时的$\theta$值与$\sigma^2$无关（但与$\mu$有关），故在下面的证明中，我们另$\sigma^2=1$，以简化计算
+	\begin{align}
+		P(y;\mu) &= \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}\left(y-\mu\right)^2} \\
+		&= \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2-2\mu y +\mu^2}{2}} \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}} e^{\mu y-\frac{\mu^2}{2}}
+	\end{align}
+	故：
+	\begin{align}
+		b(y) &= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}} \\
+		\eta^T &= \mu = \eta \\
+		T(y) &= y \\
+		a(\eta) &= -1\cdot (-\frac{\mu^2}{2}) = \frac{\mu^2}{2} = \frac{\eta^2}{2}
+	\end{align}
+
+	\item 注意事项
+	\begin{enumerate}
+		\item $\eta^T$要在$\eta$为标量时才能直接等于$\eta$，故上面的式子中是在得到$\eta^T$为标量后再写$=\eta$
+		\item $a(\eta)$通常不会直接得到关于$\eta$的函数，需要通过$\eta^T$来与$\eta$关联，得到$\eta$的函数
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{如何构造一般线性模型}
+
+
+
+
+
+
+% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

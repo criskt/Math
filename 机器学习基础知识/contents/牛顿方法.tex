@@ -1,6 +1,6 @@
-\section{牛顿方法}
+\subsection{牛顿方法}
 
-\subsection{牛顿方法的思路}
+\subsubsection{牛顿方法的思路}
 \begin{enumerate}
 	\item 先介绍如何使用牛顿方法得到某函数的0点，因为在极值出现的地方其导数必定为0，因此，可以用牛顿方法找到导数为0的点，这个点就有可能是个极值点。（这就是不论我们要找的是最大值还是最小值，最终的式子都是一样的原因。）
 	\item 注意事项
@@ -9,7 +9,7 @@
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{牛顿方法讲解}
+\subsubsection{牛顿方法讲解}
 \begin{enumerate}
 	\item 牛顿方法介绍: 如下面示意图所示，我们要求的是曲线$y=f(x)$与直线$y=y_{final}$的交点$(x_{final}, y_{final})$的值，为此，我们先任取曲线上的一点$(x_{ori}, y_{ori})$，求得在该点的切线，记为$y=f'(x_{ori})x + b$，然后得到该切线与$y=y_{final}$的交点$(x_{new}, y_{final})$，得到$x_{new}$后，我们又可以得到曲线上新的一点$(x_{new}, f(x_{new}))$；用新的点$(x_{new}, f(x_{new}))$代替之前的$(x_{ori}, y_{ori})$，重复之前的步骤。就这样，一次一次地重复后，我们就能一直逼近我们所要的$(x_{final}, y_{final})$了。
 	\begin{figure}[htbp]

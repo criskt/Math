@@ -34,7 +34,7 @@
 		J(\theta) = \sum_{i}\omega^{(i)}(y^{(i)} - \Theta^TX^{(i)})^2
 	\end{equation}
 	之后，通过与一般线性回归一样的方式不断地拟合，让$J(\theta)$的值最小便可得到局部加权回归的结果。最终的效果中，距离要预估的点较近的点对结果影响较大，距离要预估的点较远的点对结果影响较小。
-	\item 优化
+	\item 优化 \\
 	添加带宽参数(Bandwidth Parameter)$\tau^2$，来控制不同距离对预估结果的影响
 	\begin{equation}
 		\omega^{(i)} = e^{-\frac{(x^{(i)}-x)^2}{2\tau^2}}
