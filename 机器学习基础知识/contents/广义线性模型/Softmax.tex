@@ -1,0 +1,117 @@
+\subsection{Softmax Regression}
+\subsubsection{关于$\phi$的说明}
+\begin{enumerate}
+	\item 对于总共有$k$类的分类问题，因为每个分类出现的概率和为1，故仅有$k-1$维特征是相互独立的
+	\item 我们将$p(y=i;\phi)$记为$\phi_i$；于是$\phi_k=p(y=k;\phi)=1-\sum_{i=1}^{k-1}\phi_i$。
+\end{enumerate}
+
+\subsubsection{关于$T(y)$的表示法说明}
+\begin{enumerate}
+	\item 为了描述$T(y)$属于多分类问题中的那一类，我们用$k-1$为向量来描述$T(y)$，其中，若$T(y)$属于第$i$类，则第$i$维值为1，其余均为0。示例如下：
+	\begin{equation}
+		T(2) = \left[\begin{matrix} 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{matrix}\right], \quad
+		T(1) = \left[\begin{matrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{matrix}\right], \quad 
+		T(k-1) = \left[\begin{matrix} 0 \\ 0 \\ 0 \\ \vdots \\ 1 \end{matrix}\right]
+	\end{equation}
+	于是，$T(k)$就是个$\vec{0}$向量，
+	\begin{equation}
+		T(k) = \left[\begin{matrix} 0 \\ 0 \\ 0 \\ \vdots \\ 0 \end{matrix}\right]
+	\end{equation}
+	\item 为了描述方便，我们使用以下新的表示方法
+	\begin{enumerate}
+		\item $1\{\cdot\}$，在$\cdot$的值为$True$时，$1\{True\}=1$，否则$1\{False\}=0$。如$1\{2=3\}=0$，$1\{2=2\}=1$
+		\item 在以上表示法下，$T(y)$可表示成以下形式
+		\begin{align}
+			\left(T(y)\right)_i &= 1\{y=i\} \\
+			& \downarrow \\
+			E\left[\left(T(y)\right)_i\right] &= P(y=i)=\phi_i
+		\end{align}
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection{证明多项式分布属于指数族分布}
+\begin{enumerate}
+	\item 在多分类问题中，$p(y;\phi)$表示的含义，及其表示方式
+	\begin{enumerate}
+		\item 与逻辑回归时的二分类一样，$p(y=k;\phi)$表示的是取到第$k$类的概率，用$p(y;\phi)$将$p(y=1;\phi), p(y=2;\phi), \dots, p(y=k;\phi)$表示成一个表达式
+		\item 参考逻辑回归的方式，我们将$p(y;\phi)$表示为
+		\begin{align}
+			p(y;\phi) &= \phi_{1}^{1\{y=1\}}\phi_{2}^{1\{y=2\}}\dots\phi_{k}^{1\{y=k\}} \\
+			&= \phi_{1}^{1\{y=1\}}\phi_{2}^{1\{y=2\}}\dots\phi_{k}^{1-\sum_{i=1}^{k-1}1\{y=i\}} \\
+			&= \phi_{1}^{\left(T(y)\right)_1}\phi_{2}^{\left(T(y)\right)_2}\dots\phi_{k}^{1-\sum_{i=1}^{k-1}\left(T(y)\right)_i} \\
+			&= e^{\left(T(y)\right)_1\ln\phi_1 + \left(T(y)\right)_2\ln\phi_2 + \dots + \left(T(y)\right)_{k-1}\ln\phi_{k-1} + \left[1-\sum_{i=1}^{k-1}\left(T(y)\right)_i\right]\ln\phi_k } \\
+			&= e^{\left(T(y)\right)_1\ln\frac{\phi_1}{\phi_k} + \left(T(y)\right)_2\ln\frac{\phi_2}{\phi_k} + \dots + \left(T(y)\right)_{k-1}\ln\frac{\phi_{k-1}}{\phi_k} + \ln\phi_k} \\
+			&= b(y)e^{\eta^T T(y) - a(\eta)}
+		\end{align}
+		\end{enumerate}
+	\item 从上式可得
+	\begin{align}
+		b(y) &= 1 \\
+		\eta^TT(y) &= \left(T(y)\right)_1\ln\frac{\phi_1}{\phi_k} + \left(T(y)\right)_2\ln\frac{\phi_2}{\phi_k} + \dots + \left(T(y)\right)_{k-1}\ln\frac{\phi_{k-1}}{\phi_k} \\
+		&\downarrow \\
+		\eta^T &= \left[\begin{matrix}
+		\ln\frac{\phi_1}{\phi_k} \\ \ln\frac{\phi_2}{\phi_k} \\ \vdots \\ \ln\frac{\phi_{k-1}}{\phi_k}
+		\end{matrix}\right] \\
+		a(\eta) &= -\ln\phi_k
+	\end{align}
+\end{enumerate}
+
+
+\subsubsection{使用Softmax进行分类}
+\begin{enumerate}
+	\item 对于$\eta$中的某一项
+	\begin{align}
+		\eta_i &= \ln{\frac{\phi_i}{\phi_k}} \\
+		&\downarrow \\
+		e^{\eta_i} &= \phi_i \\
+		&\downarrow \\
+		\phi_k e^{\eta_i} &= \phi_i \\
+		\phi_k\sum_{i=1}^{k}e^{\eta_i} &= \sum_{i=1}^{k}\phi_i = 1 \\
+		&\Downarrow \\
+		\phi_i &= \phi_k\cdot e^{\eta_i} \\
+		&= e^{\eta_i} \cdot \frac{1}{\sum_{j=1}^{k}e^{\eta_j}}
+	\end{align}
+	如上所示，$\phi_i = \frac{e^{\eta_i}}{\sum_{j=1}^{k}e^{\eta_j}}$称为Softmax函数
+	\item 最后，再使用前面的假设三：$\eta_i = \theta_i^Tx, \quad i=1,2, \dots, k-1, \quad \theta_i \in {\rm I\!R}^{n+1}$，可得到
+	\begin{align}
+		p(y=i|x; \theta) &= \phi_i \\
+		&= \frac{e^{\eta_i}}{\sum_{j=1}^{k}e^{\eta_j}} \\ 
+		&= \frac{e^{\theta_i^Tx}}{\sum_{j=1}^{k}e^{\theta_j^Tx}}
+	\end{align}
+	\item 故
+	\begin{align}
+		h_\theta(x) &= E\left[T(y)|x;\theta\right] \\
+		&= E\left[\left[\begin{matrix} 1\{y=1\} \\ 1\{y=2\} \\ \vdots 1\{y=k-1\} \end{matrix}\right|x;\theta\right] \\
+		&= \left[\begin{matrix}\phi_1 \\ \phi_2 \\ \vdots \\ \phi_{k-1} \end{matrix}\right] \\ 
+		&= \left[\begin{matrix}
+		\frac{e^{\theta_1^Tx}}{\sum_{j=1}^{k}e^{\theta_j^Tx}} \\
+		\frac{e^{\theta_2^Tx}}{\sum_{j=1}^{k}e^{\theta_j^Tx}} \\
+		\vdots \\
+		\frac{e^{\theta_{k-1}^Tx}}{\sum_{j=1}^{k}e^{\theta_j^Tx}}
+		\end{matrix}\right]
+	\end{align}
+	如上，最终$h_\theta(x)$可得到$k-1$维向量，通过总概率为1得到第$k$为的概率值，由此可以得到没一种类别的概率值
+	\item 以上得到多分类中每种分类概率值的方法就叫做Softmax回归(Softmax Regression)
+\end{enumerate}
+
+
+\subsubsection{参数$\theta$的拟合方式}
+使用对数似然估计方法
+\begin{align}
+	l(\theta) &= \sum_{i=1}^{m}\ln p\left[y^{(i)}|x^{(i)};\theta\right] \\
+	&= \sum_{i=1}^{m} \ln \prod_{l=1}^{k}\left[
+	\frac{e^{\theta_l^Tx^{(i)}}}{\sum_{j=1}^{k}e^{\theta_l^Tx^{(i)}}}
+	\right]^{1\{y^{(i)}=l\}}
+\end{align}
+{\color{red}{需后续待补充}}
+
+
+
+
+
+
+
+
+
+
+

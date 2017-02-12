@@ -60,7 +60,8 @@
 		h(x) = E(y|x)
 	\end{equation}
 	{\color{red}{对此条假设还待更进一步的理解}}
-	\item 假设三：假设$\eta = \theta^Tx$
+	\item 假设三：假设$\eta = \theta^Tx$ \\
+	当$\theta$是一个向量时，$\eta_i = \theta_i^Tx$
 	\item 解释说明
 	\begin{enumerate}
 		\item $y|x; \theta$表示的是一个事件，就像事件$X$，事件$Y$，只是写法比较不一样而已
@@ -87,6 +88,13 @@
 	&= \frac{1}{1+e^{-\theta^Tx}}
 \end{aligned}\end{equation}
 
+
+\subsubsection{说明}
+\begin{enumerate}
+	\item 函数$g(\eta) = E\left[E(T(y);\eta)\right]$将$T(y)$的期望与自然参数$\eta$联系起来
+	\item 我们将$g(\eta)$称为正则响应函数(Canonical Response Function)
+	\item 将$g(\eta)$的反函数$g^{-1}(y)$称为正则关联函数(Canonical Link Function)
+\end{enumerate}
 
 
 
