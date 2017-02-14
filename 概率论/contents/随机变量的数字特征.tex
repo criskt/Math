@@ -189,6 +189,24 @@
 			\mathrm{cov}(X_1+X_2, Y) = \mathrm{cov}(X_1, Y) + \mathrm{cov}(X_2, Y)
 		\end{equation}
 	\end{enumerate}
+
+	\item 协方差矩阵 \\
+	\begin{enumerate}
+		\item 定义 \\
+		假设$X$是以$n$个标量随机变量组成的列向量，且$\mu_k$是其第$k$个元素的期望值，即$\mu_k=E(X_k)$，则协方差矩阵被定义为：
+		\begin{equation}
+			\Sigma = El\left\{\left[X-E(X)\right]\left[X-E(X)\right]^T\right\}
+		\end{equation}
+		矩阵中的第$(i,j)$个元素是$x_i$与$x_j$的协方差。
+		\begin{equation}
+		\left[\begin{matrix}
+		E\left[(X_1-\mu_1)(X_1-\mu_1)\right] & E\left[(X_1-\mu_1)(X_2-\mu_2)\right] & \dots & E\left[(X_1-\mu_1)(X_n-\mu_n)\right] \\
+		E\left[(X_2-\mu_2)(X_1-\mu_1)\right] & E\left[(X_2-\mu_2)(X_2-\mu_2)\right] & \dots & E\left[(X_2-\mu_2)(X_n-\mu_n)\right] \\
+		\vdots & \vdots & \ddots & \vdots \\
+		E\left[(X_n-\mu_n)(X_1-\mu_1)\right] & E\left[(X_n-\mu_n)(X_2-\mu_2)\right] & \dots & E\left[(X_n-\mu_n)(X_n-\mu_n)\right] \\
+		\end{matrix}\right]
+		\end{equation}
+	\end{enumerate}
 	
 	
 	\item 相关系数

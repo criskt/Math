@@ -1,0 +1,39 @@
+\section{生成学习算法}
+\subsection{生成学习算法简介}
+
+\subsubsection{判别学习算法\&生成学习算法}
+\begin{enumerate}
+	\item 判别学习算法：计算$p(y|x)$，例如逻辑回归中计算$p(y=1|x)$与$p(y=0|x)$
+	\item 生成学习算法：计算$p(x|y)$与$p(y)$，然后通过贝叶斯公式$p(y|x) = \frac{p(x|y)p(y)}{p(x)}$计算得到$p(y|x)$
+	\begin{enumerate}
+		\item 式子中的$p(y)$就是每个$y=k$所占的比例，既然我们有了数据，就可以用其频率当作其比例
+		\item 不论$p(y|x)$中$y$的值为多少，式中的$p(x)$均是一样的值(可通过全概率公式计算得到)，因此，对于$p(y|x)$较大的$y=k$，$p(x|y)p(y)$也较大，因此，在最优化过程中，可以不计算$p(x)$，于是优化过程变为
+		\begin{align}
+			arg\max{p(y|x)} &= arg \max_y{\frac{p(x|y)p(y)}{p(x)}} \\
+			&= arg\max_y{p(x|y)p(y)}
+		\end{align}
+		省去了计算$p(x)$的过程
+	\end{enumerate}
+	
+	\item 判别学习算法是给如一系列特征，得到这些特征应该是哪一种结果；生成学习算法学习的是这一种结果应该有什么特征
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
