@@ -1,5 +1,5 @@
 \section{附录}
-\subsection{定义}
+\subsection{概念与定义}
 \subsubsection{各类变量}
 \begin{enumerate}
 	\item $i$: 第$i$个数据集，从1开始，截止于m
@@ -51,6 +51,13 @@
 	\item 参考资料：\href{https://www.zhihu.com/question/54082000}{如何理解似然函数?} \\
 	\href{http://baike.baidu.com/subview/1864828/1864828.htm}{似然函数-百度百科}
 \end{enumerate}
+
+\subsubsection{参数学习算法 \& 非参数学习算法}
+\begin{enumerate}
+	\item 参数学习算法: 对于线性回归算法，一旦拟合出适合训练数据的参数$\theta$，保存这些参数$\theta$，对于之后的预测，不需要再使用原始训练数据集; 
+	\item 非参数学习算法: 对于局部加权线性回归算法，每次进行预测都需要全部的训练数据（每次进行的预测得到不同的参数$\theta$），没有固定的参数$\theta$
+\end{enumerate}
+
 
 
 

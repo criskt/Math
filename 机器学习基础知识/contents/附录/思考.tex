@@ -5,6 +5,11 @@
 	\begin{enumerate}
 		\item 假设函数：$h_\theta(x)$
 		\item Cost Function: $J(\theta)$
+			\begin{enumerate}
+				\item Cost Function仅仅只是一种评价预测值与实际值的方式，就算换种评价方式，差距大的仍旧差距大。表面上看起来通过改进Cost Function并没法得到多少改进，但实际上并非如此
+				\item 一方面，通过改进Cost Function，可以在计算预测值与实际值误差时给不同的数据点$(x^{(i)}, y^{(i)})$不同的权重，让较重要的点的有较大权重，较不重要的点权重较小。事实上，局部加权回归就是采用此方式
+				\item 另一方面，计算Cost Fuction也是需要计算量的，若采用更简单的计算方式也算对算法的一种优化。{\color{gray}{暂未找到实例}}
+			\end{enumerate}
 		\item 获取最优解方式，如梯度下降中使用$\theta_j := \theta_j + \frac{\partial J(\theta)}{\theta_j}$进行迭代
 
 	\end{enumerate}
