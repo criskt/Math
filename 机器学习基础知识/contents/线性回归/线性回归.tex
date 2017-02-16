@@ -3,14 +3,14 @@
 \begin{equation}\begin{aligned}
 	h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_3 + ... + \theta_nx_n
 \end{aligned}\end{equation}
-另$x_0=1$，则
+为每个数据点添加$x_0=1$，则
 \begin{equation}\begin{aligned}
 	h_\theta(x) &= \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_3 + ... + \theta_nx_n \\
 	&= \sum_{j=0}^n{\theta_jx_j}
 \end{aligned}\end{equation}
 
 \subsection{最小二乘法}
-梯度下降中的Cost Function均使用的时最小二乘法
+梯度下降中的Cost Function均使用最小二乘法
 
 \subsection{梯度下降}
 \subsubsection{批梯度下降(BGD)}
@@ -19,14 +19,15 @@
 	\begin{equation}\begin{aligned}
 		J(\theta) = \frac{1}{2} \sum_{i=1}^m \left[h_{\theta} {(x^{(i)})} - y^{(i)}\right]^2
 	\end{aligned}\end{equation}
-	其中，$J(\theta)$就是在训练过程中的Cost Function。我们的目的就是将该Cost Function最小化。
-	在以上式子中：\\
-		$x^{(i)}$为训练集的输入；\\
-		$y^{(i)}$为训练集的输出；\\
-		$\theta$为所要训练的参数；\\
-		$h_{\theta}$为假设函数；\\
-		$h_{\theta} {(x^{(i)})}$为训练集输入经过假设函数后得到的结果\\
-		以上式子中，其实是使用最小二乘法
+	其中，$J(\theta)$就是在训练过程中的Cost Function。我们的目的就是将该Cost Function最小化。\\
+	上式中：
+	\begin{itemize}
+		\item $x^{(i)}$为输入，是个$n$维列向量；
+		\item $y^{(i)}$为输出，是一个标量；
+		\item $\theta$为所要训练的参数，也是一个$n$维列向量；
+		\item $h_{\theta}$为假设函数，我们通过它来预测$y^{(i)}$的值；
+		\item $h_{\theta} {(x^{(i)})}$为输入经过假设函数后得到的输出，是$y^{(i)}$的点估计量
+	\end{itemize}
 
 	\item 迭代方式
 	\begin{equation}\begin{aligned}
@@ -36,25 +37,23 @@
 	\begin{equation}\begin{aligned}
 	      \frac{\partial} {\partial \theta_j} J(\theta) &= \frac{\partial}{\partial \theta_j} \frac{1}{2} \sum_{i=1}^m\left[ h_\theta(x^{(i)}) - y^{(i)} \right]^2 \\
 	      &= 2 * \frac{1}{2} \sum_{i=1}^m\left[ h_\theta(x^{(i)}) - y^{(i)} \right] \frac{\partial}{\partial\theta_j}\left[ h_\theta(x^{(i)}) - y^{(i)} \right] \\
-	      &= \sum_{i=1}^m\left[ h_\theta(x^{(i)}) - y^{(i)} \right]\frac{\partial}{\partial\theta_j}\left[ \theta_0x_0^{(i)} +  \theta_1x_1^{(i)} + \theta_2x_2^{(i)} + ... + \theta_nx_n^{(i)} - y^{(i)} \right] \\
+	      &= \sum_{i=1}^m\left[ h_\theta(x^{(i)}) - y^{(i)} \right]\frac{\partial}{\partial\theta_j}\left[ \theta_0x_0^{(i)} +  \theta_1x_1^{(i)} + \dots + \theta_jx_j^{(i)} + ... + \theta_nx_n^{(i)} - y^{(i)} \right] \\
 	      &= \sum_{i=1}^m\left[ h_\theta(x^{(i)}) - y^{(i)} \right]x_j^{(i)}
 	\end{aligned}\end{equation}
 	所以，更新后的梯度下降公式为
 	\begin{equation}\begin{aligned}
 		\theta_j &:= \theta_j - \alpha \sum_{i=1}^m \left[ h_\theta(x^{(i)}) - y^{(i)} \right]x_j^{(i)}
 	\end{aligned}\end{equation}
-	其中，$\alpha$称为学习速率(learning rate)，用于控制$\theta$前进的步伐，避免$\theta$走得太快（或太慢）。\\
-
-	梯度下降法每次计算都是找到当前所在位置中，下降最快的方向（至于为什么是当前所在位置中下降最快的方向就是梯度的定义了）。 \\
-	如果计算进入了某个局部极小值，则很可能一直在这个局部极小值内出不来了（除非你的步长比较大，帮助它跑出这个局部极小值），这就是梯度下降法的局限所在，它很容易陷入局部极小值中。 \\
-	使用梯度下降法每次修正的时参数$\theta$，而不是输入的$X$或$y$ \\
-
-	Todo PS: 以下内容正确性待思考。因为其是当前位置下，下降最快的方向，若出现每个维度求导后结果都是0，则此时不论再怎么迭代，这个点都不会再变化了（或者其他导致每个维度的偏导数都为0的情况也类似，当然，这种情况较少见）
+	其中，$\alpha$称为学习速率(learning rate)，用于控制$\theta$前进的步伐，避免$\theta$走得太快（或太慢）\footnote{走得太慢需要的迭代很多次数才能收敛，走得太快有可能出现Cost Function值越来越大的情况，即Cost随着迭代次数增多不但不收敛反倒一直增大。\\
+	在实践时，时常会画出Cost随迭代次数变化的图像（设置一定的次数间隔，不会每次都画），以实时观察学习效果}。\\
+	梯度下降法每次计算都是找到当前所在位置中，下降最快的方向\footnote{至于为什么是当前所在位置中下降最快的方向就是梯度的定义了。不明白的请复习高数}。 \\
+	如果计算进入了某个局部极小值，则很可能一直在这个局部极小值内出不来了\footnote{因为在这局部极小值中，各个方向的导数$\frac{\partial{J(\theta)}}{\theta_j}$都很小，其和也很小，故$\theta$一直徘徊在这局部极小值附近}，除非你的步长比较大，帮助它跑出这个局部极小值\footnote{实际上，我们并不知道现在处在的是局部最小还是全局最小，为了避免Cost随迭代次数变大，我们也不会将步长设得太大}，这就是梯度下降法的局限所在，它很容易陷入局部极小值中。 \\
+	使用梯度下降法每次修正的是参数$\theta$，而不是输入的$x$或$y$\footnote{吴恩达在Coursera的课程中会画图帮助理解$\theta$的迭代过程，要注意，图像中的横轴是$\theta_j$，而不是$x_j$}。
 \end{enumerate}
 
 
 \subsubsection{随机梯度下降(SGD)}
-由批梯度下降的式子可以发现，在每一次梯度下降的迭代过程中，我们遍历了所有训练集。这将会耗费大量的性能，于是产生了随机梯度下降(SGD)方法，每次迭代只使用一个数据。 \\
+由批梯度下降的式子可以发现，在每一次梯度下降的迭代过程中，我们都遍历了所有训练集，这将会耗费大量的性能，于是产生了随机梯度下降(SGD)方法，每次迭代只使用一个数据\footnote{因为每次只使用1个数据收敛得太慢了，因此一般不会使用此方法，大部分情况下会使用下面提到的迷你批梯度下降}。 \\
 \begin{enumerate}
 	\item Cost Function
 	\begin{equation}\begin{aligned}
@@ -65,23 +64,23 @@
 	\begin{equation}\begin{aligned}
 	      \frac{\partial} {\partial \theta_j} J(\theta) &= \left[ h_\theta(x^{(i)}) - y^{(i)} \right]x_j^{(i)}
 	\end{aligned}\end{equation}
-	更新后的梯度下降公式为
+	更新后
 	\begin{equation}\begin{aligned}
 		\theta_j &:= \theta_j - \alpha\left[ h_\theta(x^{(i)}) - y^{(i)} \right]x_j^{(i)}
 	\end{aligned}\end{equation}
-	如上所示，与批梯度下降不同，随机梯度下降每次迭代只用了一个数据（第$i$个数据），若$i$从1取到m，则完成了一次训练集的遍历。\\
+	如上所示，与批梯度下降不同，随机梯度下降每次迭代只用了一个数据（第$i$个数据），若$i$从1取到m，则完成了一次训练集的遍历\footnote{在训练中，为了使参数收敛，可以多次遍历训练集。比如我们的批梯度下降就每次都遍历了一遍训练集，随机梯度（或其他梯度下降方法）当然也可以多次遍历}。\\
 	使用随机梯度下降虽然解决了批梯度下降耗费过多性能的问题，但是却带来了另一个问题：收敛太慢！由此，我们折中使用迷你批梯度下降(mini-batch GD)。\\
-	随机梯度下降（包括其他梯度下降方法）均允许多次遍历所有数据集。
 \end{enumerate}
 
 \subsubsection{迷你批梯度下降(mini-batch GD)}
 为了解决梯度下降每次都使用所有训练集导致的性能问题，以及随机梯度下降每次只使用一个数据导致的收敛太慢，我们可以只用mini-batch GD。每次只用一部分训练集进行训练。
 \begin{enumerate}
 	\item Cost Function \\
-	略
+	略\footnote{与批梯度下降相比，只是求和的上限变了而已，从训练集大小$m$变成了一个比较合理的数字}
 
 	\item 迭代方式 \\
 	略
+	\item 在很多第三方框架中使用的都是迷你梯度下降，故其在使用过程中都需要设置每次迭代使用的数据量大小。
 \end{enumerate}
 
 

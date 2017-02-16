@@ -38,3 +38,58 @@
 	\item 后验概率: 事情已经发生,要求这件事情发生的原因是由某个因素引起的可能性的大小,是后验概率.
 \end{enumerate}
 
+\subsubsection{似然函数}
+\begin{enumerate}
+	\item 似然函数的定义：给定$x$时，关于参数$\theta$的似然函数$L(\theta)$（在数值上）等于给定$\theta$后变量$X=x$的概率：
+	\begin{equation}
+		L(\theta|x) = P(X=x|\theta)
+	\end{equation}
+	\item 从定义上讲，似然函数和概率密度函数是两个不同的数学对象，前者是关于未知参数$\theta$的函数，后者是关于$x$的函数。两者的相等仅仅是在数值上的相等。
+	\item 似然函数$L(\theta|x)$表示的意义是：在参数$\theta$下，随机变量$X$取到$x$的可能性有多大；概率密度$f(x|\theta)$表示的意义：在给定样本$x$时，参数$\theta$使得出现$X=x$的可能性有多大。二者表示的都是可能性。
+	\item 若$X$是一个离散型随机变量，则$f(x|\theta)$可改写成$f(x|\theta)=P_\theta(X=x)$。式子$L(\theta_1|x)=P_{\theta_1}(X=x) > L(\theta_2|x)=P_{\theta_2}(X=x)$表示：在参数$\theta_1$下，随机变量$X$取到$x$的可能性大于参数$\theta_2$下随机变量$X$取到$x$的可能性。
+	\item 若$X$是一个联系型随机变量也类似。
+	\item 参考资料：\href{https://www.zhihu.com/question/54082000}{如何理解似然函数?} \\
+	\href{http://baike.baidu.com/subview/1864828/1864828.htm}{似然函数-百度百科}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

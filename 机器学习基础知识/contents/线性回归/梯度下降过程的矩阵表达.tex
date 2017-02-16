@@ -3,18 +3,18 @@
 	\item 
 	\begin{equation}
 		X = \left[\begin{matrix}
-		\ldots & (x^{(1)})^T & \ldots \\
-		\ldots & (x^{(2)})^T & \ldots \\
-		\vdots & \vdots & \vdots \\
-		\ldots & (x^{(m)})^T & \ldots \\
-		\end{matrix}\right]
+		-\!-  & (x^{(1)})^T & -\!- \\
+		-\!- & (x^{(2)})^T & -\!- \\
+		\vdots & \ddots & \vdots \\
+		-\!- & (x^{(m)})^T & -\!- \\
+		\end{matrix}\right] \quad \in {\rm I\!R}^{m \times (n+1)}
 	\end{equation}
 
 	\item 
 	\begin{equation}
 		\vec{y} = \left[\begin{matrix}
 		y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(m)}
-		\end{matrix}\right]
+		\end{matrix}\right] \quad \in {\rm I\!R}^{m \times 1}
 	\end{equation}
 
 	\item 
@@ -25,13 +25,14 @@
 		y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(m)}
 		\end{matrix}\right] = \left[\begin{matrix}
 		h_\theta(x^{(1)}) - y^{(1)} \\ h_\theta(x^{(2)}) - y^{(2)} \\ \vdots \\ h_\theta(x^{(m)}) - y^{(m)}
-		\end{matrix}\right]
+		\end{matrix}\right]  \quad \in {\rm I\!R}^{m \times 1}
 	\end{equation}
 
 	\item 
 	\begin{equation}
 		J(\theta) = \frac{1}{2}(X\theta - \vec{y})^T(X\theta - \vec{y})
 	\end{equation}
+	\footnote{这就是矩阵中平方的表达方式}
 
 	\item 
 	\begin{equation}

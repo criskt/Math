@@ -1,4 +1,4 @@
-\subsection{线性代数知识}
+\subsection{线性代数知识}\footnote{在实际的机器学习实践中，都是使用矩阵运算，以提高性能}
 \begin{enumerate}
 	\item
 	\begin{equation}
@@ -27,38 +27,22 @@
 	\end{equation}
 
 	\item 矩阵的迹的性质
-	\begin{equation}
-		tr(AB) = tr(BA)
-	\end{equation}
-	\begin{equation}
-		tr(ABC) = tr(CAB) = tr(BCA)
-	\end{equation}
-	\begin{equation}
-		tr(A^T) = tr(A)
-	\end{equation}
-	\begin{equation}
-		tr(A+B) = trA + trB
-	\end{equation}
-	\begin{equation}
-		traA = atrA
-	\end{equation}
+	\begin{align}
+		tr(AB) &= tr(BA) \\
+		tr(ABC) &= tr(CAB) = tr(BCA) \\
+		tr(A^T) &= tr(A) \\
+		tr(A+B) &= tr(A) + tr(B) \\
+		tr(a\cdot A) &= a\cdot tr(A)
+	\end{align}
 
 	\item 
-	\begin{equation}
-		\nabla_AtrAB = B^T
-	\end{equation}
-	\begin{equation}
-		\nabla_{A^T}f(A) = (\nabla_Af(A))^T
-	\end{equation}
-	\begin{equation}
-		\nabla_AtrABA^TC = CAB + C^TAB^T
-	\end{equation}
-	\begin{equation}
-		\nabla_A|A| = |A|(A^{-1})^T
-	\end{equation}
-	\begin{equation}
-		A^{-1} = \frac{(A^{'})^T}{|A|}
-	\end{equation}
+	\begin{align}
+		\nabla_Atr(AB) &= B^T \\
+		\nabla_{A^T}f(A) &= \left[\nabla_Af(A)\right]^T \\
+		\nabla_Atr(ABA^TC) &= CAB + C^TAB^T \\
+		\nabla_A|A| &= |A|(A^{-1})^T \\
+		A^{-1} &= \frac{(A^{'})^T}{|A|}
+	\end{align}
 	其中，$A^{-1}$为矩阵的逆
 
 
