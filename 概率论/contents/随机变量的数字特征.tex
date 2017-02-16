@@ -37,7 +37,7 @@
 	\begin{enumerate}
 		\item 离散型
 			\begin{equation}
-				E(Y) = E(g(X)) = \sum_{k=1}^{+\infty} g(x_k)p_k
+				E(Y) = E\left(g(X)\right) = \sum_{k=1}^{+\infty} g(x_k)p_k
 			\end{equation}
 			如果上式绝对收敛，则期望存在；否则期望不存在
 		\item 连续型
@@ -88,7 +88,7 @@
 		\begin{equation}
 			D(X\pm Y) = D(X) + D(Y)
 		\end{equation}
-		注意，不论是$X+Y$还是$X-Y$，最后的结果均是方差之和
+		注意，不论是$X+Y$还是$X-Y$，结果均是方差之和
 	\end{enumerate}
 \end{enumerate}
 
@@ -156,14 +156,15 @@
 		\end{equation}
 	\end{enumerate}
 	
-	\item 协方差 \\
+	\item 协方差 
+	\footnote{协方差在大学数学中用到的不多，但是在机器学习中时常用到，尤其是多重高斯分布时} \\
 	\begin{enumerate}
 		\item 如果$E\left\{\left[X-E(X)\right]\left[Y-E(Y)\right]\right\}$存在，则$X,Y$的协方差为:
 		\begin{align}
 			\mathrm{cov}(X,Y) = E\left\{\left[X-E(X)\right]\left[Y-E(Y)\right]\right\}
 		\end{align}
-		实际上，方差是$X=Y$时的特殊情况
-
+		\footnote{方差可看成$X=Y$时的特殊情况} \\
+		可理解成两个方向上当前值与均值间的差异组成的矩形面积的期望
 		\item 
 		\begin{equation}
 			\mathrm{cov}(X,Y) = E(XY) - E(X)E(Y)
@@ -195,7 +196,7 @@
 		\item 定义 \\
 		假设$X$是以$n$个标量随机变量组成的列向量，且$\mu_k$是其第$k$个元素的期望值，即$\mu_k=E(X_k)$，则协方差矩阵被定义为：
 		\begin{equation}
-			\Sigma = El\left\{\left[X-E(X)\right]\left[X-E(X)\right]^T\right\}
+			\Sigma = E\left\{\left[X-E(X)\right]\left[X-E(X)\right]^T\right\}
 		\end{equation}
 		矩阵中的第$(i,j)$个元素是$x_i$与$x_j$的协方差。
 		\begin{equation}

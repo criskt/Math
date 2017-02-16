@@ -3,11 +3,11 @@
 \begin{enumerate}
 	\item 完备事件组 \\
 	满足$\cup_{i=1}^nB_i=\Omega$，且$B_iB_j = \emptyset$的事件组$B_1$, $B_2$, ..., $B_n$成为完备事件组
-
 	\item 乘法公式
-	\begin{equation}
-	P(A_1A_2...A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1A_2)....P(A_n|A_1A_2...A_{n-1})
-	\end{equation}
+	\begin{align}
+	P(A_1A_2...A_n) &= P(A_1)P(A_2|A_1)P(A_3|A_1A_2)....P(A_n|A_1A_2...A_{n-1})
+	\end{align}
+	乘法公式并没有$A_k$要相互独立或条件独立的要求。
 
 	\item 全概率公式
 	\begin{equation}
@@ -20,6 +20,20 @@
 	P(B_j|A) &= \frac{P(B_j)P(A|B_j)}{P(A)} \\
 	&= \frac{P(B_j)P(A|B_j)}{\sum_{i=1}^nP(B_i)P(A|B_i)},  \quad j = 1, 2, 3, ..., n
 	\end{align}
-	贝叶斯公式求得是条件概率，求解过程中一般需要用到全概率公式（除非$P(A)$已知）。
-
+	\footnote{$P(B_j|A)=\frac{P(AB_j)}{P(A)}$，再将分子用乘法公式展开，分母用全概率公式展开，即可得到贝叶斯公式} \\
+	同样，要求B为完备事件组。 \\
+	贝叶斯公式求得是条件概率，求解过程中一般需要用到全概率公式（除非$P(A)$已知）。 \\
+	事情还没有发生，要求这件事情发生的可能性的大小，是先验概率；事情已经发生，要求这件事情发生的原因是由某个因素引起的可能性的大小，是后验概率。所以贝叶斯公式求的是后验概率。
+	\item 其他
+	\begin{enumerate}
+		\item 加法公式
+		\begin{align}
+			P(A\cup B) &= P(A) + P(B) - P(AB) \\
+			P(A\cup B\cup C) &= P(A)+P(B)+P(C)-P(AB)-P(BC)-P(AC) +P(ABC)
+		\end{align}
+		\item 减法公式
+		\begin{equation}
+			P(A-B) = P(A)-P(AB)
+		\end{equation}
+	\end{enumerate}
 \end{enumerate}

@@ -126,7 +126,7 @@
 
 
 \subsection{随机变量的独立性}
-\subsubsection{随机变量$X$与$Y$相互独立的充要条件}
+\subsubsection{随机变量$X$与$Y${\color{red}{相互独立}}的{\color{red}{充要条件}}}
 \begin{enumerate}
 	\item 离散型
 	\begin{equation}
@@ -136,6 +136,7 @@
 	\begin{equation}
 		p_{ij} = p_{i\cdot} p_{\cdot j}
 	\end{equation}
+	\footnote{在机器学习中，若两事件独立，常会用到$P(B|A)=\frac{P(AB)}{P(A)}=\frac{P(A)P(B)}{P(A)}=P(B)$；或$B_k$条件独立时$P(B_2|A, B_1) = P(B_2|A)$}
 
 	\item 连续型
 	\begin{equation}
@@ -164,7 +165,7 @@
 
 	\item 若$(X,Y)$二维正态，则$X, Y$均正态，即: 若$(X, Y) \sim N(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)$，则$X \sim N(\mu_1, \sigma_1^2), Y \sim N(\mu_2, \sigma_2^2)$
 	
-	\item $X, Y$相互独立的充要条件为：$\rho = 0$
+	\item 若$(X,Y)$二维正态，则$X, Y$相互独立的充要条件为：$\rho = 0$
 
 	\item 如果$X_1, X_2, \dots X_n$相互独立，且$X_i \sim N(\mu_i, \sigma_i^2) \quad (i = 1, 2, \dots, n)$，则$\sum_{i=1}^{n}C_iX_i \sim N(\sum_{i=1}^{n}C_i\mu_i, \sum_{j=1}^{n}C_j^2\sigma_j^2)$
 \end{enumerate}

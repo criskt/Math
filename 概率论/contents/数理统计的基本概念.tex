@@ -20,7 +20,7 @@
 		\end{equation}
 		所以，在逻辑回归中，似然函数$L(\theta)$可以写成各个概率的乘积:
 		\begin{equation}
-			L(\theta)=\prod_{i=1}^{m}P(y^{(i)}|x^{(i)}; \theta)
+			L(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)}; \theta)
 		\end{equation}
 		在机器学习中，每个数据点$(x^{(i)},y^{(i)})$就是总体中的一个个体（满足独立同分布）。所以上式中，乘积的上下限对应的是样本，故应为$i=1 \to m$
 	\end{enumerate}
@@ -31,7 +31,8 @@
 	\item 统计量: 样本$X_1, X_2, \dots, X_n$的不含未知参数的函数$T = T(X_1, X_2, \dots, X_n)$称为统计量。
 	\item 作为随机样本的函数，统计量本身也是一个随机变量。
 	\item 若$x_1, x_2, \dots, x_n$是样本$X_1, X_2, \dots, X_n$的样本值，则数值$T(x_1, x_2, \dots, x_n)$是统计量$T = T(X_1, X_2, \dots, X_n)$的观测值。
-	\item 在迷你梯度下降中的Cost Function应该就是个统计量，$J(\theta)=\frac{1}{2}\sum_{i=1}^{m}\left[h_\theta(x^{(i)}) - y^{(i)}\right]^2$，其中，$\sum_{i=1}^{m}$就是这个$T${\color{red}{（正确性待查）}}
+	% \item 在迷你梯度下降中的Cost Function应该就是个统计量，$J(\theta)=\frac{1}{2}\sum_{i=1}^{m}\left[h_\theta(x^{(i)}) - y^{(i)}\right]^2$，其中，$\sum_{i=1}^{m}$就是这个$T${\color{red}{（正确性待查）}}
+	\item 在指数分布族中，$T(y)$是个充分统计量
 \end{enumerate}
 
 \subsection{样本的数字特征}
@@ -68,6 +69,7 @@
 	\begin{equation}
 		E(\bar X) = E(X) = \mu
 	\end{equation}
+	注意均值与期望的区别，均值针对的是样本（样本均值），期望针对的是事件（事件期望）。
 	\item 若总体$X$具有方差$D(X)=\sigma^2$，则
 	\begin{align}
 		D(\bar X) &= \frac{1}{n}D(X) = \frac{\sigma^2}{n} \\
