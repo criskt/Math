@@ -7,13 +7,13 @@
 
 \subsubsection{关于$T(y)$的表示法说明}
 \begin{enumerate}
-	\item 为了描述$T(y)$属于多分类问题中的那一类，我们用$k-1$为向量来描述$T(y)$，其中，若$T(y)$属于第$i$类，则第$i$维值为1，其余均为0。示例如下：
+	\item 为了描述$T(y)$属于多分类问题中的那一类，我们用$k-1$维向量来描述$T(y)$，其中，若$T(y)$属于第$i$类，则第$i$维值为1，其余均为0\footnote{此种表示方法称为One-Hot}。示例如下：
 	\begin{equation}
 		T(2) = \left[\begin{matrix} 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{matrix}\right], \quad
 		T(1) = \left[\begin{matrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{matrix}\right], \quad 
 		T(k-1) = \left[\begin{matrix} 0 \\ 0 \\ 0 \\ \vdots \\ 1 \end{matrix}\right]
 	\end{equation}
-	于是，$T(k)$就是个$\vec{0}$向量，
+	于是，$T(k)$就是个$\vec{0}$向量\footnote{因为它$0\to n-1$维均不是}
 	\begin{equation}
 		T(k) = \left[\begin{matrix} 0 \\ 0 \\ 0 \\ \vdots \\ 0 \end{matrix}\right]
 	\end{equation}
@@ -31,7 +31,7 @@
 
 \subsubsection{证明多项式分布属于指数族分布}
 \begin{enumerate}
-	\item 在多分类问题中，$p(y;\phi)$表示的含义，及其表示方式
+	\item 在多分类问题中，$p(y;\phi)$表示的含义及其表示方式
 	\begin{enumerate}
 		\item 与逻辑回归时的二分类一样，$p(y=k;\phi)$表示的是取到第$k$类的概率，用$p(y;\phi)$将$p(y=1;\phi), p(y=2;\phi), \dots, p(y=k;\phi)$表示成一个表达式
 		\item 参考逻辑回归的方式，我们将$p(y;\phi)$表示为
@@ -81,7 +81,7 @@
 	\item 故
 	\begin{align}
 		h_\theta(x) &= E\left[T(y)|x;\theta\right] \\
-		&= E\left[\left[\begin{matrix} 1\{y=1\} \\ 1\{y=2\} \\ \vdots 1\{y=k-1\} \end{matrix}\right|x;\theta\right] \\
+		&= E\left[\left[\begin{matrix} 1\{y=1\} \\ 1\{y=2\} \\ \vdots \\ 1\{y=k-1\} \end{matrix}\right|x;\theta\right] \\
 		&= \left[\begin{matrix}\phi_1 \\ \phi_2 \\ \vdots \\ \phi_{k-1} \end{matrix}\right] \\ 
 		&= \left[\begin{matrix}
 		\frac{e^{\theta_1^Tx}}{\sum_{j=1}^{k}e^{\theta_j^Tx}} \\
@@ -90,7 +90,7 @@
 		\frac{e^{\theta_{k-1}^Tx}}{\sum_{j=1}^{k}e^{\theta_j^Tx}}
 		\end{matrix}\right]
 	\end{align}
-	如上，最终$h_\theta(x)$可得到$k-1$维向量，通过总概率为1得到第$k$为的概率值，由此可以得到没一种类别的概率值
+	如上，最终$h_\theta(x)$可得到$k-1$维向量，通过总概率为1得到第$k$维的概率值，由此可以得到每一种类别的概率值
 	\item 以上得到多分类中每种分类概率值的方法就叫做Softmax回归(Softmax Regression)
 \end{enumerate}
 
@@ -103,7 +103,7 @@
 	\frac{e^{\theta_l^Tx^{(i)}}}{\sum_{j=1}^{k}e^{\theta_l^Tx^{(i)}}}
 	\right]^{1\{y^{(i)}=l\}}
 \end{align}
-{\color{red}{需后续待补充}}
+{\color{red}{后续待补充}}
 
 
 

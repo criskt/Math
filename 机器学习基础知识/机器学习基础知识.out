@@ -59,5 +59,6 @@
 \BOOKMARK [3][-]{subsubsection.7.1.4}{先验概率 & 后验概率}{subsection.7.1}% 59
 \BOOKMARK [3][-]{subsubsection.7.1.5}{似然函数}{subsection.7.1}% 60
 \BOOKMARK [3][-]{subsubsection.7.1.6}{参数学习算法 & 非参数学习算法}{subsection.7.1}% 61
-\BOOKMARK [2][-]{subsection.7.2}{中英对照表}{section.7}% 62
-\BOOKMARK [2][-]{subsection.7.3}{思考}{section.7}% 63
+\BOOKMARK [3][-]{subsubsection.7.1.7}{Hessian矩阵}{subsection.7.1}% 62
+\BOOKMARK [2][-]{subsection.7.2}{中英对照表}{section.7}% 63
+\BOOKMARK [2][-]{subsection.7.3}{思考}{section.7}% 64

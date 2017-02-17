@@ -59,8 +59,34 @@
 \end{enumerate}
 
 
+\subsubsection{Hessian矩阵}
+\begin{enumerate}
+	\item Hessian矩阵又成海森矩阵
+	\item 雅克比(Jacobian)矩阵：多元函数对各自变量的一阶导数
+	\begin{align}
+	J_F(x_1, \dots, x_n) = 
+		\left[\begin{matrix}
+			\frac{\partial y_1(x)}{\partial x_1} & \dots & \frac{\partial y_1(x)}{\partial x_n} \\
+			\vdots & \ddots & \vdots \\
+			\frac{\partial y_m(x)}{\partial x_1} & \dots & \frac{\partial y_m(x)}{\partial x_n}
+		\end{matrix}\right]
+	\end{align}
+	\item 海森矩阵：多元函数对各自变量的二阶导数
+	\begin{align}
+		H(f) = 
+		\left[\begin{matrix}
+			\frac{\partial^2 f(x)}{\partial^2 x_1} & \frac{\partial^2 f(x)}{\partial x_1\partial x_2}& \dots & \frac{\partial^2 f(x)}{\partial x_1\partial x_n} \\
+			\frac{\partial^2 f(x)}{\partial x_2\partial x_1} & \frac{\partial^2 f(x)}{\partial^2 x_2}& \dots & \frac{\partial^2 f(x)}{\partial x_2\partial x_n} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\frac{\partial^2 f(x)}{\partial x_n\partial x_1} & \frac{\partial^2 f(x)}{\partial x_n\partial x_2}& \dots & \frac{\partial^2 f(x)}{\partial^2 x_n} \\
+		\end{matrix}\right]
+	\end{align}
 
 
+
+
+	\item 参考资料：\href{http://jacoxu.com/jacobian矩阵和hessian矩阵/}{Jacobian矩阵和Hessian矩阵}
+\end{enumerate}
 
 
 

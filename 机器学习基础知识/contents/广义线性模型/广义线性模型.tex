@@ -6,7 +6,7 @@
 		p(y;\eta) = b(y)e^{\eta^T T(y) - a(\eta)}
 	\end{equation}
 	其中，$\eta$称为自然参数(Natural Parameter)； \\
-	$T(y)$为$\eta${\color{red}{（应该是$\eta$，因为指数分布族的参数只有$\eta$，但正确与否待确认）}}的充分统计量(Sufficient Statistic)，大部分情况下，$T(y) = y$，在$T(y)=y$时，$\eta$往往为标量； \\
+	$T(y)$为$\eta$\footnote{\color{red}{应该是$\eta$，因为指数分布族的参数只有$\eta$，但正确与否待确认}}的充分统计量(Sufficient Statistic)，大部分情况下，$T(y) = y$；在$T(y)=y$时，$\eta$往往为标量； \\
 	$a(\eta)$称为 log partition function；
 	\item 
 \end{enumerate}
@@ -16,16 +16,16 @@
 \begin{enumerate}
 	\item 伯努利分布
 	\begin{align}
-		P(y;p) &= p^y(1-p)^{1-y} \\
-		&= e^{y\ln p + (1-y)\ln(1-p)} \\
-		&= e^{ln{\frac{p}{1-p}}y + \ln(1-p)}
+		P(y;\phi) &= \phi^y(1-\phi)^{1-y} \\
+		&= e^{y\ln \phi + (1-y)\ln(1-\phi)} \\
+		&= e^{ln{\frac{\phi}{1-\phi}} \cdot y + \ln(1-\phi)}
 	\end{align}
 	与广义线性模型的一般形式比较，可以发现：
 	\begin{align}
 		b(y) &= 1 \\
-		\eta^T &= \ln{\frac{p}{1-p}} = \eta \rightarrow p = \frac{e^{\eta}}{1+e^{\eta}} \\
+		\eta^T &= \ln{\frac{\phi}{1-\phi}} = \eta \rightarrow \phi = \frac{e^{\eta}}{1+e^{\eta}} \\
 		T(y) &= y \\
-		a(\eta) &= -\ln(1-p) = -\ln{(1-\frac{e^{\eta}}{1+e^{\eta}})} = -\ln{\frac{1}{1+e^\eta}} \\
+		a(\eta) &= -\ln(1-\phi) = -\ln{(1-\frac{e^{\eta}}{1+e^{\eta}})} = -\ln{\frac{1}{1+e^\eta}} \\
 		&= \ln(1+e^\eta)
 	\end{align}
 
@@ -34,7 +34,7 @@
 	\begin{align}
 		P(y;\mu) &= \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}\left(y-\mu\right)^2} \\
 		&= \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2-2\mu y +\mu^2}{2}} \\
-		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}} e^{\mu y-\frac{\mu^2}{2}}
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}} \cdot e^{\mu y-\frac{\mu^2}{2}}
 	\end{align}
 	故：
 	\begin{align}
@@ -47,7 +47,7 @@
 	\item 注意事项
 	\begin{enumerate}
 		\item $\eta^T$要在$\eta$为标量时才能直接等于$\eta$，故上面的式子中是在得到$\eta^T$为标量后再写$=\eta$
-		\item $a(\eta)$通常不会直接得到关于$\eta$的函数，需要通过$\eta^T$来与$\eta$关联，得到$\eta$的函数
+		\item $a(\eta)$通常不会直接得到关于$\eta$的函数，需要通过$\eta^T$来与$\eta$关联，从而得到$a(\eta)$
 	\end{enumerate}
 \end{enumerate}
 
@@ -59,14 +59,13 @@
 	\begin{equation}
 		h(x) = E(y|x)
 	\end{equation}
-	{\color{red}{对此条假设还待更进一步的理解}}
+	{\color{red}{暂时对此假设不怎么理解，待后续理解后补充}}
 	\item 假设三：假设$\eta = \theta^Tx$ \\
 	当$\theta$是一个向量时，$\eta_i = \theta_i^Tx$
 	\item 解释说明
 	\begin{enumerate}
 		\item $y|x; \theta$表示的是一个事件，就像事件$X$，事件$Y$，只是写法比较不一样而已
-		\item 在构造广义线性模型中，我们的目的是通过输入的$x$来得到$\theta$，进而得到$y$；因为$T(y)$是$\eta$的充分统计量，因此，我们
-		\item 
+		\item 在构造广义线性模型中，我们的目的是通过输入的$x$来得到$\theta$，进而得到$y$；因为$T(y)$是$\eta$的充分统计量，因此，我们通过得到$T(y)$的信息来了解$\eta$的信息{\color{red}{（此条正确性待查）}}
 	\end{enumerate}
 \end{enumerate}
 
@@ -80,10 +79,10 @@
 \end{aligned}\end{equation}
 
 \subsubsection{逻辑回归}
-对于逻辑回归，由前面的证明可知$p=\frac{e^{\eta}}{1+e^{\eta}} = \frac{1}{1+e^{-\eta}}$，故
+对于逻辑回归，由前面的证明可知$\phi=\frac{e^{\eta}}{1+e^{\eta}} = \frac{1}{1+e^{-\eta}}$，故
 \begin{equation}\begin{aligned}
 	h_\theta(x) &= E(y|x; \theta) \\
-	&= p \\
+	&= \phi \\
 	&= \frac{1}{1+e^{-\eta}} \\
 	&= \frac{1}{1+e^{-\theta^Tx}}
 \end{aligned}\end{equation}
@@ -94,6 +93,7 @@
 	\item 函数$g(\eta) = E\left[E(T(y);\eta)\right]$将$T(y)$的期望与自然参数$\eta$联系起来
 	\item 我们将$g(\eta)$称为正则响应函数(Canonical Response Function)
 	\item 将$g(\eta)$的反函数$g^{-1}(y)$称为正则关联函数(Canonical Link Function)
+	\item {\color{red}{关于正则响应函数，正则关联函数的理解待补充}}
 \end{enumerate}
 
 
