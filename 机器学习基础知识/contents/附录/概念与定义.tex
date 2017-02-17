@@ -7,29 +7,28 @@
 	\item $m$: 数据集大小，共$m$组数据
 	\item $n$: 维度大小，共$n$维特征
 	\item $i, j, m, n$的关系: $\sum_{i=1}^{m}\sum_{j=0}^{j=n}{\theta_{j}x_j^{(i)}}$
-	\item $(x^{(i)}, y^{(j)})$： 第i个训练集
-	\item $P(y|x;\theta)$中，$y$做为一个个体；$x:\theta$作为一个个体，表示$x$以$\theta$为参数
+	\item $(x^{(i)}, y^{(i)})$： 第i个训练集
+	\item $P(y|x;\theta)$中，$y$作为一个个体。$x$作为一个个体。$;\theta$作为一个个体，表示$P(y|x)$以$\theta$为参数
 	\item 先验概率: 事情还没有发生,要求这件事情发生的可能性的大小,是先验概率. 
 	\item 后验概率: 事情已经发生,要求这件事情发生的原因是由某个因素引起的可能性的大小,是后验概率.
 \end{enumerate}
 
 \subsubsection{充分统计量}
 \begin{enumerate}
-	\item 不损失信息的统计量就是充分统计量，它概况了样本中所包含的未知参数的全部信息。
-	\item 定义: 设$x_1, x_2, \dots, x_n$是来自某个总体$X$的样本，总体的分布函数为$F(x;\theta)$，若统计量$T=T(x_1, x_2, \dots, x_n)$为$\theta$的充分统计量，则在给定了$T$的取值后，$x_1, x_2, \dots, x_n$的条件分布$P(X_1=x_1, X_2=x_2, \dots, X_n=x_n$与$\theta$无关
+	\item 不损失信息的统计量就是充分统计量，它概括了样本中所包含的未知参数的全部信息。
+	\item 定义: 设$x_1, x_2, \dots, x_n$是来自某个总体$X$的样本，总体的分布函数为$F(x;\theta)$，若统计量$T=T(x_1, x_2, \dots, x_n)$为$\theta$的{\color{blue}{充分统计量}}，则在给定了$T$的取值后，$x_1, x_2, \dots, x_n$的条件分布$P(X_1=x_1, X_2=x_2, \dots, X_n=x_n$与$\theta$无关
 	\item 充分统计量不唯一。实际上，样本本身就是参数的一个充分统计量
 	\item 因子分解定理{\color{red}{（没看懂）}}: 设总体的概率函数为$p(x;\theta)$，$x_1, x_2, \dots, x_n$是来自总体的样本，则统计量$T=T(x_1, x_2, \dots, x_n)$为充分统计量的充要条件为：
 	\begin{equation}
 		p(x_1, x_2, \dots, x_n;\theta) = g\left[T(x_1, x_2, \dots, x_n),\theta\right]\cdot h(x_1, x_2, \dots, x_n)
 	\end{equation}
 	其中，$g(t,\theta)$是通过统计量T的取值而依赖于样本的，而$h(x_1, x_2, \dots, x_n)$不依赖于$\theta$
-	\item 更详细内容: http://wenku.baidu.com/view/8813423343323968011c92ed.html
+\item 更详细内容: \url{http://wenku.baidu.com/view/8813423343323968011c92ed.html}
 \end{enumerate}
 
 \subsubsection{自然参数}
 \begin{enumerate}
-	\item 
-	\item 
+	\item {\color{red}{待补充}}
 \end{enumerate}
 
 \subsubsection{先验概率 \& 后验概率}
@@ -45,10 +44,10 @@
 		L(\theta|x) = P(X=x|\theta)
 	\end{equation}
 	\item 从定义上讲，似然函数和概率密度函数是两个不同的数学对象，前者是关于未知参数$\theta$的函数，后者是关于$x$的函数。两者的相等仅仅是在数值上的相等。
-	\item 似然函数$L(\theta|x)$表示的意义是：在参数$\theta$下，随机变量$X$取到$x$的可能性有多大；概率密度$f(x|\theta)$表示的意义：在给定样本$x$时，参数$\theta$使得出现$X=x$的可能性有多大。二者表示的都是可能性。
-	\item 若$X$是一个离散型随机变量，则$f(x|\theta)$可改写成$f(x|\theta)=P_\theta(X=x)$。式子$L(\theta_1|x)=P_{\theta_1}(X=x) > L(\theta_2|x)=P_{\theta_2}(X=x)$表示：在参数$\theta_1$下，随机变量$X$取到$x$的可能性大于参数$\theta_2$下随机变量$X$取到$x$的可能性。
-	\item 若$X$是一个联系型随机变量也类似。
-	\item 参考资料：\href{https://www.zhihu.com/question/54082000}{如何理解似然函数?} \\
+	\item 似然函数$L(\theta|x)$表示的意义是：在参数$\theta$下，随机变量$X$取到$x$的可能性有多大；概率密度$f(x|\theta)$表示的意义是：在给定样本$x$时，参数$\theta$为真实值的可能性有多大。二者表示的都是可能性。
+	\item 若$X$是一个离散型随机变量，则$f(x|\theta)$可改写成$f(x|\theta)=P_\theta(X=x)$。式子$L(\theta_1|x)=P_{\theta_1}(X=x) > L(\theta_2|x)=P_{\theta_2}(X=x)$表示：在参数$\theta_1$下，随机变量$X$取到$x$的可能性大于参数$\theta_2$下随机变量$X$取到$x$的可能性，即$\theta_1$比$\theta_2$更可能是真实值。
+	\item 若$X$是一个连续型随机变量也类似。
+	\item 参考资料：\href{https://www.zhihu.com/question/54082000}{如何理解似然函数?-知乎} \\
 	\href{http://baike.baidu.com/subview/1864828/1864828.htm}{似然函数-百度百科}
 \end{enumerate}
 
