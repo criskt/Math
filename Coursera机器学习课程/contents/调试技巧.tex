@@ -1,0 +1,69 @@
+\section{调试技巧}
+
+\subsection{Error Analysis}
+\begin{enumerate}
+	\item 0-1错分率 or 误分类率
+	1. 将当前的数据分成2份，$70\%$作为训练集，$30\%$作为测试集\\
+	2. 用新的训练集训练，用新的测试集检验效果\\
+	3. 若$J_{train}(\theta)$很小，$J_{test}(\theta)$很大，则说明出现了过拟合
+	\item 训练集 \& 交叉验证集 \& 测试集
+	\item 过拟合、欠拟合的判断方法
+	1. 欠拟合对应高偏差，表现为$J_{cv}(\theta) \approx J_{train}(\theta)$，且二者都很高 \\
+	2. 过拟合对应高方差，表现为$J_{cv}(\theta) >> J_{train}(\theta)$，且$J_{train}(\theta)$很小 \\
+	3. $J_{taain}(\theta)$对应训练集的学习能力；$J_{cv}(\theta)$对应训练结果对新样本的适应能力，适应能力越强，$J_{cv}(\theta)$越小 \\
+	4. 在训练集和验证集（测试集）效果均不好，说明欠拟合；在训练集效果很好，但在说明欠拟合，但在验证集（测试集）效果不好，说明过拟合
+\end{enumerate}
+
+\subsection{Error Metrics for Skewed Classes}
+\begin{enumerate}
+	\item Skewed Classes
+	那些两种（或多种）情况发生的概率相关较大的情况称为Skewed Classes。如买彩票中奖的概率与不中奖的概率
+	\item True vs. False \& Positive vs. Negative
+	Predicted:1, Actual:1 --- True Positive --- TP; \\
+	Predicted:0, Actual:0 --- True Negative ---TN; \\
+	Predicted:1, Actual:0 --- False Positive --- FP; \\
+	Predicted:0, Actual:0 --- False Negative --- FN; \\
+	True \& False 对应预测的是否正确; \\
+	Positive \& Negative 对应实际是否发生
+	\item Accuracy \& Precision \& Recall
+	Accuracy: 发生的概率：$\frac{True}{False} = \frac{TP+TN}{TP+TN+FP+FN}$; 
+	Precision: 查准率，在预测为1的情况下，实际为1的概率：$frac{TP}{TP+FP}$ \\
+	Recall：召回率，在实际为1的情况下，被预测出来的概率: $\frac{TP}{TP+FN}$
+	\item Precision \& Recall均是越高越好，但实际上，两者无法同时都很高。（PS：两者加起来并不一定会等于1，甚至很小情况下才全等于1））
+\end{enumerate}
+
+\subsection{如何评价Precision与Recall}
+\begin{enumerate}
+	\item 使用$F_1Score = 2\frac{PR}{P+R}$
+	\item 用交叉验证集的$F_1$值来选取最大的$F_1$值对应的P和R，不用训练集（或测试集）中的。
+\end{enumerate}
+
+
+
+\subsection{拟合效果不好时的解决方法指导}
+\begin{enumerate}
+	\item 获取更多数据 ---- 解决高方差
+	\item 减少特征 ---- 解决高方差
+	\item 增加特征 ---- 解决高偏差
+	\item 增加高阶多项式 ---- 解决高偏差
+	\item 减小$\lambda$ ---- 解决高偏差
+	\item 增大$\lambda$ ---- 解决高方差
+\end{enumerate}
+
+\subsection{不同神经网络的优缺点}
+\begin{enumerate}
+	\item 小型神经网络 -- 更少的参数；容易出现欠拟合
+	\item 大型神经网络 -- 更多的参数；容易出现过拟合
+	\item parameters越复杂，或隐藏的层越多，对训练集的拟合效果越好，但若对验证集的拟合效果不好，说明已经过拟合，此时再增加神经网络的复杂度并不能提高神经网络的效果
+\end{enumerate}
+
+\subsection{绘制Learning Curve}
+绘制Learning Curve时，对训练集计算训练误差时，每次迭代只能使用训练集的部分数据（第i次迭代使用第1到第i个数据）；但对验证集计算验证误差时，每次均应使用所有数据
+
+
+
+
+
+
+
+

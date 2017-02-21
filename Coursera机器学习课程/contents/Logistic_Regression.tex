@@ -1,0 +1,71 @@
+\section{逻辑回归(Logistic Regression)}
+\subsection{当只有2个类别时，使用1个分类器}
+
+\subsubsection{sigmoid函数}
+\begin{equation}
+	sigmoid(z) = \frac{1}{1 + e^z}
+\end{equation}
+
+
+\subsubsection{预测函数}
+\begin{enumerate}
+\item 数值形式
+\begin{equation}
+	h_\theta(x) = \frac{1}{1 + e^{\theta^T x}}
+\end{equation}
+
+\item 矩阵形式
+\begin{equation}
+	h_\theta(X) = \frac{1}{1 + e^{X \theta}}
+\end{equation}
+\end{enumerate}
+
+
+\subsubsection{Cost Function}
+\begin{enumerate}
+\item 数值形式
+\begin{equation}
+	J(\theta) = \frac{1}{m}
+	    \sum_{i=1}^m \left[ -y^{(i)}log{h_\theta(x^{(i)})} - (1-y^{(i)})log{(1-h_\theta(x^{(i)}))} \right]
+\end{equation}
+
+\item 矩阵形式
+\begin{equation}
+		J(\theta) = \frac{1}{m} \left[-y^T \log{h_\theta(x)} - (1-y^T) \log{(1-h_\theta(x)}\right]
+\end{equation}
+\end{enumerate}
+
+\subsubsection{偏导数$\frac{\partial J(\theta)}{\partial \theta_j}$}
+\begin{enumerate}
+\item 数值计算形式
+\begin{equation}
+	\frac{\partial J(\theta)}{\partial \theta_j} =
+	    \frac{1}{m} \sum_{i=1}^m \left[h_\theta(x^{(i)}) - y^{(i)}\right] x_j^{(i)}
+\end{equation}
+
+\item 矩阵计算形式
+\begin{equation}
+	\nabla J(\theta) = \frac{1}{m} X^T \left[h_\theta(x) - y\right]
+\end{equation}
+\end{enumerate}
+
+
+\subsubsection{梯度下降迭代算法}
+\begin{enumerate}
+\item 数值计算形式
+\begin{equation}\begin{aligned}
+	\theta_j &:= \theta_j - \alpha\frac{\partial J(\theta)}{\partial \theta_j} \\
+	    &:= \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m \left[h_\theta(x^{(i)}) - y^{(i)}\right] x_j^{(i)}
+\end{aligned}\end{equation}
+
+\item 矩阵计算形式
+\begin{equation}\begin{aligned}
+	\theta &:= \theta - \alpha\nabla J(\theta) \\
+		&:= \theta - \alpha \frac{1}{m} X^T \left[h_\theta(x) - y\right]
+\end{aligned}\end{equation}
+\end{enumerate}
+
+
+
+\subsection{当只有k个类别时，使用k个分类器}
+% 当只有k个类别时，使用k个分类器

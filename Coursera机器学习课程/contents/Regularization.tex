@@ -1,0 +1,81 @@
+\section{Regularization}
+\subsection{线性回归}
+
+
+\subsubsection{数值计算方式}
+\begin{equation}
+	J(\theta) = \frac{1}{2m}\sum_{i=1}^m [h_\theta(x^{(i)})-y^{(i)}]^2 + \lambda \frac{1}{2m} \sum_{j=1}^n\theta_j^2
+\end{equation}
+
+\begin{equation}\begin{aligned}
+	\frac{\partial{J(\theta)}}{\partial{\theta_j}} &= \frac{1}{2m}\sum_{i=1}^m 2[h_\theta(x^{(i)}-y^{(i)})] \frac{\partial{h_\theta(x^{(i)})}}{\partial{\theta_j}} + \lambda \frac{1}{2m} 2 \sum_{i=1}^n \theta_j \\
+	    &= \frac{1}{m}\sum_{i=1}^m[h_\theta(x^{(i)})-y^{(i)}]x^{(i)} + \frac{\lambda}{m}\sum_{i=1}^n \theta_j
+\end{aligned}\end{equation}
+
+\[\begin{cases}
+	\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)}, \quad j=0 \\
+	\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} + \alpha\frac{\lambda}{m}\theta_j, \quad j \neq 0
+\end{cases}\]
+
+
+
+\subsubsection{矩阵计算方式}
+\begin{equation}
+	J(\theta) = \frac{1}{2m} \left[h_\theta(x) - y\right]^T \left[ h_\theta(x) - y\right] + \frac{\lambda}{2m} \sum_{j=1}^n\theta_j^2
+\end{equation}
+
+\begin{equation}
+	\nabla J(\theta) = \frac{1}{2m} X^T \left[h_\theta(x) - y\right] + \frac{\lambda}{m}\sum_{i=1}^n \theta_j
+\end{equation}
+
+% \[\begin{cases}
+% 	\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)}, \quad j=0 \\
+% 	\theta := \theta - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x^{(i)} + \alpha \frac{\lambda}{m}\theta, \quad j \neq 0
+% \end{cases}\]
+
+\[matlab\begin{cases}
+	grad &= 1/m * X'*(h-y); , \quad\\
+	grad(2:end) &= grad(2:end) + lambda/m * theta(2:end);
+\end{cases}\]
+
+
+
+\subsection{逻辑回归}
+
+\subsubsection{数值计算方式}
+\begin{equation}
+	J(\theta) = \frac{1}{m}
+	    \sum_{i=1}^m \left[ -y^{(i)}log{h_\theta(x^{(i)})} - (1-y^{(i)})log{(1-h_\theta(x^{(i)}))} \right]
+		+ \lambda \frac{1}{2m} \sum_{j=1}^n\theta_j^2
+\end{equation}
+
+\[\begin{cases}
+	\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)}, \quad j=0 \\
+	\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} + \alpha\frac{\lambda}{m}\theta_j, \quad j \neq 0
+\end{cases}\]
+
+\subsubsection{矩阵计算方式}
+\begin{equation}
+		J(\theta) = \frac{1}{m} \left[-y^T \log{h_\theta(x)} - (1-y^T) \log{(1-h_\theta(x)}\right] + \lambda \frac{1}{2m}\theta^T \theta
+\end{equation}
+
+% \[\begin{cases}
+% 	\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)}, \quad j=0 \\
+% 	\theta := \theta - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x^{(i)} + \alpha \frac{\lambda}{m}\theta, \quad j \neq 0
+% \end{cases}\]
+
+\[matlab\begin{cases}
+	grad &= 1/m * X'*(h-y); , \quad\\
+	grad(2:end) &= grad(2:end) + lambda/m * theta(2:end);
+\end{cases}\]
+
+
+
+\subsection{注意}
+在实际计算$\theta$中，都是先计算没有Regularization的结果，再对(2:end)计算有Regularization的结果，再将其加到没有Regularization的结果中
+
+
+
+
+
+
