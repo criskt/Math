@@ -1,4 +1,4 @@
-\subsection{最优间隔分类器}
+\subsection{最优间隔分类器-优化目标}
 \subsubsection{将难以优化的目标转为容易优化的}
 \begin{enumerate}
 	\item 通过前面的讲述我们知道，为了对给定的数据集进行分类，我们需要找到使得几何间隔最大化的决策边界。在后面的内容中，假设我们会遇到的数据集都是线性可切分的。于是，可以用以下的式子来描述我们要优化的目标
@@ -33,7 +33,6 @@
 		&\text{约束条件：} \\
 		& \qquad y^{(i)}(w^Tx^{(i)}+b) \geq \hat{\gamma}, \quad i=1, 2, \dots, m
 	\end{align}
-	
 	如上，经过这样的转化，我们将$\|w\|$消掉了，同时$\|w\| = 1$的假设也可以取消了。
 
 	\item 我们令$\hat{\gamma}=1$\footnote{这样做是合理的，因为不论$\hat{\gamma}$取何值，我们都可以通过缩放$\|w\|$来消除实际的$\hat{\gamma}$与$\hat{\gamma}=1$的差距}，于是优化目标变成:
@@ -48,8 +47,6 @@
 		& \qquad y^{(i)}(w^Tx^{(i)}+b) \geq 1, \quad i=1, 2, \dots, m
 	\end{align}
 \end{enumerate}
-
-
 
 
 

@@ -1,0 +1,141 @@
+\subsection{拉格朗日对偶规划}
+\subsubsection{拉格朗日乘数法}
+\begin{enumerate}
+	\item 在等式约束下求最优问题求解中可使用拉格朗日乘数法，其要解决的问题可表述如下：
+	\begin{align}
+		&\text{优化目标：} \\
+		& \qquad \min_{w} f(w) \\
+		&\text{约束条件：} \\
+		& \qquad h_i(w) = 0, \quad i=1,\dots,l
+	\end{align}
+	$l$是等式约束的个数
+	\item 其拉格朗日函数为：
+	\begin{align}
+		\mathcal{L}(w,\beta) = f(w) + \sum_{i=1}^{l}\beta_ih_i(w)
+	\end{align}
+	\item 求拉格朗日函数的偏导数
+	\begin{align}
+		\frac{\partial \mathcal{L}}{\partial w_i} &= 0\\
+		\frac{\partial \mathcal{L}}{\partial \beta_i} &= 0
+	\end{align}
+	求解上式，得到$w, \beta$即可
+\end{enumerate}
+
+\subsubsection{拉格朗日对偶规划}
+\begin{enumerate}
+	\item 对于有不等约束的问题，拉格朗日乘数法就无能为力了；这时就需要用拉格朗日对偶规划，其所要解决的问题可表述如下：
+	\begin{align}
+		&\text{优化目标：} \\
+		& \qquad \min_{w} f(w) \\
+		&\text{约束条件：} \\
+		& \qquad g_i(w) \leq 0, \quad i=1,\dots,k \\
+		& \qquad h_i(w) = 0, \quad i=1,\dots,l
+	\end{align}
+	$k, l$为对应约束的个数。\\
+	称其为原问题。
+	\item 其generalized Lagrangian\footnote{{\color{red}{不知道怎么翻译}}}为：
+	\begin{align}
+		\mathcal{L}(w, \alpha, \beta) = f(w) + \sum_{i=1}^{k}\alpha_ig_i(w) + \sum_{i=1}^{l}\beta_ih_i(w)
+	\end{align}
+	\item 下面我们定义以下式子：
+	\begin{align}
+		\theta_{\mathcal{P}}(w) = \max_{\alpha, \beta; \alpha_i\geq0} \mathcal{L}(w, \alpha, \beta)
+	\end{align}
+	注意，在上面的式子中，我们对$\alpha_i$做了限制：$\alpha_i\geq 0$，于是，$\theta_{\mathcal{P}}(w)$便有了以下性质：
+	\begin{enumerate}
+		\item 当$g_i(w)$不满足约束条件，即$g_i(w)>0$时，为了使$\mathcal{L}(w, \alpha, \beta)$取到更大，我们只需要让$\alpha_i$更大就行，很显然，此时$\max \mathcal{L}(w, \alpha, \beta) = +\infty = \theta_{\mathcal{P}}(w)$
+		\item 当$h_i(w)$不满足约束条件时，即$h_i(w)>0$或$h_i(w)<0$，我们同样只需要更改$\beta_i$的值就能让$\max \mathcal{L}(w, \alpha, \beta)$取到$+\infty$
+		\item 当$g_i(w)$与$h_i(w)$均满足约束条件时，$\sum_{i=1}^{k}\alpha_i g_i(w)$的最大值是0；$\sum_{i=1}^{l}\beta_ih_i(w)$始终为0；所以，$\theta_{\mathcal{P}}(w)=\max_{\alpha, \beta; \alpha_i\geq0} \mathcal{L}(w, \alpha, \beta)=f(w)$
+		\item 综上，我们可以得到以下式子：
+		\[ \theta_{\mathcal{P}}(w)=\begin{cases}
+		f(w) \quad \text{符合所有约束条件} \\
+		+\infty \quad \text{其他}
+		\end{cases} \]
+	\end{enumerate}
+
+	\item 通过上面的式子我们可以知道，在满足所有约束条件的情况下，$f(w)=\theta_{\mathcal{P}}(w)$，求解$f(w)$的最小值就等同于求解$\theta_{\mathcal{P}}(w)$的最小值，于是我们的优化目标就变成了：
+	\begin{align}
+		\min_{w} \max_{\alpha, \beta; \alpha_i \geq 0} \mathcal{L}(w, \alpha, \beta)
+	\end{align}
+	注意：
+	\begin{enumerate}
+		\item 对于$\min_{w}$，这是由我们的优化目标$\min_{w}f(w)$带来的
+		\item $\max_{\alpha, \beta; \alpha_i \geq 0} \mathcal{L}(w, \alpha, \beta)$是一个整体，此式子表示的是取得$\mathcal{L}(w, \alpha, \beta)$的最大值的最小值
+	\end{enumerate}
+
+	\item 相对于前面的求拉格朗日函数最大值$\theta_{\mathcal{P}}(w) = \max_{\alpha, \beta; \alpha_i\geq0} \mathcal{L}(w, \alpha, \beta)$，其{\color{blue}{对偶问题}}\footnote{为什么要讲到其对偶问题呢？后面会讲到。}为求拉格朗日函数的最小值：
+	\begin{align}
+		\theta_{\mathcal{D}}(\alpha, \beta) = \min_{w} \mathcal{L}(w, \alpha, \beta)
+	\end{align}
+	对偶问题对应的{\color{blue}{对偶优化问题}}为：
+	\begin{align}
+		\max_{\alpha, \beta;\alpha_i \geq 0} \theta_{\mathcal{D}}(\alpha, \beta) = \max_{\alpha, \beta;\alpha_i \geq 0} \min_{w} \mathcal{L}(w, \alpha, \beta)
+	\end{align}
+	\footnote{注意，这个对偶优化问题并不是我们推导出来的，可以说是我们为了后续需要设计出来的，所以不要去想为什么这个式子是这样子的了。}
+
+	\item 对比一下原问题与其对偶问题，可以发现，两者之间的差别只是对调了求最大值$\max_{\alpha, \beta;\alpha_i \geq 0}$与最小值$\min_{w}$的顺序。在后面的描述中，我们用$p^{*}$表示原问题的最优解，用$d^{*}$表示对偶问题的最优解：
+	\begin{align}
+		p^{*} &= \min_{w} \max_{\alpha, \beta; \alpha_i \geq 0} \mathcal{L}(w, \alpha, \beta) \\
+		d^{*} &= \max_{\alpha, \beta;\alpha_i \geq 0} \min_{w} \mathcal{L}(w, \alpha, \beta)
+	\end{align}
+
+	\item 原问题与其对偶问题有以下性质：
+	\begin{align}
+		d^{*} = \max_{\alpha, \beta;\alpha_i \geq 0} \min_{w} \mathcal{L}(w, \alpha, \beta) \leq 
+		\min_{w} \max_{\alpha, \beta; \alpha_i \geq 0} \mathcal{L}(w, \alpha, \beta) = p^{*}
+	\end{align}
+	在一些特定条件（KKT条件）下，取等号。这时，就可以将原优化问题转化为对偶优化问题求解了。
+
+	\item KKT条件 \\
+	假设$f(w), g_i(w)$是凸函数、$h_i(w)$是仿射函数、存在$w$使得$g_i(w) < 0$对所有的$i$都成立，那么一定会存在$w^*, \alpha^*, \beta^*$\footnote{其中$w^*$是原问题的解，$\alpha^*, \beta^*$是对偶问题的解，且$p^*=d^*=\mathcal{L}(w^*, \alpha^*, \beta^*)$}满足以下条件：
+	\begin{align}
+		\frac{\partial\mathcal{L}(w^*, \alpha^*, \beta^*)}{\partial w_i} &= 0, \quad i=1, \dots, n \\
+		\frac{\partial\mathcal{L}(w^*, \alpha^*, \beta^*)}{\partial \beta_i} &= 0, \quad i=1, \dots, l \\
+		\alpha_i^*g_i(w^*) &= 0, \quad i=1, \dots, k \\
+		g_i(w^*) &\leq 0, \quad i=1, \dots, k  \\
+		\alpha^* &\geq 0, \quad i=1, \dots, k 
+	\end{align}
+	其中：\\
+	$\alpha_i^*g_i(w^*) = 0, \quad i=1, \dots, k$称为KKT对偶互补条件；当$\alpha^* > 0$时，$g_i(w^*) = 0$。后续会用到此性质。
+\end{enumerate}
+本部分内容参考资料：\url{http://blog.csdn.net/Victor_Gun/article/details/45227999}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
