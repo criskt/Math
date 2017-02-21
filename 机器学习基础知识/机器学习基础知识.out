@@ -57,15 +57,17 @@
 \BOOKMARK [3][-]{subsubsection.6.3.1}{函数间隔}{subsection.6.3}% 57
 \BOOKMARK [3][-]{subsubsection.6.3.2}{几何间隔}{subsection.6.3}% 58
 \BOOKMARK [3][-]{subsubsection.6.3.3}{函数间隔&几何间隔}{subsection.6.3}% 59
-\BOOKMARK [1][-]{section.7}{附录}{}% 60
-\BOOKMARK [2][-]{subsection.7.1}{概念与定义}{section.7}% 61
-\BOOKMARK [3][-]{subsubsection.7.1.1}{各类变量}{subsection.7.1}% 62
-\BOOKMARK [3][-]{subsubsection.7.1.2}{充分统计量}{subsection.7.1}% 63
-\BOOKMARK [3][-]{subsubsection.7.1.3}{自然参数}{subsection.7.1}% 64
-\BOOKMARK [3][-]{subsubsection.7.1.4}{先验概率 & 后验概率}{subsection.7.1}% 65
-\BOOKMARK [3][-]{subsubsection.7.1.5}{似然函数}{subsection.7.1}% 66
-\BOOKMARK [3][-]{subsubsection.7.1.6}{参数学习算法 & 非参数学习算法}{subsection.7.1}% 67
-\BOOKMARK [3][-]{subsubsection.7.1.7}{Hessian矩阵}{subsection.7.1}% 68
-\BOOKMARK [2][-]{subsection.7.2}{中英对照表}{section.7}% 69
-\BOOKMARK [2][-]{subsection.7.3}{思考}{section.7}% 70
-\BOOKMARK [1][-]{section.8}{说明}{}% 71
+\BOOKMARK [2][-]{subsection.6.4}{最优间隔分类器}{section.6}% 60
+\BOOKMARK [3][-]{subsubsection.6.4.1}{将难以优化的目标转为容易优化的}{subsection.6.4}% 61
+\BOOKMARK [1][-]{section.7}{附录}{}% 62
+\BOOKMARK [2][-]{subsection.7.1}{概念与定义}{section.7}% 63
+\BOOKMARK [3][-]{subsubsection.7.1.1}{各类变量}{subsection.7.1}% 64
+\BOOKMARK [3][-]{subsubsection.7.1.2}{充分统计量}{subsection.7.1}% 65
+\BOOKMARK [3][-]{subsubsection.7.1.3}{自然参数}{subsection.7.1}% 66
+\BOOKMARK [3][-]{subsubsection.7.1.4}{先验概率 & 后验概率}{subsection.7.1}% 67
+\BOOKMARK [3][-]{subsubsection.7.1.5}{似然函数}{subsection.7.1}% 68
+\BOOKMARK [3][-]{subsubsection.7.1.6}{参数学习算法 & 非参数学习算法}{subsection.7.1}% 69
+\BOOKMARK [3][-]{subsubsection.7.1.7}{Hessian矩阵}{subsection.7.1}% 70
+\BOOKMARK [2][-]{subsection.7.2}{中英对照表}{section.7}% 71
+\BOOKMARK [2][-]{subsection.7.3}{思考}{section.7}% 72
+\BOOKMARK [1][-]{section.8}{说明}{}% 73
