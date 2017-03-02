@@ -14,7 +14,7 @@
 	\item 牛顿方法介绍: 如下面示意图所示，我们要求的是曲线$y=f(x)$与直线$y=y_{final}$\footnote{若$y_{final}=0$求的就是零点了}的交点$(x_{final}, y_{final})$的值，为此，我们先任取曲线上的一点$(x_{ori}, y_{ori})$，求得在该点的切线，记为$y=f'(x_{ori})x + b$，然后得到该切线与$y=y_{final}$的交点$(x_{new}, y_{final})$，得到$x_{new}$后，我们又可以得到曲线上新的一点$(x_{new}, f(x_{new}))$\footnote{此处写得比较简陋，若不明白建议去看讲义或视频}；用新的点$(x_{new}, f(x_{new}))$代替之前的$(x_{ori}, y_{ori})$，重复之前的步骤\footnote{示意图: \url{https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif}}。就这样，多次重复后，我们就能逼近我们所要的$(x_{final}, y_{final})$了。
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.5]{images/牛顿方法示例图片}
+		\includegraphics[scale=0.5]{./images/牛顿方法示例图片}
 		\caption{牛顿方法示例图}
 	\end{figure}
 

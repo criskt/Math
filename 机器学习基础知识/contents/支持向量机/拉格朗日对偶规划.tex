@@ -33,7 +33,7 @@
 	\end{align}
 	$k, l$为对应约束的个数。\\
 	称其为原问题。
-	\item 其generalized Lagrangian\footnote{{\color{red}{不知道怎么翻译}}}为：
+	\item 其Generalized Lagrangian\footnote{{\color{red}{不知道怎么翻译}}}为：
 	\begin{align}
 		\mathcal{L}(w, \alpha, \beta) = f(w) + \sum_{i=1}^{k}\alpha_ig_i(w) + \sum_{i=1}^{l}\beta_ih_i(w)
 	\end{align}
@@ -53,7 +53,7 @@
 		\end{cases} \]
 	\end{enumerate}
 
-	\item 通过上面的式子我们可以知道，在满足所有约束条件的情况下，$f(w)=\theta_{\mathcal{P}}(w)$，求解$f(w)$的最小值就等同于求解$\theta_{\mathcal{P}}(w)$的最小值，于是我们的优化目标就变成了：
+	\item 通过上面的式子我们可以知道，在满足所有约束条件的情况下，$f(w)=\theta_{\mathcal{P}}(w)$，求解$f(w)$的最小值就等同于求解$\theta_{\mathcal{P}}(w)$的最小值（所以我们将$\theta_{\mathcal{P}}(w)$称为{\color{blue}{原问题}}），于是我们的优化目标就变成了：
 	\begin{align}
 		\min_{w} \max_{\alpha, \beta; \alpha_i \geq 0} \mathcal{L}(w, \alpha, \beta)
 	\end{align}
@@ -96,7 +96,7 @@
 		\alpha^* &\geq 0, \quad i=1, \dots, k 
 	\end{align}
 	其中：\\
-	$\alpha_i^*g_i(w^*) = 0, \quad i=1, \dots, k$称为KKT对偶互补条件；当$\alpha^* > 0$时，$g_i(w^*) = 0$。后续会用到此性质。
+	$\alpha_i^*g_i(w^*) = 0, \quad i=1, \dots, k$称为{\color{blue}{KKT对偶互补条件}}；当$\alpha^* > 0$时，$g_i(w^*) = 0$。后续会用到此性质。
 \end{enumerate}
 本部分内容参考资料：\url{http://blog.csdn.net/Victor_Gun/article/details/45227999}
 
