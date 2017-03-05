@@ -40,12 +40,13 @@
 \subsubsection{几何间隔}
 \begin{enumerate}
 	\item 几何间隔表示为$\gamma^{(i)}$\footnote{与函数间隔相比，少了头顶的帽子: $\hat{ }$}。
-	\item 对于数据点$(x^{(i)}, y^{(i)})$，其几何间隔定义为\footnote{证明过程略}：
+	\item 对于数据点$(x^{(i)}, y^{(i)})$，其几何间隔定义为\footnote{证明过程：使用向量的加法表示出超平面外的某点的向量表示形式，然后两边乘以$w^T$，整理一下就能得到几何间隔表示形式，详情略}：
 	\begin{align}
 		\gamma^{(i)} &= \frac{\hat{\gamma}^{(i)}}{\|w\|}  \\
 		&= \frac{y^{(i)}(w^Tx^{(i)} + b)}{\|w\|}  \\
 		&=  y^{(i)} \left(\left(\frac{w}{\|w\|}\right)^T x^{(i)} + \frac{b}{\|w\|}\right)
 	\end{align}
+	\footnote{$\|w\|$是矩阵的范数，$\|w\|^2=w^Tw$}
 	\item 当$\|w\|=1$时，几何间隔与函数间隔相等
 	\item 相较于函数间隔，几何间隔任意缩放参数$(w,b)$不影响$h_{w,b}(x)$的值；鉴于此性质，我们可以在训练时对$w, b$视需求进行缩放
 	\item 同样，对于给定的训练集$S=\{(x^{(i)}, y^{(i)}); \quad i = 1, \dots, m\}$，我们将其中最小的几何间隔记为$\gamma$:

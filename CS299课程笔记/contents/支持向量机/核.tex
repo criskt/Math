@@ -1,5 +1,69 @@
 \subsection{核}
+为方便后续内容的理解，我先大体讲一下下面的内容： \\
 
+在我们碰到的问题中，有些在低维下不是线性可分的，但是其在高维下却是线性可分的，于是，我们可以将低维下的特征映射到高维中，然后再高维下进行分割，这里的从低维映射到高维就是的方法就是我们后面会提到的$\phi(x)$；但是，这又会带来一个问题，那就是，映射到高维后，如果仅仅制作映射而不做其他优化，我们计算的时间复杂度就上去了，于是我们就想办法来对计算方法进行改善，这个改善的方法就是使用核函数！通过使用核函数，我们并不需要知道我们从低维映射到高维到底是如何映射的（即我们并不显示地知道$\phi(x)$长什么样，我们只知道通过核函数可以达到与通过$\phi(x)$映射后一样的结果）。 \\
+
+简而言之，引出$\phi(\cdot)$是为了说明低维不可分割的数据在高维可能可以分割；再举一堆例子说明通过得到$\phi(\cdot)$后再求$\phi(\cdot)$内积的方式计算量太大，不可取，有更好的计算方式，那就是使用核函数$K(x, z)$\\
+
+按我个人的经验，吴恩达的视频在你还搞不明白核函数的内容时都听不懂他在讲什么，但是在搞明白后就觉得讲得很清晰（也不排除我没认真听......），可以先参考下下面的这篇博文：\url{http://blog.pluskid.org/?p=685} \\
+
+下面开始正文
+
+\subsubsection{特征映射与核函数引入}
+\begin{enumerate}
+	\item 在前面的线性回归中，我们提到，为了得到更好的拟合结果，我们可以添加高阶项如$x^2, x^3$等来优化拟合结果。为了区分远有的$x$，以及我们添加的$x^2, x^3, ...$，我们将原有的$x$称为问题的{\color{blue}{属性}}，将新添加的$x^2, x^3,...$以及$x$一起称为问题的{\color{blue}{特征}}。从$x \to \left[\begin{matrix}x \\ x^2 \\ x^3\end{matrix}\right]$称为特征映射。记为$\phi$，如本例子中：$\phi(x) = \left[\begin{matrix}x \\ x^2 \\ x^3\end{matrix}\right]$
+
+	\item 在前面的算法中，我们可以将内积$\langle x, z \rangle$改为$\langle \phi(x), \phi(x) \rangle$，我们将其定义为高斯函数：
+	\begin{align}
+		K(x, z) = \phi(x)^T \phi(z)
+	\end{align}
+
+	\item 但是，在映射后$\phi(x)^T \phi(z)$的计算量太大，比如
+	\begin{enumerate}
+		\item 我们先定义一个核函数$K(x, z)=(x^T z)^2$，然后找出其特征映射$\phi(x)$，以此说明若要显式地写出$\phi(x)$的式子与只知道核函数不使用显式的$\phi(x)$两者间的计算量差异。
+		\item 对$K(x, z)$进一步计算
+		\begin{align}
+			K(x, z) &= \left(\sum_{i=1}^{n}x_iz_i \sum_{j=1}^{n}x_jz_j \right) \\
+			&= \sum_{i=1}^{n} \sum_{j=1}^{n} x_i x_j z_i z_j \\
+			&= \sum_{i,j=1}^{n}(x_i x_j) (z_i z_j)
+		\end{align}
+		如上，以$n=3$为例，若要将$K(x, z)$表示成$\phi(x)^T\phi(z)$的形式:
+		\begin{align}
+			\phi(x) = \left[\begin{matrix}x_1 x_1 \\ x_1 x_2 \\ x_1 x_3 \\ x_2 x_1 \\ x_2 x_2 \\ x_2 x_3 \\ x_3 x_1 \\ x_3 x_2 \\ x_3 x_3 \\\end{matrix}\right]
+		\end{align}
+		$\phi(z)$同理。显然，在上面的$\phi(x)$中，若要讲$x \to \phi(x)$，我们需要进行9次的计算；
+		\item 但是，若我们不管$\phi(x)$应如何表示，直接先计算$x^Tz$后再取平方，$n=3$时只需要计算3次。
+		\item 实际上，此处的$K(x, z) = (x^T z)^2$ 是我们后面会讲到的多项式核$K(x,z)=\left(\langle x, z \rangle +R \right)^d = \left(x^Tz +R\right)^d$的一种。虽然核函数$K(x,z)$可以很容易地表示出来，但是其特征映射$\phi(x)$却不见得容易表示。
+	\end{enumerate}
+
+	\item 所以，虽然前面使用将$x$映射到高维$\phi(x)$来说明这样做可以将低维无法线性分隔的点分隔开，但是在实际计算中，我们并不会去计算$\phi(x)$应如何表示，相当于我们实际上使用更容易计算的核函数$K(x, z)$来达到特征映射$\phi(x)$将低维映射到高维的效果
+
+	\item 我们会做的是找到一个核函数，证明它确实对应着存在一个特征映射$\phi(x)$可以实现将数据在高维特征下分割开。
+
+	\item 注: 下面说明下\url{http://blog.pluskid.org/?p=685}中的例子应如何理解
+	\begin{enumerate}
+		\item 例子中说明提到：$\phi(\cdot)$的目的是使得向量$x_1=(\eta_1, \eta_2)^T, x_2=(\xi_1, \xi_2)^T$在经过$\phi(\cdot)$映射后再求内积的结果为：
+		\begin{align}
+			\langle \phi(x_1), \phi(x_2) \rangle = \eta_1\xi_1 + \eta_1^2\xi_1^2 + \eta_2\xi_2 + \eta_2^2\xi_2^2 + \eta_1\eta_2\xi_1\xi_2
+		\end{align}
+		\item 但是，若我们不知道$\phi(\cdot)$是何种形式，直接通过某个核函数$K(x_1, x_2)$也可以得到同样的结果：
+		\begin{align}
+			\left( \langle x_1, x_2 \rangle +1 \right)^2 &= \langle x_1, x_2 \rangle ^2 + 2 \langle x_1, x_2 \rangle + 1 \\
+			&= (x_1^T x_2)^2 + 2x_1^T x_2 + 1 \\
+			&=\left\{ \left[\begin{matrix}\eta_1 & \eta_2\end{matrix}\right]\left[\begin{matrix}\xi_1 \\ \xi_2\end{matrix}\right] \right\}^2 + 2\left[\begin{matrix}\eta_1 & \eta_2\end{matrix}\right]\left[\begin{matrix}\xi_1 \\ \xi_2\end{matrix}\right] + 1 \\
+			&= (\eta_1\xi_1+\eta_2\xi_2)^2 + 2(\eta_1\xi_1+\eta_2\xi_2) + 1 \\
+			&= \eta_1^2\xi_1^2 + \eta_2^2\xi_2^2 + 2\eta_1\eta_2\xi_1\xi_2 + 2\eta_1\xi_1 + 2\eta_2\xi_2 + 1 \\
+		\end{align}
+		与前面的式子相比，只要对某些维度进行线性缩放即可，说明两者可以达到同样的效果。
+		\item 但是，在计算量上，用第一种方法我们需要先找到其对应的$\phi(\cdot)$（若$\phi(x_1, x-2)=(\sqrt{2}x_1, x_1^2, \sqrt{2}x_2, x_2^2, \sqrt{2}x_1x_2, 1)^T$则可得到与$\left( \langle x_1, x_2 \rangle +1 \right)^2$一样的结果），然后再计算$\phi(\cdot)$的内积。显然，通过$\phi(\cdot)$的方式计算量太大，但是使用核函数计算的方式计算量就小多了。这就是该例子的目的
+	\end{enumerate}
+
+\end{enumerate}
+
+\subsubsection{核函数需要满足的条件}
+
+
+\subsubsection{不同的核函数介绍}
 
 
 
