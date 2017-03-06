@@ -58,17 +58,89 @@
 		\item 但是，在计算量上，用第一种方法我们需要先找到其对应的$\phi(\cdot)$（若$\phi(x_1, x-2)=(\sqrt{2}x_1, x_1^2, \sqrt{2}x_2, x_2^2, \sqrt{2}x_1x_2, 1)^T$则可得到与$\left( \langle x_1, x_2 \rangle +1 \right)^2$一样的结果），然后再计算$\phi(\cdot)$的内积。显然，通过$\phi(\cdot)$的方式计算量太大，但是使用核函数计算的方式计算量就小多了。这就是该例子的目的
 	\end{enumerate}
 
+	\item 对$\phi(\cdot)$的一个直观但可能不是太准确的描述：对于$\phi(x)$和$\phi(z)$，如果两者比较相近，则其核函数$K(x,z)=\phi(x)^T\phi(z)$值较大；若干两者相差较远，则其结果值较小。所以我们可以将核函数$K(x,z)$看成是对$x,z$有多相近的一种表示。
+\end{enumerate}
+
+\subsubsection{常用核函数介绍}
+\begin{enumerate}
+	\item 多项式核
+	\begin{align}
+		K(x_1, x_2) = \left(\langle x_1, x_2 \rangle + R\right)^d
+	\end{align}
+	\item 高斯核
+	\begin{align}
+		K(x_1, x_2) = e^{-\frac{\|x_1 - x_2\|^2}{2\sigma^2}}
+	\end{align}
+	高斯核会将原始空间映射到无穷维空间。如果$\sigma$选得很大，高次特征上得权重就衰减得非常快，类似于一个低维的子空间；若$\sigma$选得很小，则可将任意的数据映射为线性可分，不过这可能会带来严重的过拟合问题。\\
+	通过调整参数$\sigma$，高斯核具有很高的灵活性，它也是使用最广泛的核函数之一。
+	\item 线性核
+	\begin{align}
+		K(x_1, x_2) = \langle x_1, x_2 \rangle
+	\end{align}
+	这实际上就是原始空间上的内积。
 \end{enumerate}
 
 \subsubsection{核函数需要满足的条件}
+\begin{enumerate}
+	\item 核矩阵
+	对于一个有$\{x^{(1)}, x^{(2)}, \dots, x^{(m)}\}$个数据点的数据集，我们定义核矩阵中的某一项$K_{ij}$为:
+	\begin{align}
+		K_{ij} = K(x^{(i)}, x^{(j)})
+	\end{align}
+	核矩阵是一个$m\times m$矩阵
+	\item 如果$K$是一个满足条件的（合法的）核函数，则
+	\begin{align}
+		K_{ij} = K(x^{(i)}, x^{(j)}) = \phi(x^{(i)})^T\phi(x^{(j)}) = \phi(x^{(j)})^T\phi(x^{(i)}) = K(x^{(j)}, x^{(i)}) = K_{ji}
+	\end{align}
+	所以说，一个合法的核函数要求其核矩阵是对称的。
+	\item 用$\phi_k(x)$表示向量$\phi(x)$的第$k$项
+	\begin{align}
+		z^TKz &= \sum_{i}\sum_{j}z_j K_{ij} z_j \\
+		&= \sum_{i}\sum_{j} z_i \phi(x^{(i)})^T \phi(x^{(j)}) z_j \\
+		&= \sum_{i}\sum_{j}z_i \sum_{k}\phi_k(x^{(i)})\phi_k(x^{(j)})z_j \\
+		&= \sum_{k}\sum_{i}\sum_{j}z_i \phi_k(x^{(i)}) \phi_k(x^{(j)}) z_j \\
+		&= \sum_{k} \left(\sum_{i}z_i \phi_k(x^{(i)}) \right)^2 \\
+		& \geq 0
+	\end{align}
+	所以，一个合法的核函数要求其核矩阵是半正定矩阵
+	\item 综上，如果一个核函数是合法的，那么我们要求其对应的核矩阵应是一个对称半正定矩阵。我们将其称为Mercer条件，具体表述如下：
+	\item Mercer条件
+	略
+	\item 虽然我们对核函数的推导、引入都是在SVM中进行，但是核函数并不仅仅能用在SVM中，在我们前面讲到的线性回归，逻辑回归中，若我们将式子改写成内积的形式，然后再讲内积替换为核函数的方法，就能够在其他算法中使用核函数了。
+\end{enumerate}
 
 
-\subsubsection{不同的核函数介绍}
+\subsubsection{软间隔SVM}
+\begin{enumerate}
+	\item 为了让算法在非线性可分的数据集中也能够正常工作，同时，也为了减小离群点对决策边界影响，我们对算法进行一下优化
+	\begin{align}
+		&\text{优化目标：} \\
+		& \qquad \min_{\gamma, w, b} \frac{1}{2}\|w\|^2 + C\sum_{i=1}^{m}\xi_i \\
+		&\text{约束条件：} \\
+		& \qquad y^{(i)}(w^Tx^{(i)} + b) \geq 1-\xi_i, \quad i=1, 2, \dots, m \\
+		& \qquad \xi_i \geq 0, i=1,\dots,m
+	\end{align}
+	\item 此时，就允许有部分的点其函数间隔小于$1$，如果有某个点的函数间隔小于$1$，我们就可以通过$C\xi_i$对目标函数进行惩罚。参数$C$可以控制让$\|w\|^2$尽可能大，与让大部分的点的函数间隔大于$1$之间的权重。
+	\item 更新后的拉格朗日函数：
+	\begin{align}
+		\mathcal{L}(w,b,\xi,\alpha,r) = \frac{1}{2}w^Tw + C\sum_{i=1}^{m}\xi_i -C\sum_{i=1}^{m}\alpha_i\left[y^{(i)}(x^Tw + b)-1+\xi_i\right]-\sum_{i=1}^{m}r_i\xi_i
+	\end{align}
+	\item 其对偶问题
+	\begin{align}
+		&\text{优化目标：} \\
+		& \qquad \max_{\alpha}W(\alpha)=\sum_{i=1}^{m} \alpha_i -\frac{1}{2}\sum_{i,j=1}^{m}y^{(i)}y^{(j)}\alpha_i\alpha_j\langle x^{(i)},x^{(j)} \rangle \\
+		&\text{约束条件：} \\
+		& \qquad 0 \leq \alpha_i \leq C, \quad i=1, 2, \dots, m \\
+		& \qquad \sum_{i=1}^{m}\alpha_i y^{(i)} = 0
+	\end{align}
+	\item KKT对偶补充条件为：
+	\begin{align}
+		\alpha_i = 0 &\Rightarrow y^{(i)}(w^Tx^{(i)}+b) \geq 1\\
+		\alpha_i = C &\Rightarrow y^{(i)}(w^Tx^{(i)}+b) \leq 1\\
+		0 < \alpha < C &\Rightarrow y^{(i)}(w^Tx^{(i)}+b) = 1\\
+	\end{align}
 
-
-
-
-
+\end{enumerate}
 
 
 
