@@ -1,0 +1,61 @@
+\section{VC维}
+\subsection{打散}
+\begin{enumerate}
+	\item 打散的定义：设$\mathcal{F}$是一个决策函数候选集，即由在空间$R^n$上取值为$1$或$-1$的若干函数组成的集合；$Z_l=\{x_1, x_2, \dots, x_l\}$为$R^n$中的$l$个点组成的集合。如果对$Z_l$中各点$x_i$给予任意标号$y_i=1$或$y_i=-1$，并组成训练集:
+	\begin{align}
+		T = {(x_1, y_1), \dots, (x_l, y_l)}
+	\end{align}
+	$\mathcal{F}$中总存在一个函数$f$，它能完全正确地吧训练集分开，即满足：
+	\begin{align}
+		f(x_i) = y_i, \quad i = 1,\dots, l
+	\end{align}
+	则称$Z_l$能被$\mathcal{F}$打散。
+\end{enumerate}
+
+
+\subsection{VC维}
+\begin{enumerate}
+	\item 设$\mathcal{F}$是一个定义在空间$R^n$上，取值为$1$或$-1$的函数组成的决策函数候选集。定义$\mathcal{F}$的VC维为它能打散的$R^n$中的点的最大个数。
+	\item 若存在$l$个点组成的集合$Z_l$能被$\mathcal{F}$打散，且任意$l+1$个点组成的集合$Z_{l+1}$都不能被$\mathcal{F}$打散，则$\mathcal{F}$的VC维就是$l$
+	\item 若$\mathcal{F}$能打散任意多的点组成的集合，则说明这个$\mathcal{F}$的VC维为$\infty$
+	\item 若$\mathcal{F}$的VC维较大，则这个$\mathcal{F}$较复杂；若较小，则较简单。
+
+\end{enumerate}
+{\color{red}{对VC维的理解还有待提高，待后续比较懂了再补充}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
