@@ -6,6 +6,7 @@
 	\begin{align}
 		\max_{\alpha}W(\alpha_1, \alpha_2, \dots, \alpha_m)
 	\end{align}
+	我们先不管那些约束条件
 	\item 坐标上升优化方法 \\ 
 	Loop until convergence: \{ \\
 		For i = 1, ..., m: \{ \\
@@ -23,4 +24,5 @@
 
 
 \subsubsection{SMO}
-暂时不想写，略，参考资料：\url{http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html}
+在我们的SVM中，如果还是像前面的坐标上升算法那样固定住除$\alpha_j$以外的所有$\alpha$,那么，因为约束条件的存在，$\alpha_j$也被约束条件固定下来了，所以，我们就让两个$\alpha$可变，这就有了SMO。\\
+详略，暂时不想写，参考资料：\url{http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html}
