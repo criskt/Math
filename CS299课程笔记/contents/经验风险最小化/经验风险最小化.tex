@@ -1,0 +1,137 @@
+\section{经验风险最小化}
+
+\subsection{偏差\&方差}
+\begin{enumerate}
+	\item 高偏差（Bias）对应欠拟合
+	\item 高方差（Variance）对应过拟合
+\end{enumerate}
+
+\subsection{经验风险最小化（ERM）}
+\begin{enumerate}
+	\item 定义数据集:
+	\begin{align}
+		S = \{x^{(i)}, y^{(i)}\}, \quad 1 \leq i \leq m
+	\end{align}
+	其中，$x^{(i)}, y^{(i)}$独立同分布(IID)，$y \in \{0, 1\}$
+	\item 分类模型为：
+	\begin{align}
+		h_{\theta}(x) &= g(\theta^Tx) \\
+		\text{其中：}
+		g(z) &= 1\{z\geq 0\}, \quad g \in \{0, 1\}
+	\end{align}
+	所以，$h_{\theta}(x)$只会是$0$或$1$
+	\item 定义训练误差为：
+	\begin{align}
+		\hat{\varepsilon}(h_{\theta}) = \hat{\varepsilon_S}(h_{\theta}) = \frac{1}{m}\sum_{i=1}^{m}1\{h_{\theta}(x^{(i)}) \neq y^{(i)}\}
+	\end{align}
+	\item 经验误差最小化为：
+	\begin{align}
+		\hat{\theta} = \arg_{\theta}\min{\hat{\varepsilon_S}(h_{\theta})}
+	\end{align}
+	即选择使训练误差最小的参数$\theta$。\\
+	对于ERM来说，因为他是非凸的，用一般算法不好优化。
+	\item 我们再定义另一种等价的ERM，首先假设模型集合:
+	\begin{align}
+		\mathcal{H} = \{h_{\theta}: \theta \in R^{n\times 1}\}
+	\end{align}
+	其中，$h_{\theta}$为分类模型，输出为$0$或$1$。
+	\item 其训练误差为：
+	\begin{align}
+		\hat{\varepsilon}(h) = \frac{1}{m}\sum_{i=1}^{m}1\{h(x^{(i)}) \neq y^{(i)}\}
+	\end{align}
+	\item 那么，ERM定义为：
+	\begin{align}
+		\hat{h} = \arg_{h \in \mathcal{H}} \min{\hat{\varepsilon}(h)}
+	\end{align}
+	\item 泛化能力定义为：
+	\begin{align}
+		\varepsilon(h) = P_{x,y \sim D} (h(x) \neq y)
+	\end{align}
+	接下来的任务是证明最优化ERM能带来较小的泛化误差，为此，我们先引入两个引理。
+\end{enumerate}
+
+
+\subsection{联合界 \& Hoeffding不等式}
+\subsubsection{联合界定理}
+\begin{enumerate}
+	\item 令$A_1, A_2, \dots, A_k$是$k$个任意事件（即不要求独立，也不要求同分布，也没有其他要求），那么：
+	\begin{align}
+		P(A_1 \cup A_2 \cup \dots \cup A_k) \leq P(A_1) + P(A_2) + \dots + P(A_k)
+	\end{align}
+	此定理可画图证明，不赘述
+\end{enumerate}
+
+\subsubsection{Hoeffding不等式定理}
+\begin{enumerate}
+	\item 令$Z_1, Z-2, \dots, Z_m$为$m$个独立同分布（IID）变量，他们都服从Bernoulli分布，即:
+	\begin{align}
+		P(Z_i = 1) &= \varphi \\
+		P(Z_i = 0) &= 1 - \varphi
+	\end{align}
+	我们使用这$m$个数据来估计$\varphi$，得：
+	\begin{align}
+		\hat{\varphi} = \frac{1}{m}\sum_{i=1}^{m}Z_i
+	\end{align}
+	那么，Hoeffding不等式即为：对于任意固定的数$\gamma > 0$，存在：
+	\begin{align}
+		P(|\hat{\varphi} - \varphi| > \gamma) < 2e^{-2\gamma^2 m}
+	\end{align}
+	这个定理的意义在于，当样本数目$m$增大时，我们对参数的估计将越来越接近真实值。
+\end{enumerate}
+
+
+\subsection{一致收敛定理}
+\begin{enumerate}
+	\item 定义模型集合为：
+	\begin{align}
+		\mathcal{H} = \{h_1, h_2, \dots, h_k\}
+	\end{align}
+	\item 一致收敛定理为：\\
+	\begin{align}
+		P(\forall h_i \in \mathcal{H}, |\varepsilon(h_i)-\hat{\varepsilon(h_i)}|>\gamma) \geq 1- 2ke^{-2\gamma^2 m}
+	\end{align}
+	该式即为一致收敛定理，它的意义在于，至少有$1- 2ke^{-2\gamma^2 m}$的概率使得：对模型集合中的所有假设，其泛华误差都在训练误差的$\gamma$范围内。
+\end{enumerate}
+
+
+
+\subsection{一致收敛的推论}
+在一致收敛中，三个参数$m, \gamma$，以及概率$P$是相互关联的，我们可以通过固定其中的2个来推出第三个。
+\begin{enumerate}
+	\item $P(m, \gamma)$上面已经给出，其余2个如下，证明过程略
+	\item  $m$ 与$\gamma, P$的关系
+	\begin{align}
+		m \geq \frac{1}{2\gamma^2}\log\frac{2k}{\sigma}
+	\end{align}
+	此式说明了一个算法或模型要达到一个确定的性能时，需要的样本数目。也称为算法的样本复杂度。
+	\item $\gamma$与$m, P$的关系
+	\begin{align}
+		\gamma = \sqrt{\frac{1}{2m}\log\frac{2k}{\sigma}}
+	\end{align}
+
+	\item 在一致收敛成立的情况下，我们通过ERM方法得到的假设$\hat{h}$的泛华能力如何？
+	\begin{enumerate}
+		\item 定义:
+		\begin{align}
+			h^* = \arg_{h\in\mathcal{H}}\min \varepsilon(h)
+		\end{align}
+		其中，$h^*$为泛华误差最小的假设
+		\item 可以推导出：
+		\begin{align}
+			\varepsilon(\hat{h}) \leq \hat{\varepsilon}(\hat{h}) + \gamma \leq \hat{\varepsilon}(h^*) + \gamma \leq \varepsilon(h^*) + \gamma + \gamma
+			= \varepsilon(h^*) + 2\gamma
+		\end{align}
+
+
+	\end{enumerate}
+	{\color{red}{其余内容略，有用了再看。}}
+\end{enumerate}
+
+\subsection{说明}
+\begin{enumerate}
+	\item 本部分内容来源：斯坦福大学《机器学习公开课》第9课：\href{http://open.163.com/movie/2008/1/F/H/M6SGF6VB4_M6SGJV3FH.html}{经验风险最小化}
+	\item 本笔记内容参考：本文参考以下笔记：\href{http://blog.csdn.net/stdcoutzyx/article/details/12110337}{课程笔记参考}
+\end{enumerate}
+
+
+
