@@ -3,7 +3,8 @@
 \begin{enumerate}
 	\item 机器学习主要就是围绕几个部分进行各种改进：
 	\begin{enumerate}
-		\item 假设函数：$h_\theta(x)$
+		\item 决策函数（假设函数）：$h_\theta(x)$
+		\item 最优化方式：
 		\item Cost Function: $J(\theta)$
 			\begin{enumerate}
 				\item Cost Function仅仅只是一种评价预测值与实际值的方式，就算换种评价方式，差距大的仍旧差距大。表面上看起来通过改进Cost Function并没法得到多少改进，但实际上并非如此
@@ -11,8 +12,27 @@
 				\item 另一方面，计算Cost Fuction也是需要计算量的，若采用更简单的计算方式也算对算法的一种优化。{\color{gray}{暂未找到实例}}
 			\end{enumerate}
 		\item 获取最优解的方式，如梯度下降中使用$\theta_j := \theta_j + \frac{\partial J(\theta)}{\theta_j}$进行迭代
-
 	\end{enumerate}
+
+	\item 线性回归
+
+	\item 逻辑回归
+
+	\item 生成学习算法
+	\begin{enumerate}
+		\item 随机变量连续时，使用高斯判别分析
+		\item 随机变量离散时，使用朴素贝叶斯（拉普拉斯平滑）
+	\end{enumerate}
+
+
+	\item 支持向量机闪光点总结：
+	\begin{enumerate}
+		\item KKT对偶优化条件$\alpha_i^*g_i(w^*) = 0, \quad i=1, \dots, k$：只需要计算支持向量那一部分数据
+		\item 特征映射$\phi(\cdot)$：把低维映射到高维，让低维下非线性可分的数据在高维上线性可分
+		\item 核函数$K(x,z)$：让特征映射后的内积容易计算
+		\item SMO: 
+	\end{enumerate}
+
 \end{enumerate}
 
 
