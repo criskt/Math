@@ -5,7 +5,7 @@
 	1 \quad z \geq 0, \\
 	0 \quad z <0
 	\end{cases} \]
-	即$h_\theta(x) = g(\Theta^Tx)$。其得到的$h_\theta(x)$值只有$0$或$1$。 \\
+	即$h_\theta(x) = g(\theta^Tx)$。其得到的$h_\theta(x)$值只有$0$或$1$。 \\
 	其他均与逻辑回归一致，这就变成了感知器算法
 	\item 在逻辑回归迭代方式的证明中，用到了sigmoid Function $g^{'}{(x)} = g(z)\left[1-g(z)\right]$的性质，对感知器算法中的$g(z)$，该式子同样成立。经证明后可发现，感知器算法的迭代方式仍旧与逻辑回归一样
 	\begin{align}

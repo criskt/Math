@@ -11,14 +11,14 @@
 
 	\item 全概率公式
 	\begin{equation}
-	P(A) = \sum_{i=1}^nP(B_i)P(A|B_i)
+	P(A) = \sum_{i=1}^{n}P(A|B_i)P(B_i)
 	\end{equation}
 	其中，$B$为一完备事件组
 
 	\item 贝叶斯公式
 	\begin{align}
-	P(B_j|A) &= \frac{P(B_j)P(A|B_j)}{P(A)} \\
-	&= \frac{P(B_j)P(A|B_j)}{\sum_{i=1}^nP(B_i)P(A|B_i)},  \quad j = 1, 2, 3, ..., n
+	P(B_j|A) &= \frac{P(A|B_j)P(B_j)}{P(A)} \\
+	&= \frac{P(A|B_j)P(B_j)}{\sum_{i=1}^{n}P(A|B_i)P(B_i)},  \quad j = 1, 2, 3, ..., n
 	\end{align}
 	\footnote{$P(B_j|A)=\frac{P(AB_j)}{P(A)}$，再将分子用乘法公式展开，分母用全概率公式展开，即可得到贝叶斯公式} \\
 	同样，要求B为完备事件组。 \\

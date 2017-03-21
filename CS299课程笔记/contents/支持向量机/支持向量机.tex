@@ -49,6 +49,14 @@
 	\footnote{$\|w\|$是矩阵的范数，$\|w\|^2=w^Tw$}
 	\item 当$\|w\|=1$时，几何间隔与函数间隔相等
 	\item 相较于函数间隔，几何间隔任意缩放参数$(w,b)$不影响$h_{w,b}(x)$的值；鉴于此性质，我们可以在训练时对$w, b$视需求进行缩放
+	\item 点$(x_0, y_0)$到直线$Ax+By+C=0$的距离公式为：
+	\begin{align}
+		\frac{|Ax_0 + By_0 + C|}{\sqrt{A^2+B^2}}
+	\end{align}
+	\item 两条平行线$Ax+By+C_1=0$、$Ax+By+C_2=0$的距离公式为：
+	\begin{align}
+		\frac{|C_1 - C_2|}{\sqrt{A^2+B^2}}
+	\end{align}
 	\item 同样，对于给定的训练集$S=\{(x^{(i)}, y^{(i)}); \quad i = 1, \dots, m\}$，我们将其中最小的几何间隔记为$\gamma$:
 	\begin{align}
 		\gamma = \min_{i=1,\dots,m}\gamma^{(i)}

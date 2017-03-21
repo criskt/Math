@@ -1,0 +1,181 @@
+\subsection{神经网络--后向算法示意图}
+\begin{tikzpicture}
+\tikzset{
+	a/.style={circle, draw=black}
+}
+
+% x
+% \node[a] (x_0) at(0,10) {$x_0=+1$};
+\node[a] (x_1) at(0,8) {$x_1$};
+\node[a] (x_2) at(0,6) {$x_2$};
+\node[a] (x_3) at(0,4) {$x_3$};
+\filldraw (0,3) circle (.06);
+\filldraw (0,2) circle (.06);
+\filldraw (0,1) circle (.06);
+\node[a] (x_n) at(0,0) {$x_n$};
+
+% X与a的分隔线
+\draw [dashed] (1,-1) -- (1,9);
+
+% \delta^{(1)}
+\node[a] (a_10) at(2,10)   {0};
+\node[a] (a_11) at(2,8)   {0};
+\node[a] (a_12) at(2,6) {0};
+\node[a] (a_13) at(2,4)   {0};
+\filldraw (2,3) circle (.06);
+\filldraw (2,2) circle (.06);
+\filldraw (2,1) circle (.06);
+\node[a] (a_1s1) at(2,0) {0};
+
+% \delta^{(2)}
+\node[a] (a_20) at(6,9.5) {$\delta_0^{(2)}$};
+\node[a] (a_21) at(6,8.0) {$\delta_1^{(2)}$};
+\node[a] (a_22) at(6,6.5) {$\delta_2^{(2)}$};
+\node[a] (a_23) at(6,5.0) {$\delta_3^{(2)}$};
+\node[a] (a_24) at(6,3.5) {$\delta_4^{(2)}$};
+\filldraw (6,2.4) circle (.06);
+\filldraw (6,1.8) circle (.06);
+\filldraw (6,1.2) circle (.06);
+\node[a] (a_2s2) at(6,0) {$\delta_{s_2}^{(2)}$};
+
+% \delta^{(3)}
+\node[a] (a_30) at(10,9.5) {$\delta_0^{(3)}$};
+\node[a] (a_31) at(10,8.0) {$\delta_1^{(3)}$};
+\node[a] (a_32) at(10,6.5) {$\delta_2^{(3)}$};
+\node[a] (a_33) at(10,5.0) {$\delta_3^{(3)}$};
+\node[a] (a_34) at(10,3.5) {$\delta_4^{(3)}$};
+\filldraw (10,2.4) circle (.06);
+\filldraw (10,1.8) circle (.06);
+\filldraw (10,1.2) circle (.06);
+\node[a] (a_3s3) at(10,0) {$\delta_{s_3}^{(3)}$};
+
+% 中间部分
+\filldraw (12,0) circle (.06);
+\filldraw (12,2) circle (.06);
+\filldraw (12,4) circle (.06);
+\filldraw (12,6) circle (.06);
+\filldraw (12,8) circle (.06);
+
+% \delta^{(n)}
+
+\node[a] (a_L1) at(14,7.5) {$\delta_1^{(L)}$};
+\node[a] (a_L2) at(14,6)   {$\delta_2^{(L)}$};
+\node[a] (a_L3) at(14,4.5) {$\delta_3^{(L)}$};
+\node[a] (a_L4) at(14,3)   {$\delta_4^{(L)}$};
+\filldraw (14,2.0) circle (.06);
+\filldraw (14,1.5) circle (.06);
+\filldraw (14,1.0) circle (.06);
+\node[a] (a_Lsl) at(14,0) {$\delta_{s_l}^{(L)}$};
+
+
+% % 后向算法图例--仅连线：\delta21 -- \delta_1
+% \draw[->] (a_21) -- (a_10);
+% \draw[->] (a_21) -- (a_11);
+% \draw[->] (a_21) -- (a_12);
+% \draw[->] (a_21) -- (a_13);
+% \draw[->] (a_21) -- (a_1s1);
+% % 后向算法图例--仅连线：\delta22 -- \delta_1
+% \draw[->] (a_22) -- (a_10);
+% \draw[->] (a_22) -- (a_11);
+% \draw[->] (a_22) -- (a_12);
+% \draw[->] (a_22) -- (a_13);
+% \draw[->] (a_22) -- (a_1s1);
+% % 后向算法图例--仅连线：\delta23 -- \delta_1
+% \draw[->] (a_23) -- (a_10);
+% \draw[->] (a_23) -- (a_11);
+% \draw[->] (a_23) -- (a_12);
+% \draw[->] (a_23) -- (a_13);
+% \draw[->] (a_23) -- (a_1s1);
+% % 后向算法图例--仅连线：\delta24 -- \delta_1
+% \draw[->] (a_24) -- (a_10);
+% \draw[->] (a_24) -- (a_11);
+% \draw[->] (a_24) -- (a_12);
+% \draw[->] (a_24) -- (a_13);
+% \draw[->] (a_24) -- (a_1s1);
+% % 后向算法图例--仅连线：\delta2s2 -- \delta_1
+% \draw[->] (a_2s2) -- (a_10);
+% \draw[->] (a_2s2) -- (a_11);
+% \draw[->] (a_2s2) -- (a_12);
+% \draw[->] (a_2s2) -- (a_13);
+% \draw[->] (a_2s2) -- (a_1s1);
+
+
+% 后向算法--仅连线: \delta31 --> \delta2
+\draw[->] (a_31) -- (a_20);
+\draw[->] (a_31) -- (a_21);
+\draw[->] (a_31) -- (a_22);
+\draw[->] (a_31) -- (a_23);
+\draw[->] (a_31) -- (a_24);
+\draw[->] (a_31) -- (a_2s2);
+% 后向算法--仅连线: \delta32 --> \delta2
+\draw[->] (a_32) -- (a_20);
+\draw[->] (a_32) -- (a_21);
+\draw[->] (a_32) -- (a_22);
+\draw[->] (a_32) -- (a_23);
+\draw[->] (a_32) -- (a_24);
+\draw[->] (a_32) -- (a_2s2);
+% 后向算法--仅连线: \delta33 --> \delta2
+\draw[->] (a_33) -- (a_20);
+\draw[->] (a_33) -- (a_21);
+\draw[->] (a_33) -- (a_22);
+\draw[->] (a_33) -- (a_23);
+\draw[->] (a_33) -- (a_24);
+\draw[->] (a_33) -- (a_2s2);
+% 后向算法--仅连线: \delta34 --> \delta2
+\draw[->] (a_34) -- (a_20);
+\draw[->] (a_34) -- (a_21);
+\draw[->] (a_34) -- (a_22);
+\draw[->] (a_34) -- (a_23);
+\draw[->] (a_34) -- (a_24);
+\draw[->] (a_34) -- (a_2s2);
+% 后向算法--仅连线: \delta3s3 --> \delta2
+\draw[->] (a_3s3) -- (a_20);
+\draw[->] (a_3s3) -- (a_21);
+\draw[->] (a_3s3) -- (a_22);
+\draw[->] (a_3s3) -- (a_23);
+\draw[->] (a_3s3) -- (a_24);
+\draw[->] (a_3s3) -- (a_2s2);
+
+
+% 标志
+\node at (4, 11) {$\Theta^{(1)}$};
+\node at (8, 11) {$\Theta^{(2)}$};
+\node at (2, -1) {\color{red}{无$\delta^{(1)}$}};
+\node at (6, -1) {\color{red}{$\delta^{(2)}$}};
+\node at (10, -1) {\color{red}{$\delta^{(3)}$}};
+
+
+% \node at (4, -2) {\color{red}{$\delta^{(1)}=(\Theta^{(1)})^T [\delta^{2}(2:end)] .* g(z^{1}) .* (1-g(z^{1}))$}};
+% \node at (8, -3) {\color{red}{$\delta^{(l)}=(\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l}))$}};
+
+
+\end{tikzpicture}
+
+
+
+\[\begin{cases}
+	\delta^{L} &= a^{L} - y ,\quad l=L \\
+	\delta^{L-1} &= (\Theta^{(L-1)})^T \delta^{L} .* g^{'}(z^{L-1}) \\
+		&= (\Theta^{(L-1)})^T \delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1})),\quad l=L-1 \\
+		\delta^{l} &= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g^{'}(z^{l}) \\
+	&= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l})) ,\quad 2<=l<=L-2 \\
+	% 无 a^{(1)}, \quad l=1
+\end{cases}\] \\
+无 $\delta^{(1)}$
+
+\begin{equation}\begin{aligned}
+		\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)} (a^{(l)})^T
+	\end{aligned}\end{equation}
+
+\[ D_{ij}^{(l)} = \begin{cases}
+	\frac{1}{m}\Delta_{ij}^{(l)} ,\quad j=0 \\
+	\frac{1}{m}(\Delta_{ij}^{(l)} + \Theta_{ij}^{(l)}), \quad j \neq 0
+\end{cases}\]
+
+\begin{equation*}
+	\frac{\partial{J(\Theta)}}{\partial{\Theta_{ij}^{(l)}}} = D_{ij}^{(l)}
+\end{equation*}
+
+
+
+

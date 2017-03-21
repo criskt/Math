@@ -1,0 +1,194 @@
+\section{神经网络}
+\subsection{神经网络--前向算法}
+
+\subsubsection{$X、\theta、\Theta、z、a$}
+\begin{enumerate}
+\item X
+\begin{equation} \begin{aligned}
+	X & = \left(\begin{matrix}
+			(x^{(1)})^T \\ (x^{(2)})^T \\ (x^{(3)})^T \\ \vdots \\ (x^{(m)})^T \\
+		\end{matrix}\right) \\
+	& = \left( \begin{matrix}
+			x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+			x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+			x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\end{matrix}\right) \\
+	& = \left(\begin{matrix}
+			x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+			x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+			x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+		\end{matrix}\right) \Rightarrow {(m,n)}
+\end{aligned} \end{equation}
+
+\item $a^{(1)}$
+\begin{equation}
+	a^{(1)} = X  \Rightarrow {(m,n)}
+\end{equation}
+
+\item $\Theta^{(1)}$
+\begin{equation}
+\Theta^{(1)} = 
+	\left(\begin{matrix}
+		\theta_{10}^{(1)} & \theta_{11}^{(1)} & \theta_{12}^{(1)} & \dots & \theta_{1,s_1}^{(1)} \\
+		\theta_{20}^{(1)} & \theta_{21}^{(1)} & \theta_{22}^{(1)} & \dots & \theta_{2,s_1}^{(1)} \\
+		\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,s_1}^{(1)} \\
+		\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		\theta_{s_{2}0}^{(1)} & \theta_{s_{2}1}^{(1)} & \theta_{s_{2}2}^{(1)} & \dots & \theta_{s_{2},s_{1}}^{(1)}
+	\end{matrix}\right) \Rightarrow {(s_{2},s_1+1)=(s_{2},n+1)}
+\end{equation}
+
+\item $z^{(2)}$ \\
+给$a^{(1)}$的每个数据均添加上$a_0 = 1$后与$\Theta^{(1)}$计算,得到$z^{(2)}
+\footnote{从$a^{(1)}$得到$a^{(2)}$需要经过sigmoid()函数，后续的从$a^{(j)}$得到$a^{(j+1)}$均需要经过sigmoid()函数}
+=(1, a^{(1)})(\Theta^{(1)})^T$
+\begin{equation}\begin{aligned}
+	z^{(2)} &= (1, a^{(1)}) (\Theta^{(1)})^T \Rightarrow (m,n+1) * (n+1,s_{2})
+		\\ &= 
+		  \left(\begin{matrix}
+				1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+				1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+				1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+				\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\end{matrix}\right)
+			\left(\begin{matrix}
+				\theta_{10}^{(1)} & \theta_{11}^{(1)} & \theta_{12}^{(1)} & \dots & \theta_{1,n}^{(1)} \\
+				\theta_{20}^{(1)} & \theta_{21}^{(1)} & \theta_{22}^{(1)} & \dots & \theta_{2,n}^{(1)} \\
+				\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,n}^{(1)} \\
+				\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				\theta_{s_{2},0}^{(j)} & \theta_{s_{2},1}^{(j)} & \theta_{s_{2},2}^{(j)} & \dots & \theta_{s_{2},n}^{(1)}
+			\end{matrix}\right)^T
+		\\ &= 
+		  \left(\begin{matrix}
+				1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+				1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+				1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+				\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+			\end{matrix}\right)
+			\left(\begin{matrix}
+				\theta_{10}^{(1)} & \theta_{20}^{(1)} & \theta_{30}^{(1)} & \dots & \theta_{s_{2},0}^{(1)} \\
+				\theta_{11}^{(1)} & \theta_{21}^{(1)} & \theta_{31}^{(1)} & \dots & \theta_{s_{2},1}^{(1)} \\
+				\theta_{12}^{(1)} & \theta_{22}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{s_{2},2}^{(1)} \\
+				\theta_{13}^{(1)} & \theta_{23}^{(1)} & \theta_{33}^{(1)} & \dots & \theta_{s_{2},3}^{(1)} \\
+				\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				\theta_{1,n}^{(1)} & \theta_{2,n}^{(1)} & \theta_{3,n}^{(1)} & \dots & \theta_{s_{2},n}^{(1)}
+			\end{matrix}\right)
+		\\ &=
+			\left(\begin{matrix}
+				z^{(2)(1)} \\ z^{(2)(2)} \\ z^{(2)(3)} \\ \vdots \\ z^{(2)(m)} 
+			\end{matrix}\right)
+		\\ &= 
+			\left(\begin{matrix}
+				z_1^{(2)(1)} & z_2^{(2)(1)} & z_3^{(2)(1)} & \dots & z_{s_2}^{(2)(1)} \\
+				z_1^{(2)(2)} & z_2^{(2)(2)} & z_3^{(2)(2)} & \dots & z_{s_2}^{(2)(2)} \\
+				z_1^{(2)(3)} & z_2^{(2)(3)} & z_3^{(2)(3)} & \dots & z_{s_2}^{(2)(3)} \\
+				\vdots & \vdots & \vdots & \ddots & \vdots \\
+				z_1^{(2)(m)} & z_2^{(2)(m)} & z_3^{(2)(m)} & \dots & z_{s_2}^{(2)(m)} \\
+			\end{matrix}\right)
+		\\ &  \Rightarrow  (m,n+1) * (n+1, s_{2}) = (m,s_2)
+\end{aligned}\end{equation}
+\footnote{上式$z_{s_2}^{(2)(m)}$中，$(2)$表示第2层神经网络，$(m)$表示第m个训练集，$s_2$表示第2层神经网络的最后一个单元}
+
+
+\item $a^{(2)}$
+\begin{equation}
+	a^{(2)}=g(z^{(2)}) \Rightarrow {(m,s_2)}
+\end{equation}
+
+\item 后续同理 \\
+\begin{equation}\begin{aligned}
+	\Theta^{(2)} &= 
+		\left(\begin{matrix}
+			\theta_{10}^{(2)} & \theta_{11}^{(2)} & \theta_{12}^{(2)} & \dots & \theta_{1,s_2}^{(2)} \\
+			\theta_{20}^{(2)} & \theta_{21}^{(2)} & \theta_{22}^{(2)} & \dots & \theta_{2,s_2}^{(2)} \\
+			\theta_{30}^{(2)} & \theta_{31}^{(2)} & \theta_{32}^{(2)} & \dots & \theta_{3,s_2}^{(2)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			\theta_{s_{3}0}^{(2)} & \theta_{s_{3}1}^{(2)} & \theta_{s_{3}2}^{(2)} & \dots & \theta_{s_{3},s_{2}}^{(2)}
+		\end{matrix}\right) \Rightarrow {(s_{3},s_2+1)}\\
+	z^{(3)} &= (1, a^{(2)}) (\Theta^{(2)})^T \Rightarrow (m,s_2+1) * (s_2+1, s_3) = (m,s_3) \\
+	a^{(3)} &= g(z^{(3)}) \Rightarrow {(m,s_3)} \\
+	& \vdots \\
+\end{aligned} \end{equation}
+
+\item 一般式
+\begin{equation}\begin{aligned}
+	a^{(j)} &= g(z^{(j-1)}) \Rightarrow {(m,s_j)} \\
+	\Theta^{(j)} &= 
+		\left(\begin{matrix}
+			\theta_{10}^{(j)} & \theta_{11}^{(j)} & \theta_{12}^{(j)} & \dots & \theta_{1,s_{j}}^{(j)} \\
+			\theta_{20}^{(j)} & \theta_{21}^{(j)} & \theta_{22}^{(j)} & \dots & \theta_{2,s_{j}}^{(j)} \\
+			\theta_{30}^{(j)} & \theta_{31}^{(j)} & \theta_{32}^{(j)} & \dots & \theta_{3,s_{j}}^{(j)} \\
+			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+			\theta_{s_{j+1}0}^{(j)} & \theta_{s_{j+1}1}^{(j)} & \theta_{s_{j+1}2}^{(j)} & \dots & \theta_{s_{j+1},s_{j}}^{(j)}
+		\end{matrix}\right) \Rightarrow {(s_{j+1},s_{j}+1)}\\
+	z^{(j+1)} &= (1, a^{(j)}) (\Theta^{(j)})^T \\
+		% \\ &= 
+		%   \left(\begin{matrix}
+		% 		1 & x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \dots & x_n^{(1)} \\
+		% 		1 & x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \dots & x_n^{(2)} \\
+		% 		1 & x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
+		% 		\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		% 		1 & x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
+		% 	\end{matrix}\right)
+		% 	\left(\begin{matrix}
+		% 		\theta_{10}^{(1)} & \theta_{11}^{(1)} & \theta_{12}^{(1)} & \dots & \theta_{1,n}^{(1)} \\
+		% 		\theta_{20}^{(1)} & \theta_{21}^{(1)} & \theta_{22}^{(1)} & \dots & \theta_{2,n}^{(1)} \\
+		% 		\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,n}^{(1)} \\
+		% 		\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+		% 		\theta_{s_{2},0}^{(j)} & \theta_{s_{2},1}^{(j)} & \theta_{s_{2},2}^{(j)} & \dots & \theta_{s_{2},n}^{(1)}
+		% 	\end{matrix}\right)^T
+		\\ &= 
+		  \left(\begin{matrix}
+				1 & a_1^{(j)(1)} & a_2^{(j)(1)} & a_3^{(j)(1)} & \dots & a_{s_j}^{(j)(1)} \\
+				1 & a_1^{(j)(2)} & a_2^{(j)(2)} & a_3^{(j)(2)} & \dots & a_{s_j}^{(j)(2)} \\
+				1 & a_1^{(j)(3)} & a_2^{(j)(3)} & a_3^{(j)(3)} & \dots & a_{s_j}^{(j)(3)} \\
+				\vdots        & \vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				1 & a_1^{(j)(m)} & a_2^{(j)(m)} & a_3^{(j)(m)} & \dots & a_{s_j}^{(j)(m)} \\
+			\end{matrix}\right)
+			\left(\begin{matrix}
+				\theta_{10}^{(j)} & \theta_{20}^{(j)} & \theta_{30}^{(j)} & \dots & \theta_{s_{j+1},0}^{(j)} \\
+				\theta_{11}^{(j)} & \theta_{21}^{(j)} & \theta_{31}^{(j)} & \dots & \theta_{s_{j+1},1}^{(j)} \\
+				\theta_{12}^{(j)} & \theta_{22}^{(j)} & \theta_{32}^{(j)} & \dots & \theta_{s_{j+1},2}^{(j)} \\
+				\theta_{13}^{(j)} & \theta_{23}^{(j)} & \theta_{33}^{(j)} & \dots & \theta_{s_{j+1},3}^{(j)} \\
+				\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
+				\theta_{1,s_j}^{(j)} & \theta_{2,s_j}^{(j)} & \theta_{3,s_j}^{(j)} & \dots & \theta_{s_{j+1},s_j}^{(j)}
+			\end{matrix}\right)
+		\\ &=
+			\left(\begin{matrix}
+				z^{(j+1)(1)} \\ z^{(j+1)(2)} \\ z^{(j+1)(3)} \\ \vdots \\ z^{(j+1)(m)} 
+			\end{matrix}\right)
+		\\ &= 
+			\left(\begin{matrix}
+				z_1^{(j+1)(1)} & z_2^{(j+1)(1)} & z_3^{(j+1)(1)} & \dots & z_{s_{j+1}}^{(j+1)(1)} \\
+				z_1^{(j+1)(2)} & z_2^{(j+1)(2)} & z_3^{(j+1)(2)} & \dots & z_{s_{j+1}}^{(j+1)(2)} \\
+				z_1^{(j+1)(3)} & z_2^{(j+1)(3)} & z_3^{(j+1)(3)} & \dots & z_{s_{j+1}}^{(j+1)(3)} \\
+				\vdots & \vdots & \vdots & \ddots & \vdots \\
+				z_1^{(j+1)(m)} & z_2^{(j+1)(m)} & z_3^{(j+1)(m)} & \dots & z_{s_{j+1}}^{(j+1)(m)} \\
+			\end{matrix}\right)
+		\\ & \Rightarrow (m,s_j+1) * (s_j+1, s_{j+1}) = (m,s_{j+1}) \\
+	a^{(j+1)} &= g(z^{(j+1)})  \Rightarrow {(m,s_{j+1})} 
+\end{aligned}\end{equation}
+\end{enumerate}
+
+\subsubsection{y}
+\begin{equation} \begin{aligned}
+	y & = \left(\begin{matrix}
+			y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)} \\
+		\end{matrix}\right)_{m*1}
+\end{aligned} \end{equation}
+
+为进行矩阵运算，要将其转化为如下形式:\footnote{y所对应的值所在的索引位置值为1，其他位置均为0}
+\begin{equation}\begin{aligned}
+	Y &= \left(\begin{matrix}
+	        0 & 0 & 0 & \dots & 0 & 1 \\
+	        0 & 1 & 0 & \dots & 0 & 0 \\
+	        0 & 0 & 1 & \dots & 0 & 0 \\
+	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	        1 & 0 & 0 & \dots & 0 & 0 \\
+		\end{matrix}\right)_{m,s_L}
+\end{aligned}\end{equation}\footnote{上式$m*s_L$中的$s_L$表示共有$s_L$个分类器，$s_L$表示的是输出层的unit数}

@@ -9,7 +9,7 @@
 	\end{align}
 	即
 	\begin{align}
-		P(X=x) = p^x(1-p)^x
+		P(X=x) = p^x(1-p)^{(1-x)}
 	\end{align}
 	\footnote{在机器学习中常用此式子表示$0-1$分布}
 	\item 二项分布
@@ -74,9 +74,9 @@
 \subsection{泊松定理}
 在伯努利实验中，若$n$较大，$p_n$较小，是的$np_n$在$n \to +\infty$时为一常数，则有
 \begin{equation}
-	\lim_{n \to +\infty}C_n^kp_n^k(1-p_n)^{n-k} = \frac{\lambda ^k}{k!}e^{-\lambda}
+	\lim_{n \to +\infty}C_n^k p^k (1-p)^{n-k} = \frac{\lambda ^k}{k!}e^{-\lambda}
 \end{equation}
-其中，$\lim_{n\to+\infty}np_n = \lambda$
+其中，$\lim_{n\to+\infty}np = \lambda$
 
 
 

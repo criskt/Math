@@ -1,0 +1,139 @@
+\subsection{神经网络--后向算法}
+
+\subsubsection{输出层结果：$a^L$}
+\begin{equation}
+	a^L = 
+		\left(\begin{matrix}
+			a_1^{(L)(1)} & a_2^{(L)(1)} & a_3^{(L)(1)} & \dots & a_{s_L}^{(L)(1)} \\
+			a_1^{(L)(2)} & a_2^{(L)(2)} & a_3^{(L)(2)} & \dots & a_{s_L}^{(L)(2)} \\
+			a_1^{(L)(3)} & a_2^{(L)(3)} & a_3^{(L)(3)} & \dots & a_{s_L}^{(L)(3)} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_1^{(L)(m)} & a_2^{(L)(m)} & a_3^{(L)(m)} & \dots & a_{s_L}^{(L)(m)} \\
+		\end{matrix}\right)_{m,s_L}
+\end{equation}
+
+\subsubsection{格式化后的Y}
+\begin{equation}\begin{aligned}
+	Y &= \left(\begin{matrix}
+	        0 & 0 & 0 & \dots & 0 & 1 \\
+	        0 & 1 & 0 & \dots & 0 & 0 \\
+	        0 & 0 & 1 & \dots & 0 & 0 \\
+	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	        1 & 0 & 0 & \dots & 0 & 0 \\
+		\end{matrix}\right)_{m,s_L}
+\end{aligned}\end{equation}
+
+\subsubsection{$\delta^{L}$}
+\begin{equation}\begin{aligned}
+	\delta^{L} &= a^{L} - y \\
+		&= \left(\begin{matrix}
+			a_1^{(L)} \\ a_2^{(L)} \\ a_3^{(L)} \\ \vdots \\ a_{s_L}^{(L)}
+		\end{matrix}\right) - 
+		\left(\begin{matrix}
+	        1 \\ 0 \\ 0 \\ \vdots \\ 0 \\ 0 
+		\end{matrix}\right)
+\end{aligned}\end{equation}
+\begin{itemize}
+	\item 此时，$\delta^{L}, a^{L}, y$表示的是均向量（不是矩阵）
+\end{itemize}
+
+% \begin{equation}\begin{aligned}
+% 	\Delta^{L} &= a^{L} - Y \\
+% 	&= 	
+% 		\left(\begin{matrix}
+% 			a_1^{(L)(1)} & a_2^{(L)(1)} & a_3^{(L)(1)} & \dots & a_{s_L}^{(L)(1)} \\
+% 			a_1^{(L)(2)} & a_2^{(L)(2)} & a_3^{(L)(2)} & \dots & a_{s_L}^{(L)(2)} \\
+% 			a_1^{(L)(3)} & a_2^{(L)(3)} & a_3^{(L)(3)} & \dots & a_{s_L}^{(L)(3)} \\
+% 			\vdots & \vdots & \vdots & \ddots & \vdots \\
+% 			a_1^{(L)(m)} & a_2^{(L)(m)} & a_3^{(L)(m)} & \dots & a_{s_L}^{(L)(m)} \\
+% 		\end{matrix}\right) - 
+% 		 \left(\begin{matrix}
+% 	        0 & 0 & 0 & \dots & 0 & 1 \\
+% 	        0 & 1 & 0 & \dots & 0 & 0 \\
+% 	        0 & 0 & 1 & \dots & 0 & 0 \\
+% 	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+% 	        1 & 0 & 0 & \dots & 0 & 0 \\
+% 		\end{matrix}\right)_{m,s_L}
+% \end{aligned}\end{equation}
+% \begin{itemize}
+% 	\item 此时，$\Delta^{L}, a^{L}, Y$表示的是均是矩阵
+% 	\item {\color{red}{从教程看，似乎不用这样算，都用迭代的方式，这大概也是$\delta^{l}$ 与 $\Delta^{l}$表示的意义不一样的来源}}
+% \end{itemize}
+
+\subsubsection{$\delta^{L-1}$}
+\begin{equation}\begin{aligned}
+	\delta^{L-1} &= (\Theta^{(L-1)})^T \delta^{L} .* g^{'}(z^{L-1}) \\
+	&= (\Theta^{(L-1)})^T \delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1}))
+\end{aligned}\end{equation}
+\begin{enumerate}
+	\item 其中，式$g^{'}(z) = g(z)(1-g(z))$，此为sigmoid()函数的特性
+	\item 此时，$z^{L-1}$表示的是一个向量（不是矩阵）
+	\item 此时不需要舍弃$\delta_0^{L}$，因为根本就没有
+\end{enumerate}
+
+% \begin{equation}\begin{aligned}
+% 	\Delta^{L-1} &= (\Theta^{(L-1)})^T \Delta^{L} .* g^{'}(z^{L-1}) \\
+% 	&= (\Theta^{(L-1)})^T \Delta^{L} .* g(z^{L-1}) .* (1-g(z^{L-1}))
+% \end{aligned}\end{equation}
+% \begin{enumerate}
+% 	\item 此时，$z^{L-1}$表示的是矩阵
+% 	\item 与上述的$\delta^{L-1}$相比，此式批量计算的训练集中的所有数据
+% 	\item {\color{red}{从教程看，似乎不用这样算，都用迭代的方式，这大概也是$\delta^{l}$ 与 $\Delta^{l}$表示的意义不一样的来源}}
+% \end{enumerate}
+
+
+\subsubsection{$\delta^{l}$($2<=l<=L-2$)}
+\begin{equation}\begin{aligned}
+	\delta^{l} &= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g^{'}(z^{l}) \\
+	&= (\Theta^{(l)})^T [\delta^{l+1}(2:end)] .* g(z^{l}) .* (1-g(z^{l}))
+\end{aligned}\end{equation}
+\begin{enumerate}
+	\item 因$a^{(1)}$直接从X得到，不会有误差，故无$\delta^{(1)}$
+	\item (2:end)表示舍弃第一个数据$\delta_0^{s_{L-1}}$（Matlab索引从1开始）
+	\item 对比于从$a^{l}$到$a^{l+1}$要添加一个$a_0^{l}=1$；从$\delta^{l+1}$到$\delta^{l}$要舍弃一个$\delta_0^{l+1}$
+	\item 同样地，此时$z^{l}$表示的是一个向量（不是矩阵）
+\end{enumerate}
+
+\subsubsection{$\Delta^{l}$（用迭代的方式计算）}
+\begin{enumerate}
+	\item 数值计算方式
+	\begin{equation}\begin{aligned}
+		\Delta_{ij}^{(l)} := \Delta_{ij}^{(l)} + a_j^{(l)} \delta_i^{(l+1)}
+	\end{aligned}\end{equation}
+	\item 矩阵计算方式
+	\begin{equation}\begin{aligned}
+		\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)} (a^{(l)})^T
+	\end{aligned}\end{equation}
+\end{enumerate}
+
+\subsubsection{$D_{ij}^{(l)}$}
+\begin{enumerate}
+	\item $j=0$时
+	\begin{equation}
+		D_{ij}^{(l)} := \frac{1}{m}\Delta_{ij}^{(l)}
+	\end{equation}
+	\item $j \neq 0$时
+		\begin{equation}
+		D_{ij}^{(l)} := \frac{1}{m}(\Delta_{ij}^{(l)} + \Theta_{ij}^{(l)})
+	\end{equation}
+\end{enumerate}
+
+\subsubsection{$\frac{\partial{J(\Theta)}}{\partial{\Theta_{ij}^{(l)}}}$}
+\begin{equation}
+	\frac{\partial{J(\Theta)}}{\partial{\Theta_{ij}^{(l)}}} = D_{ij}^{(l)}
+\end{equation}
+
+\subsubsection{$\delta^{l}$ 与 $\Delta^{l}$的区别与联系}
+
+
+
+
+
+
+
+
+
+
+
+
+

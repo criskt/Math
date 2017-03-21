@@ -1,0 +1,33 @@
+\subsection{SVM代码实现}
+\subsubsection{Cost Function}
+\begin{equation}\begin{aligned}
+	J(\theta) = C\sum_{i=1}^m y^{(i)}cost_1(\theta^Tx^{(i)}) + (1-y^{(i)})cost_0(\theta^Tx^{(i)}) + \frac{1}{2}\sum_{j=1}^n\Theta_j^2
+\end{aligned}\end{equation}
+其中，$cost_1(\theta^Tx^{(i)})$对应$y=1$; $cost_0(\theta^Tx^{(i)})$对应$y=0$
+
+
+\subsubsection{Gaussian Kernel}
+\begin{equation}\begin{aligned}
+	f_i = similarity(x, l^{(i)}) = exp(-\frac{\sum_{j=1}^n(x_j - l_j^{(i)})^2}{2\sigma^2})
+\end{aligned}\end{equation}
+\begin{enumerate}
+	\item 当$x \approx l^{(i)}$时，$f_i=exp(-\frac{\approx 0^2}{2\sigma^2}) \approx 1$
+	\item 当$x$远离$l^{(i)}$时，$f_i=exp(-\frac{inf^2}{2\sigma^2}) \approx 1$
+	\item 3
+\end{enumerate}
+
+
+\subsubsection{SVM中，$C$与$\sigma^2$对欠拟合或过拟合的影响}
+\begin{enumerate}
+	\item C：C过大：低偏差，高方差；C过小：高偏差，第方差
+	\item $\lambda^2$: 过大: 高偏差，低方差；过小: 低偏差，高方差
+\end{enumerate}
+
+
+\subsubsection{如何选项使用Logistic Regression还是 SVM}
+\begin{enumerate}
+	\item $n$很大时，使用Logistic Regression或无kernel（即linear kernel）的SVM
+	\item $n$很小，$m$中等：使用Gaussian kernel的SVM
+	\item $n$很小，$m$很大：增加特征，并使使用Logistic Regression或无kernel（即linear kernel）的SVM
+	\item 神经网络可能更加适合，但是使用神经网络训练需要耗费的时间较长
+\end{enumerate}
