@@ -63,14 +63,16 @@
 				&= \sum_{i=1}^{m} \left( y^{(i)}\frac{1}{g(\Theta^Tx^{(i)})} - (1-y^{(i)})\frac{1}{1-g(\Theta^Tx)} \right) \frac{\partial}{\partial\theta_j}g(\Theta^Tx^{(i)}) \\
 				&= \sum_{i=1}^{m} \left( y^{(i)}\frac{1}{g(\Theta^Tx^{(i)})} - (1-y^{(i)})\frac{1}{1-g(\Theta^Tx^{(i)})} \right)g(\Theta^Tx^{(i)})(1-g(\Theta^Tx^{(i)})) \frac{\partial}{\partial\theta_j}\Theta^Tx^{(i)} \\
 				&= \sum_{i=1}^{m} \left\{ y^{(i)}\left[1-g(\Theta^Tx^{(i)})\right] - (1-y^{(i)})g(\Theta^Tx^{(i)}) \right\}x_j^{(i)} \\
-				&= \sum_{i=1}^{m} \left[ y^{(i)} - h_\theta(x^{(i)}) \right]x_j^{(i)}
+				&= \sum_{i=1}^{m} \left[ y^{(i)} - h_\theta(x^{(i)}) \right]x_j^{(i)} \\
+				&= -\sum_{i=1}^{m} \left[h_\theta(x^{(i)}) - y^{(i)}\right]x_j^{(i)} 
 			\end{align}
 			上面的推导过程中，使用到了$g^{'}{(x)}=g(z)\left[1-g(z)\right]$
 
 			\item 为了使$L(\theta)$最大，使用梯度上升算法，最终结果
 			\begin{align}
 				\theta_j &:= \theta_j + \alpha \frac{\partial}{\partial \theta_j}l(\theta) \\
-				&=  \theta_j + \alpha \sum_{i=1}^{m} \left[ y^{(i)} - h_\theta(x^{(i)}) \right]x_j^{(i)}
+				&=  \theta_j + \alpha \sum_{i=1}^{m} \left[ y^{(i)} - h_\theta(x^{(i)}) \right]x_j^{(i)} \\
+				& = \theta_j - \alpha \sum_{i=1}^{m} \left[ h_\theta(x^{(i)}) - y^{(i)}\right]x_j^{(i)}
 			\end{align}
 			注意，此处，我们想要让$L(\theta)$最大，所以使用的是梯度上升，所以上式中中间应是加号$+$。注意其中$y^{(i)}$的位置与$h_\theta(x^{(i)})$的位置与之前线性回归的不一致，更改位置后发现，线性回归与逻辑回归的迭代方式是一样的。
 			\begin{align}

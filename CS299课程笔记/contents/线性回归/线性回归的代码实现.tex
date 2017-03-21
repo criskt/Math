@@ -76,7 +76,25 @@
 		\end{matrix}\right), \quad {\rm I\!R}^{{(n+1)*1}}
 \end{aligned}\end{equation}
 
-\item $h_{\vec{\theta}}(\vec{x})$
+
+
+\item $\vec{y}$
+\begin{equation}
+	\vec{y} = \left(\begin{matrix}
+		y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)}
+	\end{matrix}\right), \quad {\rm I\!R}^{{m*1}}
+\end{equation}
+\end{enumerate}
+
+\subsubsection{决策函数}
+\begin{enumerate}
+	\item 数值计算形式 \\
+	\begin{align}
+		h_{\theta}(x) = \theta_0 x_0 + \theta_1 x_1 + \dots + \theta_n x_n
+	\end{align}
+	\item 矩阵计算形式 \\ 
+	$h_{\vec{\theta}}(\vec{x})$
+
 \begin{equation}\begin{aligned}
 	h_{\vec{\theta}}(\vec{x}) &= X * \vec{\theta} \\
 	    & = \left(\begin{matrix}
@@ -97,13 +115,6 @@
 			1\theta_0 + x_1^{(m)}\theta_1 + x_2^{(m)}\theta_2 + x_3^{(m)}\theta_3 + \dots + x_n^{(m)}\theta_n \\
 		\end{matrix}\right), \quad {\rm I\!R}^{{m*1}}
 \end{aligned}\end{equation}
-
-\item $\vec{y}$
-\begin{equation}
-	\vec{y} = \left(\begin{matrix}
-		y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)}
-	\end{matrix}\right), \quad {\rm I\!R}^{{m*1}}
-\end{equation}
 \end{enumerate}
 
 \subsubsection{Cost Function}
