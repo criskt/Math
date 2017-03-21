@@ -1,7 +1,7 @@
 \section{神经网络}
 \subsection{神经网络--前向算法}
 
-\subsubsection{$X、\theta、\Theta、z、a$}
+\subsubsection{各矩阵形式}
 \begin{enumerate}
 \item X
 \begin{equation} \begin{aligned}
@@ -21,12 +21,12 @@
 			x_1^{(3)} & x_2^{(3)} & x_3^{(3)} & \dots & x_n^{(3)} \\
 			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 			x_1^{(m)} & x_2^{(m)} & x_3^{(m)} & \dots & x_n^{(m)} \\
-		\end{matrix}\right) \Rightarrow {(m,n)}
+		\end{matrix}\right), \quad {\rm I\!R}^{(m,n)}
 \end{aligned} \end{equation}
 
 \item $a^{(1)}$
 \begin{equation}
-	a^{(1)} = X  \Rightarrow {(m,n)}
+	a^{(1)} = X , \quad {\rm I\!R}^{(m,n)}
 \end{equation}
 
 \item $\Theta^{(1)}$
@@ -38,7 +38,7 @@
 		\theta_{30}^{(1)} & \theta_{31}^{(1)} & \theta_{32}^{(1)} & \dots & \theta_{3,s_1}^{(1)} \\
 		\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 		\theta_{s_{2}0}^{(1)} & \theta_{s_{2}1}^{(1)} & \theta_{s_{2}2}^{(1)} & \dots & \theta_{s_{2},s_{1}}^{(1)}
-	\end{matrix}\right) \Rightarrow {(s_{2},s_1+1)=(s_{2},n+1)}
+	\end{matrix}\right), \quad {\rm I\!R}^{(s_{2},s_1+1)=(s_{2},n+1)}
 \end{equation}
 
 \item $z^{(2)}$ \\
@@ -89,15 +89,14 @@
 				z_1^{(2)(3)} & z_2^{(2)(3)} & z_3^{(2)(3)} & \dots & z_{s_2}^{(2)(3)} \\
 				\vdots & \vdots & \vdots & \ddots & \vdots \\
 				z_1^{(2)(m)} & z_2^{(2)(m)} & z_3^{(2)(m)} & \dots & z_{s_2}^{(2)(m)} \\
-			\end{matrix}\right)
-		\\ &  \Rightarrow  (m,n+1) * (n+1, s_{2}) = (m,s_2)
+			\end{matrix}\right), \quad {\rm I\!R}^{(m,n+1) * (n+1, s_{2})}, \quad {\rm I\!R}^{(m,s_2)}
 \end{aligned}\end{equation}
 \footnote{上式$z_{s_2}^{(2)(m)}$中，$(2)$表示第2层神经网络，$(m)$表示第m个训练集，$s_2$表示第2层神经网络的最后一个单元}
 
 
 \item $a^{(2)}$
 \begin{equation}
-	a^{(2)}=g(z^{(2)}) \Rightarrow {(m,s_2)}
+	a^{(2)}=g(z^{(2)}), \quad {\rm I\!R}^{(m,s_2)}
 \end{equation}
 
 \item 后续同理 \\
@@ -109,15 +108,15 @@
 			\theta_{30}^{(2)} & \theta_{31}^{(2)} & \theta_{32}^{(2)} & \dots & \theta_{3,s_2}^{(2)} \\
 			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 			\theta_{s_{3}0}^{(2)} & \theta_{s_{3}1}^{(2)} & \theta_{s_{3}2}^{(2)} & \dots & \theta_{s_{3},s_{2}}^{(2)}
-		\end{matrix}\right) \Rightarrow {(s_{3},s_2+1)}\\
-	z^{(3)} &= (1, a^{(2)}) (\Theta^{(2)})^T \Rightarrow (m,s_2+1) * (s_2+1, s_3) = (m,s_3) \\
-	a^{(3)} &= g(z^{(3)}) \Rightarrow {(m,s_3)} \\
+		\end{matrix}\right), \quad {\rm I\!R}^{(s_{3},s_2+1)}\\
+	z^{(3)} &= (1, a^{(2)}) (\Theta^{(2)})^T, \quad {\rm I\!R}^{(m,s_2+1) * (s_2+1, s_3)}={\rm I\!R}^{(m,s_3)} \\
+	a^{(3)} &= g(z^{(3)}), \quad {\rm I\!R}^{(m,s_3)} \\
 	& \vdots \\
 \end{aligned} \end{equation}
 
 \item 一般式
 \begin{equation}\begin{aligned}
-	a^{(j)} &= g(z^{(j-1)}) \Rightarrow {(m,s_j)} \\
+	a^{(j)} &= g(z^{(j-1)}), \quad {\rm I\!R}^{(m,s_j)} \\
 	\Theta^{(j)} &= 
 		\left(\begin{matrix}
 			\theta_{10}^{(j)} & \theta_{11}^{(j)} & \theta_{12}^{(j)} & \dots & \theta_{1,s_{j}}^{(j)} \\
@@ -125,7 +124,7 @@
 			\theta_{30}^{(j)} & \theta_{31}^{(j)} & \theta_{32}^{(j)} & \dots & \theta_{3,s_{j}}^{(j)} \\
 			\vdots    & \vdots    & \vdots    & \ddots & \vdots   \\
 			\theta_{s_{j+1}0}^{(j)} & \theta_{s_{j+1}1}^{(j)} & \theta_{s_{j+1}2}^{(j)} & \dots & \theta_{s_{j+1},s_{j}}^{(j)}
-		\end{matrix}\right) \Rightarrow {(s_{j+1},s_{j}+1)}\\
+		\end{matrix}\right), \quad {\rm I\!R}^{(s_{j+1},s_{j}+1)}\\
 	z^{(j+1)} &= (1, a^{(j)}) (\Theta^{(j)})^T \\
 		% \\ &= 
 		%   \left(\begin{matrix}
@@ -170,8 +169,8 @@
 				\vdots & \vdots & \vdots & \ddots & \vdots \\
 				z_1^{(j+1)(m)} & z_2^{(j+1)(m)} & z_3^{(j+1)(m)} & \dots & z_{s_{j+1}}^{(j+1)(m)} \\
 			\end{matrix}\right)
-		\\ & \Rightarrow (m,s_j+1) * (s_j+1, s_{j+1}) = (m,s_{j+1}) \\
-	a^{(j+1)} &= g(z^{(j+1)})  \Rightarrow {(m,s_{j+1})} 
+		\\ &, \quad {\rm I\!R}^{(m,s_j+1) * (s_j+1, s_{j+1}) = (m,s_{j+1})} \\
+	a^{(j+1)} &= g(z^{(j+1)}), \quad {\rm I\!R}^{(m,s_{j+1})}
 \end{aligned}\end{equation}
 \end{enumerate}
 
@@ -179,7 +178,7 @@
 \begin{equation} \begin{aligned}
 	y & = \left(\begin{matrix}
 			y^{(1)} \\ y^{(2)} \\ y^{(3)} \\ \vdots \\ y^{(m)} \\
-		\end{matrix}\right)_{m*1}
+		\end{matrix}\right), \quad {\rm I\!R}^{m*1}
 \end{aligned} \end{equation}
 
 为进行矩阵运算，要将其转化为如下形式:\footnote{y所对应的值所在的索引位置值为1，其他位置均为0}
@@ -190,5 +189,5 @@
 	        0 & 0 & 1 & \dots & 0 & 0 \\
 	        \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
 	        1 & 0 & 0 & \dots & 0 & 0 \\
-		\end{matrix}\right)_{m,s_L}
+		\end{matrix}\right), \quad {\rm I\!R}^{m,s_L}
 \end{aligned}\end{equation}\footnote{上式$m*s_L$中的$s_L$表示共有$s_L$个分类器，$s_L$表示的是输出层的unit数}
