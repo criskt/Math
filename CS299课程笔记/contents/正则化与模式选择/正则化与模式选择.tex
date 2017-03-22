@@ -13,27 +13,29 @@
 		\item 使用此方法留给交叉验证集的数据太多了，于是后了下面的方式
 	\end{enumerate}
 
-	\item $k$-Fold Cross Validation
+	\item k-Fold Cross Validation
 	\begin{enumerate}
-		\item 将数据分成$k$份($k$的大小小于数据集大小$m$即可)
-		\item 将第1份数据当做交叉训练集，用其余$k-1$份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_1}(h_{i1})$
-		\item 将第2份数据当做交叉训练集，用其余$k-1$份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_2}(h_{i2})$
-		\item 将第j份数据当做交叉训练集，用其余$k-1$份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_j}(h_{ij})$
-		\item 将第k份数据当做交叉训练集，用其余$k-1$份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_k}(h_{ik})$
+		\item 将数据分成k份(k的大小小于数据集大小$m$即可)
+		\item 将第1份数据当做交叉训练集，用其余k-1份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_1}(h_{i1})$
+		\item 将第2份数据当做交叉训练集，用其余k-1份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_2}(h_{i2})$
+		\item 将第j份数据当做交叉训练集，用其余k-1份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_j}(h_{ij})$
+		\item 将第k份数据当做交叉训练集，用其余k-1份进行训练，并计算此时每个Model($M_i$)的误差$\hat{\varepsilon}_{S_k}(h_{ik})$
 		\item 对每个Model用不同交叉验证集的到的误差取均值，选出误差最小的作为我们要的Model
-		\item 使用$k$-Fold Cross Validation的缺点是计算量大，如$k=10$，我们就需要训练$10$次
-		\item 特别地，若我们取$k=m$，则每次只留一个数据当做交叉验证集，我们将这种方式成为留一交叉验证(Leave-One-Out Cross Validation)，一般只有在数据量很少时才会用此方法
+		\item 使用k-Fold Cross Validation的缺点是计算量大，如$k=10$，我们就需要训练10次
+		\item 特别地，若我们取k=m，则每次只留一个数据当做交叉验证集，我们将这种方式成为留一交叉验证(Leave-One-Out Cross Validation)，一般只有在数据量很少时才会用此方法
 
 	\end{enumerate}
 \end{enumerate}
 
 
 \subsection{特征选择}
-当我们要训练的维度$n$非常大($n >> m$)，但是并不一定所有的维度都对训练有利时，我们就希望能够选取部分的特征进行训练。
+假设我们遇到了一个监督学习的问题，在这个问题中，我们的特征$n$很大，远大于我们的数据$m$，但是，这些特征中仅一部分数据对于我们的预测是有用的。这时，一方面我们为了处理这$n$维特征需要耗费很多的计算，另一方面这些多余的特征容易导致过拟合。此时，我们就可以使用特征选择来减小特征的数目。  \\
+接下来我们将一下一些进行特征选择的方法
 
 \subsubsection{向前搜索}
+
 \begin{enumerate}
-	\item 待添加
+	\item 待补充
 \end{enumerate}
 
 

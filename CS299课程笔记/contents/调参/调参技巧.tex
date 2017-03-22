@@ -18,24 +18,32 @@
 \begin{enumerate}
 	\item Skewed Classes
 	那些两种（或多种）情况发生的概率相关较大的情况称为Skewed Classes。如买彩票中奖的概率与不中奖的概率
-	\item True vs. False \& Positive vs. Negative
+	\item True vs. False \& Positive vs. Negative \\ 
 	Predicted:1, Actual:1 --- True Positive --- TP; \\
 	Predicted:0, Actual:0 --- True Negative ---TN; \\
-	Predicted:1, Actual:0 --- False Positive --- FP; \\
-	Predicted:0, Actual:0 --- False Negative --- FN; \\
+	Predicted:0, Actual:1 --- False Positive --- FP; \\
+	Predicted:1, Actual:0 --- False Negative --- FN; \\
 	True \& False 对应预测的是否正确; \\
 	Positive \& Negative 对应实际是否发生
+	\item 表格表示：横向表示预测，竖向表示实际 \\ 
+	\begin{tabular}{|l|c|r|}
+	    \hline
+	      & 0 & 1 \\ \hline
+	    0 & TN & FN \\ \hline
+	    1 & FP & TP \\ \hline
+	\end{tabular}
 	\item Accuracy \& Precision \& Recall
-	Accuracy: 发生的概率：$\frac{True}{False} = \frac{TP+TN}{TP+TN+FP+FN}$; 
-	Precision: 查准率，在预测为1的情况下，实际为1的概率：$frac{TP}{TP+FP}$ \\
+	Accuracy: 发生的概率：$\frac{True}{All} = \frac{TP+TN}{TP+TN+FP+FN}$;  \\
+	Precision: 查准率，在预测为1的情况下，实际为1的概率：$\frac{TP}{TP+FP}$ \\
 	Recall：召回率，在实际为1的情况下，被预测出来的概率: $\frac{TP}{TP+FN}$
 	\item Precision \& Recall均是越高越好，但实际上，两者无法同时都很高。（PS：两者加起来并不一定会等于1，甚至很小情况下才全等于1））
 \end{enumerate}
 
 \subsection{如何评价Precision与Recall}
 \begin{enumerate}
-	\item 使用$F_1Score = 2\frac{PR}{P+R}$
+	\item 使用$F_1 Score = 2\frac{PR}{P+R}$
 	\item 用交叉验证集的$F_1$值来选取最大的$F_1$值对应的P和R，不用训练集（或测试集）中的。
+	\item 训练集用来训练$\theta$，交叉难集用来选取$\theta$，测试集用来看选取的$\theta$是否可行
 \end{enumerate}
 
 

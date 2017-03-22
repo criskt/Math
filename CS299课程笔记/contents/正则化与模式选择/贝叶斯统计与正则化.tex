@@ -1,0 +1,83 @@
+\subsection{贝叶斯统计与正则化}
+在前面的逻辑回归讨论中，我们通过最大化似然函数来得到$\theta_{ML}$
+\begin{align}
+	\theta_{ML} = \arg \max_{\theta} \prod_{i=1}^{m}p(y^{(i)}|x^{(i)}; \theta)
+\end{align}
+在频率学派的观点中，$\theta$是一个参数，是一个定值（而不是随机的），只是我们暂时不知道它的大小是多少，我们的目的就是通过各种办法来预估$\theta$ \\
+在贝叶斯学派的观点中，$\theta$被当做是随机变量（同样，他的值是未知的）。此时，我们称$p(\theta)$为$\theta$的先验分布。给定训练集$S=\{(x^{(i)}, y^{(i)})\}_{i=1}^{m}$，可得$\theta$的后验分布为：
+\begin{align}
+	p(\theta | S) &= \frac{p(X|\theta)p(\theta)}{p(S)} \\
+	&= \frac{\left[\prod_{i=1}^{m}p(y^{(i)}|x^{(i)}, \theta) p(\theta)\right]}{\int_{\theta}\left[\prod_{i=1}^{m}p(y^{(i)}|x^{(i)}, \theta) p(\theta)\right]d\theta}
+\end{align}
+在上面的式子中，$p(y^{(i)}|x^{(i)}, \theta)$取决于你用什么算法，如用逻辑回归时，$p(y^{(i)}|x^{(i)}, \theta)=h_{\theta}(x^{(i)})^{y^{(i)}}\left[1-h_{\theta}(x^{(i)})\right]^{\left[1-y^{(i)}\right]}$\footnote{注意，此时，我们将$\theta$当做随机变量，因此，$\theta$与$x$间的分隔符号应为逗号，不是冒号了}，其中，$h_{\theta}(x^{(i)})=\frac{1}{e^{-\theta^Tx^{(i)}}}$ \\
+当我们要通过测试数据$x$进行预测时
+\begin{align}
+	p(y|x, S) = \int_{\theta}p(y|x, \theta)p(\theta|S)d\theta
+\end{align}
+期望：
+\begin{align}
+	E(y|x, S) = \int_{y}yp(y|x, S)dy
+\end{align}
+但是，因为在计算$p(\theta | S)$时需要耗费太多的性能，因此，我们并不会直接进行计算，而仅仅估计$p(\theta | S)$的值，称为最大化后验概率MAP（Maximum A Posteriori）
+\begin{align}
+	\theta_{MAP} = \arg \max_{\theta} \prod_{i=1}^{m}p(y^{(i)}|x^{(i)}, \theta)p(\theta)
+\end{align}
+有上式可以发现，最终的结果与最大化似然得到的一致。\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
