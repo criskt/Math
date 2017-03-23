@@ -1,0 +1,46 @@
+\section{k-Means}
+k-Means算法是一个是一个无监督学习算法，此时，在我们的数据集中，仍旧有$x^{(i)} \in {\rm I\!R}^n$，但是没有$y^{(i)}$。
+
+\subsection{k-Means聚类算法的计算步骤}
+\begin{enumerate}
+	\item 确定要聚类的数目$k$
+	\item 随机初始化聚类中心$\mu_1, \mu_2, \dots, \mu_k$，可以任意选取$k$个数据点作为$k$个聚类中心的初始值，也可以使用其他的初始化方式
+	\item 重复以下步骤，直到收敛
+	\begin{enumerate}
+		\item 计算每个数据点到每个聚类中心的距离平方值（当然，也可以使用其他计算方式，不过一般是用此方式。）
+		\item 对每个数据点，取与其距离最近的聚类中心所属类别作为其新类别$c^{(i)}$
+		\begin{align}
+			c^{(i)} := \arg \min_j \|x^{(i)}-\mu_j\|^2
+		\end{align}
+		\item 对每个类别，使用当前类别中的的所有点，重新计算其聚类中心$\mu_j$
+		\begin{align}
+			\mu_j := \frac{\sum_{i=1}^{m}1\{c^{(i)}=j\}x^{(i)}}{\sum_{i=1}^{m}1\{c^{(i)}=j\}}
+		\end{align}
+		其中，$c^{(i)}$就是每个数据点在每次迭代中所属的新类别。
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{对k-Means算法的讨论}
+\subsubsection{k-Means算法的收敛问题}
+\begin{enumerate}
+	\item Distortion Function
+	\begin{align}
+		J(c, \mu) = \sum_{i=1}^{m} \|x^{(i)} - \mu_{c^{(i)}}\|^2
+	\end{align}
+	如上式，$J(c, \mu)$描述的是每个数据$x^{(i)}$与聚类中心$\mu_{c^{(i)}}$的平方距离。
+	\item 对于此式，我们可以用坐标下降的方法来对其进行优化：先固定$\mu$，改变$c$来对$J(c, \mu)$最小化；再固定$c$，改变$\mu$来对$J(c, \mu)$最小化。通过此方式，我们一定能让$J(c, \mu)$收敛。
+	\item 因为$J(c, \mu)$并不是凸函数，所以通过坐标下降并不能保证收敛到全局最小值，而可能仅仅收敛到局部最小值。
+	\item 为了避免我们的算法收敛到一个较差的局部最小值，我们可以多次用不同的方法初始化聚类中心，然后取其中效果最好的作为我们的优化结果。
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
