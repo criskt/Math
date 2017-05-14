@@ -1,0 +1,34 @@
+\section{EM}
+EM(Expectation-Maximization)：期望最大化 \\
+
+与前面的k-Means一样，假设我们的数据集为$\{x^{(1)}, x^{(2)}, \dots, x^{(m)}\}$，没有$y^{(i)}$，EM算法也是无监督学习算法。 \\
+
+\begin{enumerate}
+	\item 待优化模型：
+	\begin{align}
+		p(x^{(i)}, z^{(i)}) &= p(x^{(i)}|z^{(i)})p(z^{(i)})
+	\end{align}
+	其中，$z^{(i)}$服从多项式分布：
+	\begin{align}
+		z^{(i)} &\sim Multinomial(\phi), \quad \phi_j \geq 0 \\
+		 \sum_{j=1}^{k}\phi_j &=1 \\ 
+		 \phi_j &= p(z^{(i)}=j) \\
+		 x^{(i)}|z^{(i)}=j &\sim \mathcal{N}(\mu_j, \sigma_j)
+	\end{align}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

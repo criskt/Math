@@ -7,13 +7,13 @@
 \end{equation}
 
 \begin{equation}\begin{aligned}
-	\frac{\partial{J(\theta)}}{\partial{\theta_j}} &= \frac{1}{2m}\sum_{i=1}^m 2[h_\theta(x^{(i)}-y^{(i)})] \frac{\partial{h_\theta(x^{(i)})}}{\partial{\theta_j}} + \lambda \frac{1}{2m} 2 \sum_{i=1}^n \theta_j \\
-	    &= \frac{1}{m}\sum_{i=1}^m[h_\theta(x^{(i)})-y^{(i)}]x^{(i)} + \frac{\lambda}{m}\sum_{i=1}^n \theta_j
+	\frac{\partial{J(\theta)}}{\partial{\theta_j}} &= \frac{1}{2m}\sum_{i=1}^m 2[h_\theta(x^{(i)}-y^{(i)})] \frac{\partial{h_\theta(x^{(i)})}}{\partial{\theta_j}} + \lambda \frac{1}{2m} 2  \theta_j \\
+	    &= \frac{1}{m}\sum_{i=1}^m[h_\theta(x^{(i)})-y^{(i)}]x^{(i)} + \frac{\lambda}{m} \theta_j
 \end{aligned}\end{equation}
 
 \[\begin{cases}
 	\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)}, \quad j=0 \\
-	\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} + \alpha\frac{\lambda}{m}\theta_j, \quad j \neq 0
+	\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} - \alpha\frac{\lambda}{m}\theta_j, \quad j \neq 0
 \end{cases}\]
 
 
@@ -24,7 +24,7 @@
 \end{equation}
 
 \begin{equation}
-	\nabla J(\theta) = \frac{1}{2m} X^T \left[h_\theta(x) - y\right] + \frac{\lambda}{m}\sum_{i=1}^n \theta_j
+	\nabla J(\theta) = \frac{1}{2m} X^T \left[h_\theta(x) - y\right] + \frac{\lambda}{m} \theta_j
 \end{equation}
 
 % \[\begin{cases}
@@ -50,7 +50,7 @@
 
 \[\begin{cases}
 	\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)}, \quad j=0 \\
-	\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} + \alpha\frac{\lambda}{m}\theta_j, \quad j \neq 0
+	\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} - \alpha\frac{\lambda}{m}\theta_j, \quad j \neq 0
 \end{cases}\]
 
 \subsubsubsection{矩阵计算方式}
